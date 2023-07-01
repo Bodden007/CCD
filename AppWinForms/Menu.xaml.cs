@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace CCD.AppWinForms
+{
+    /// <summary>
+    /// Логика взаимодействия для Menu.xaml
+    /// </summary>
+    public partial class Menu : Window
+    {
+        public Menu()
+        {
+            InitializeComponent();
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
+        }
+
+        private void MixControl_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BlendData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Shutdown_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void SetMixMod_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetExtraPres_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Lockout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CoolTest_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Totals_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ManualControl_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExtraDisplay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetPumpPres_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SystemCalibration_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SystemInformation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SetDensities_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ExitMenu_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+    }
+}

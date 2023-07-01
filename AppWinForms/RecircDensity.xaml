@@ -1,0 +1,51 @@
+﻿<Window x:Class="CCD.AppWinForms.RecircDensity"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CCD.AppWinForms"
+        mc:Ignorable="d"
+        Title="RecircDensity" Height="450" Width="800">
+    <Grid Background="#CDC771">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Button Set Recirc-->
+        <Button Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch">
+            <TextBlock x:Name="SetRecirc" Background="#03B15C" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="SET RECIRC"></TextBlock>
+        </Button>
+        <!--Button Downhole Standby-->
+        <Button Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch">
+            <TextBlock x:Name="DownholeStandby" Background="#E60A04" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Downhole  Standby"></TextBlock>
+        </Button>
+        <!--Button Use Startup Calibration-->
+        <Button Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Stretch">
+            <TextBlock x:Name="UseStartupCalibration" Background="#3446E5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" TextWrapping="Wrap" Text="Use Startup Calibration" ></TextBlock>
+        </Button>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman"  HorizontalAlignment="Center" Foreground="#3446E5" Text="Recirc Density"></TextBlock>
+            <TextBlock Grid.Row="1" FontSize="50" FontFamily="Times New Roman"  HorizontalAlignment="Center" VerticalAlignment="Center" >0.0 ppg</TextBlock>
+        </Grid>
+        <!--Button Set Density to value -->
+        <Button Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="#CDC771">
+            <TextBlock FontSize="70" FontFamily="Times New Roman"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="Set Density to value == &gt;" ></TextBlock>
+        </Button>
+        <!--Button Exit-->
+        <Button x:Name="Exit" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="White" Click="Exit_Click">
+            <TextBlock FontSize="70" FontFamily="Times New Roman"  HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" Text="Press to EXIT" ></TextBlock>
+        </Button>
+
+    </Grid>
+</Window>

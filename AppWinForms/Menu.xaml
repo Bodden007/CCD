@@ -1,0 +1,140 @@
+﻿<Window x:Class="CCD.AppWinForms.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CCD.AppWinForms"
+        mc:Ignorable="d"
+        Title="Menu" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="White"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <!--<Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>-->
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--Button Mix Control-->
+        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="MixControl_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Mix Control"></TextBlock>
+        </Button>
+        <!--Button Blend Data-->
+        <Button x:Name="BlendData" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BlendData_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Blend Data"></TextBlock>
+        </Button>
+        <!--Button Shutdown-->
+        <Button x:Name="Shutdown" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Shutdown_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Shutdown"></TextBlock>
+        </Button>
+        <!--Button Set Mix Mode-->
+        <Button x:Name="SetMixMod" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetMixMod_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" TextWrapping="Wrap" Text="Set Mix Mode"></TextBlock>
+        </Button>
+        <!--Button Set Extra Pressures-->        
+        <Button x:Name="SetExtraPres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetExtraPres_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" TextWrapping="Wrap" Text="Set Extra Pressures"></TextBlock>
+        </Button>
+        <!--Button Lockout Touch-->
+        <Button x:Name="Lockout" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Lockout_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Lockout Touch"></TextBlock>
+        </Button>
+        <!--Button 60 sec Cool Test-->
+        <Button x:Name="CoolTest" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CoolTest_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" TextAlignment="Center" TextWrapping="Wrap" Text="60 sec Cool Test"></TextBlock>
+        </Button>
+        <!--Button Totals-->
+        <Button x:Name="Totals" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Totals_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Totals"></TextBlock>
+        </Button>
+        <!--Button Manual Control-->
+        <Button x:Name="ManualControl" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ManualControl_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Manual Control"></TextBlock>
+        </Button>
+        <!--Button Extra Display-->
+        <Button x:Name="ExtraDisplay" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ExtraDisplay_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Extra Display"></TextBlock>
+        </Button>
+        <!--Button Set Pump Pressures-->
+        <Button x:Name="SetPumpPres" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetPumpPres_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" TextAlignment="Center" TextWrapping="Wrap" Text="Set Pump Pressures"></TextBlock>
+        </Button>
+        <!--Button System Calibration-->
+        <Button x:Name="SystemCalibration" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SystemCalibration_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60"  TextAlignment="Center" TextWrapping="Wrap" Text="System Calibration"></TextBlock>
+        </Button>
+        <!--Button System Information-->
+        <Button x:Name="SystemInformation" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SystemInformation_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" TextWrapping="Wrap" TextAlignment="Center" Text="System Information"></TextBlock>
+        </Button>
+        <!--Button Set Densities-->
+        <Button x:Name="SetDensities" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetDensities_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Set Densities"></TextBlock>
+        </Button>
+        <!--Button Exit Menu-->
+        <Button x:Name="Button14" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ExitMenu_Click">
+            <TextBlock FontFamily="Times New Roman" FontSize="60">Exit Menu</TextBlock>
+        </Button>
+    </Grid>
+</Window>
