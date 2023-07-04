@@ -1,0 +1,62 @@
+﻿<Window x:Class="CCD.AppWinForms.PassSide"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CCD.AppWinForms"
+        mc:Ignorable="d"
+        Title="PassSide" Height="450" Width="800">
+    <Grid Background="#CDC771">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Text="SET KICKOUT"></TextBlock>
+        <TextBox Grid.Column="0" Grid.Row="1" Background="White" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Times New Roman"></TextBox>
+        <Grid Grid.Column="1" Grid.Row="1" Background="GreenYellow">
+            <TextBlock FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Text="Yoke ON"></TextBlock>
+        </Grid>
+        <TextBox Grid.Column="2" Grid.Row="1" Background="White" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Times New Roman"></TextBox>
+       <!--SetPSKickout-->
+        <Button Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Background="Red" >
+            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set PS Kickout"></TextBlock>
+        </Button>
+        <!--SetDSKickout-->
+        <Button Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Background="Red" >
+            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set DS Kickout"></TextBlock>
+        </Button>
+        <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="ZERRO PRESSURE" ></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="PS Pressure" ></TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="DS Pressure" ></TextBlock>
+        <Grid Grid.Column="0" Grid.Row="6" Background="#0388C1">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0 psi"></TextBlock>
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="6" Background="#0388C1">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0 psi"></TextBlock>
+        </Grid>
+        <!--Set PS to Zero-->
+        <Button x:Name="SetPSZero" Grid.Column="0" Grid.Row="7" Grid.RowSpan="2"  Background="#CDC771" Click="SetPSZero_Click">
+            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set PS to Zero"></TextBlock>
+        </Button>
+        <!--Clear Sets-->
+        <Button x:Name="ClearSets" Grid.Column="1" Grid.Row="7" Grid.RowSpan="2"  Background="#CDC771" Click="ClearSets_Click">
+            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Clear Sets"></TextBlock>
+        </Button>
+        <!--Set DS to Zero-->
+        <Button x:Name="SetDSZero" Grid.Column="2" Grid.Row="7" Grid.RowSpan="2"  Background="#CDC771" Click="SetDSZero_Click">
+            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set DS to Zero"></TextBlock>
+        </Button>
+    </Grid>
+</Window>

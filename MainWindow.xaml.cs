@@ -25,12 +25,7 @@ namespace CCD
             InitializeComponent();
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
-
-
         }
-
-
-
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             CCD.AppWinForms.Menu menu = new CCD.AppWinForms.Menu();
@@ -40,12 +35,14 @@ namespace CCD
 
         private void PS_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.PassSide passSide = new CCD.AppWinForms.PassSide();
+            passSide.Show();
         }
 
         private void DS_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.PassSide passSide = new CCD.AppWinForms.PassSide();
+            passSide.Show();
         }
 
         private void CombiRate_Click(object sender, RoutedEventArgs e)
@@ -67,12 +64,14 @@ namespace CCD
 
         private void DownholeDensity_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.RecircDensity recircDensity = new AppWinForms.RecircDensity();           
+            recircDensity.Show();
         }
 
         private void MixControl_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.MixControl mixControl = new CCD.AppWinForms.MixControl();
+            mixControl.Show();
         }
 
         private void MixWaterRate_Click(object sender, RoutedEventArgs e)
