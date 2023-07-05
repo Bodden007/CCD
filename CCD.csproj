@@ -58,6 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AppWinForms\Combined.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppWinForms\Event.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -67,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppWinForms\MixControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppWinForms\MixWaterRate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,6 +94,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppWinForms\Combined.xaml.cs">
+      <DependentUpon>Combined.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppWinForms\Event.xaml.cs">
       <DependentUpon>Event.xaml</DependentUpon>
     </Compile>
@@ -94,6 +105,9 @@
     </Compile>
     <Compile Include="AppWinForms\MixControl.xaml.cs">
       <DependentUpon>MixControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppWinForms\MixWaterRate.xaml.cs">
+      <DependentUpon>MixWaterRate.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppWinForms\PassSide.xaml.cs">
       <DependentUpon>PassSide.xaml</DependentUpon>

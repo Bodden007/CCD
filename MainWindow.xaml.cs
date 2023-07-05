@@ -47,12 +47,14 @@ namespace CCD
 
         private void CombiRate_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined(); 
+            combined.Show();
         }
 
         private void CombiTotal_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
+            combined.Show();
         }
 
         private void RecircDensity_Click(object sender, RoutedEventArgs e)
@@ -76,7 +78,8 @@ namespace CCD
 
         private void MixWaterRate_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.MixWaterRate mixWaterRate = new AppWinForms.MixWaterRate();
+            mixWaterRate.Show();
         }
 
         private void Event_Click(object sender, RoutedEventArgs e)
