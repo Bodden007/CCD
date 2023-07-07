@@ -28,7 +28,8 @@ namespace CCD.AppWinForms
 
         private void MixControl_Click(object sender, RoutedEventArgs e)
         {
-
+            MixControl mixControl = new CCD.AppWinForms.MixControl();
+            mixControl.Show();
         }
 
         private void BlendData_Click(object sender, RoutedEventArgs e)
@@ -43,7 +44,8 @@ namespace CCD.AppWinForms
 
         private void SetMixMod_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.SetMixMode setMixMode = new SetMixMode();
+            setMixMode.Show();
         }
 
         private void SetExtraPres_Click(object sender, RoutedEventArgs e)
