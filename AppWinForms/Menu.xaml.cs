@@ -75,7 +75,8 @@ namespace CCD.AppWinForms
 
         private void ExtraDisplay_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.ExtraDisplay extraDisplay = new CCD.AppWinForms.ExtraDisplay();
+            extraDisplay.Show();
         }
 
         private void SetPumpPres_Click(object sender, RoutedEventArgs e)
@@ -90,7 +91,8 @@ namespace CCD.AppWinForms
 
         private void SystemInformation_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.SystemInformation systemInformation = new CCD.AppWinForms.SystemInformation();
+            systemInformation.Show();
         }
 
         private void SetDensities_Click(object sender, RoutedEventArgs e)

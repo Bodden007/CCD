@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AppWinForms\ExtraDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppWinForms\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +94,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AppWinForms\SystemInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,6 +111,9 @@
     </Compile>
     <Compile Include="AppWinForms\Event.xaml.cs">
       <DependentUpon>Event.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppWinForms\ExtraDisplay.xaml.cs">
+      <DependentUpon>ExtraDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppWinForms\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
@@ -121,6 +132,9 @@
     </Compile>
     <Compile Include="AppWinForms\SetMixMode.xaml.cs">
       <DependentUpon>SetMixMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppWinForms\SystemInformation.xaml.cs">
+      <DependentUpon>SystemInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
