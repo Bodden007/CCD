@@ -34,7 +34,8 @@ namespace CCD.AppWinForms
 
         private void BlendData_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.BlendData blendData = new CCD.AppWinForms.BlendData();
+            blendData.Show();
         }
 
         private void Shutdown_Click(object sender, RoutedEventArgs e)
