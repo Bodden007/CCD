@@ -28,7 +28,7 @@ namespace CCD.AppWinForms
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            
         }
 
         private void Quit1_Click(object sender, RoutedEventArgs e)
@@ -36,42 +36,43 @@ namespace CCD.AppWinForms
             Close();
         }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void Save1_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Save2_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Quit2_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Save3_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Quit3_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Save4_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void Quit4_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
