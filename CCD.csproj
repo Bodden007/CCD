@@ -62,6 +62,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AppWinForms\BlendData1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppWinForms\Combined.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AppWinForms\SetExtraPressures.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppWinForms\SetMixMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +120,9 @@
     </Compile>
     <Compile Include="AppWinForms\BlendData.xaml.cs">
       <DependentUpon>BlendData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppWinForms\BlendData1.xaml.cs">
+      <DependentUpon>BlendData1.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppWinForms\Combined.xaml.cs">
       <DependentUpon>Combined.xaml</DependentUpon>
@@ -136,6 +147,9 @@
     </Compile>
     <Compile Include="AppWinForms\RecircDensity.xaml.cs">
       <DependentUpon>RecircDensity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppWinForms\SetExtraPressures.xaml.cs">
+      <DependentUpon>SetExtraPressures.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppWinForms\SetMixMode.xaml.cs">
       <DependentUpon>SetMixMode.xaml</DependentUpon>

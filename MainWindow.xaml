@@ -79,9 +79,9 @@
         <Button x:Name="PS" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="PS_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto" MinHeight="66"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>                    
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*" MinHeight="66"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>                    
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Passenger Side" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
                 <TextBlock x:Name ="textBlock_0" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0 psi</TextBlock>
@@ -92,9 +92,9 @@
         <Button x:Name="DS" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="DS_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto" MinHeight="66"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*" MinHeight="66"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Driver Side" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
                 <TextBlock x:Name ="textBlock_1" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0 psi</TextBlock>

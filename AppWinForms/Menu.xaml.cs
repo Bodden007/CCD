@@ -51,7 +51,8 @@ namespace CCD.AppWinForms
 
         private void SetExtraPres_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.SetExtraPressures setExtraPressures = new SetExtraPressures();  
+            setExtraPressures.Show();
         }
 
         private void Lockout_Click(object sender, RoutedEventArgs e)

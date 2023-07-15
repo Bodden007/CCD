@@ -28,7 +28,9 @@ namespace CCD.AppWinForms
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            
+            CCD.AppWinForms.BlendData1 blendData1 = new CCD.AppWinForms.BlendData1();
+            blendData1.Show();
+            Close();
         }
 
         private void Quit1_Click(object sender, RoutedEventArgs e)
