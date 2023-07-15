@@ -48,15 +48,22 @@
         </Button>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman"  HorizontalAlignment="Center" Foreground="#3446E5" Text="Recirc Density"></TextBlock>
-            <TextBlock Grid.Row="1" FontSize="50" FontFamily="Times New Roman"  HorizontalAlignment="Center" VerticalAlignment="Center" >0.0 ppg</TextBlock>
+            <TextBlock Grid.Row="0" FontSize="30" FontFamily="Times New Roman"  HorizontalAlignment="Center" Foreground="#3446E5" Text="Recirc Density"></TextBlock>
+            <TextBlock Grid.Row="1" FontSize="60" FontFamily="Times New Roman"  HorizontalAlignment="Center" VerticalAlignment="Center" >0.0 ppg</TextBlock>
         </Grid>
         <!--Button Set Density to value -->
         <Button Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="#CDC771">
-            <TextBlock FontSize="70" FontFamily="Times New Roman"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="Set Density to value == &gt;" ></TextBlock>
+            <StackPanel>
+            <TextBlock FontSize="60" FontFamily="Times New Roman"  HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" TextWrapping="Wrap" 
+                       Text="Set Density" ></TextBlock>
+                <TextBlock FontSize="60" FontFamily="Times New Roman"  HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" TextWrapping="Wrap" Text="to value == &gt;" ></TextBlock>
+            </StackPanel>
         </Button>
         <!--Button Exit-->
         <Button x:Name="Exit" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="White" Click="Exit_Click">

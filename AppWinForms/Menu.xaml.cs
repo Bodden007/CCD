@@ -91,7 +91,8 @@ namespace CCD.AppWinForms
 
         private void SystemCalibration_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.SystemCalibration systemCalibration = new CCD.AppWinForms.SystemCalibration();
+            systemCalibration.Show();
         }
 
         private void SystemInformation_Click(object sender, RoutedEventArgs e)

@@ -58,6 +58,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SystemCallibration\DsPressure.xaml.cs">
+      <DependentUpon>DsPressure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemCallibration\DSPump.xaml.cs">
+      <DependentUpon>DSPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemCallibration\MixWaterFlowmeter.xaml.cs">
+      <DependentUpon>MixWaterFlowmeter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemCallibration\PsPressure.xaml.cs">
+      <DependentUpon>PsPressure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemCallibration\PSPump.xaml.cs">
+      <DependentUpon>PSPump.xaml</DependentUpon>
+    </Compile>
     <Page Include="AppWinForms\BlendData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppWinForms\SetMixMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppWinForms\SystemCalibration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,6 +184,9 @@
     <Compile Include="AppWinForms\SetMixMode.xaml.cs">
       <DependentUpon>SetMixMode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppWinForms\SystemCalibration.xaml.cs">
+      <DependentUpon>SystemCalibration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppWinForms\SystemInformation.xaml.cs">
       <DependentUpon>SystemInformation.xaml</DependentUpon>
     </Compile>
@@ -175,6 +197,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SystemCallibration\DsPressure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemCallibration\DSPump.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemCallibration\MixWaterFlowmeter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemCallibration\PsPressure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemCallibration\PSPump.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
