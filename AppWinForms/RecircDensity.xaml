@@ -6,6 +6,13 @@
         xmlns:local="clr-namespace:CCD.AppWinForms"
         mc:Ignorable="d"
         Title="RecircDensity" Height="450" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryBlueColor" Color="#CDC771"/>
+        <SolidColorBrush x:Key="SecondBlueColor" Color="#2E73C1"/>
+        <SolidColorBrush x:Key="RedBlueColor" Color="#FF1B0F"/>
+        <SolidColorBrush x:Key="GreenBlueColor" Color="#15FF00"/>
+
+    </Window.Resources>
     <Grid Background="#CDC771">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -19,16 +26,25 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <!--Button Set Recirc-->
-        <Button Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch">
-            <TextBlock x:Name="SetRecirc" Background="#03B15C" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="SET RECIRC"></TextBlock>
+        <Button Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Background="{DynamicResource PrimaryBlueColor}">
+            <Border Background="{DynamicResource GreenBlueColor}" Margin="5">
+            <TextBlock x:Name="SetRecirc"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="SET RECIRC"></TextBlock>
+            </Border>
         </Button>
         <!--Button Downhole Standby-->
-        <Button Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch">
-            <TextBlock x:Name="DownholeStandby" Background="#E60A04" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Downhole  Standby"></TextBlock>
+        <Button Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Background="{DynamicResource PrimaryBlueColor}">
+            <Border Background="{DynamicResource RedBlueColor}" Margin="5">
+                <TextBlock x:Name="DownholeStandby" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Downhole  Standby"></TextBlock>
+            </Border>
         </Button>
         <!--Button Use Startup Calibration-->
-        <Button Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Stretch">
-            <TextBlock x:Name="UseStartupCalibration" Background="#3446E5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" TextWrapping="Wrap" Text="Use Startup Calibration" ></TextBlock>
+        <Button Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Background="{DynamicResource PrimaryBlueColor}">
+            <Border Background="{DynamicResource SecondBlueColor}" Margin="5">
+                <TextBlock x:Name="UseStartupCalibration" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" TextWrapping="Wrap" Text="Use Startup Calibration" ></TextBlock>
+            </Border>
         </Button>
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>

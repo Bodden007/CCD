@@ -1,0 +1,159 @@
+﻿<Window x:Class="CCD.AppWinForms.ManualControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CCD.AppWinForms"
+        mc:Ignorable="d"
+        Title="ManualControl" Height="450" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryBlueColor" Color="#CDC771"/>
+    </Window.Resources>
+    <Grid Background="{DynamicResource PrimaryBlueColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Oscillate Cement-->
+            <Button x:Name="Cement" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch"
+                    Background="{DynamicResource PrimaryBlueColor}">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Oscillate"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Cements"></TextBlock>
+                </StackPanel>
+            </Button>
+            <!--Oscillate Both-->
+            <Button x:Name="Both" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch"
+                    Background="{DynamicResource PrimaryBlueColor}">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Oscillate"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Both"></TextBlock>
+                </StackPanel>
+            </Button>
+            <!--Oscillate Water-->
+            <Button x:Name="Water" Grid.Column="2" Grid.Row="0" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch"
+                    Background="{DynamicResource PrimaryBlueColor}">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Oscillate"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Water"></TextBlock>
+                </StackPanel>
+            </Button>
+            <!--Open All Valves-->
+            <Button x:Name="AllValves" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch"
+                    Background="{DynamicResource PrimaryBlueColor}">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Open All"></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Valves"></TextBlock>
+                </StackPanel>
+            </Button>
+            <!--Close All Valves/Exit-->
+            <Button x:Name="AllValvesExit" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" 
+                    VerticalContentAlignment="Stretch"
+                    Background="{DynamicResource PrimaryBlueColor}" Click="AllValvesExit_Click">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Close All "></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="Valves/Exit"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="0.00 ppg"></TextBlock>
+                <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="40" Text="Recirc Density"></TextBlock>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="0 gpm"></TextBlock>
+                <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="40" Text="Mix Water Rate"></TextBlock>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="20" 
+                       Text="Enter number and press enter"></TextBlock>
+
+            <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="0">
+                </TextBox>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Border Background="White" Margin="0,0,0,10">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="40" Text="CMT = 0.0%">
+                    </TextBlock>
+                </Border>
+            </Grid>
+
+            <TextBlock Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="20" 
+                       Text="Enter number and press enter"></TextBlock>
+
+            <Grid Grid.Column="2" Grid.Row="1" Background="White">
+                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="60" Text="0">
+                </TextBox>
+            </Grid>
+
+            <Grid Grid.Column="2" Grid.Row="2">
+                <Border Background="White" Margin="0,0,0,10">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               FontFamily="Times New Roman" FontSize="40" Text="WTR = 0.0%">
+                    </TextBlock>
+                </Border>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

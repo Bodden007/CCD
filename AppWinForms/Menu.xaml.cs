@@ -67,12 +67,14 @@ namespace CCD.AppWinForms
 
         private void Totals_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.Totals totals = new CCD.AppWinForms.Totals();
+            totals.Show();
         }
 
         private void ManualControl_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.ManualControl manualControl = new CCD.AppWinForms.ManualControl();
+            manualControl.Show();
         }
 
         private void ExtraDisplay_Click(object sender, RoutedEventArgs e)
@@ -83,7 +85,8 @@ namespace CCD.AppWinForms
 
         private void SetPumpPres_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.PassSide passSide = new CCD.AppWinForms.PassSide();
+            passSide.Show();
         }
 
         private void SystemCalibration_Click(object sender, RoutedEventArgs e)
@@ -99,7 +102,8 @@ namespace CCD.AppWinForms
 
         private void SetDensities_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.AppWinForms.RecircDensity recircDensity = new CCD.AppWinForms.RecircDensity();
+            recircDensity.Show();
         }
         private void ExitMenu_Click(object sender, RoutedEventArgs e)
         {
