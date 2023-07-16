@@ -53,7 +53,7 @@
                             </Grid.ColumnDefinitions>
                             <Border x:Name="radioButtonBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="100" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,1,2,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid x:Name="markGrid" Margin="2">
-                                    <Ellipse x:Name="optionMark" Fill="{StaticResource RadioButton.Static.Glyph}" MinWidth="40" MinHeight="40" Opacity="0"/>
+                                    <Ellipse x:Name="optionMark" Fill="{StaticResource RadioButton.Static.Glyph}" MinWidth="20" MinHeight="20" Opacity="0"/>
                                 </Grid>
                             </Border>
                             <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -107,7 +107,7 @@
         <!--1.Density Control Mode-->
         <TextBlock Grid.Row="1" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer"></TextBlock>
 
-        <RadioButton GroupName="Uses" Grid.Row="2" >
+        <RadioButton GroupName="Uses" Grid.Row="2"  VerticalContentAlignment="Center" >
             <TextBlock VerticalAlignment="Top" FontSize="60" FontFamily="Times New Roman" Text="1.Density Control Mode"></TextBlock>
         </RadioButton>
        
@@ -115,7 +115,7 @@
         <TextBlock Grid.Row="3" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer and Tub Height Sensor"></TextBlock>
 
 
-        <RadioButton GroupName="Uses" Grid.Row="4" >
+        <RadioButton GroupName="Uses" Grid.Row="4" VerticalContentAlignment="Center">
             <TextBlock FontSize="60" FontFamily="Times New Roman" Text="2.Density Height Mode"></TextBlock>
         </RadioButton>
         
@@ -123,7 +123,7 @@
         <TextBlock Grid.Row="5" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Tub Height Sensor and Flow Totals"></TextBlock>
 
 
-        <RadioButton GroupName="Uses" Grid.Row="6" >
+        <RadioButton GroupName="Uses" Grid.Row="6" VerticalContentAlignment="Center" >
             <TextBlock FontSize="60" FontFamily="Times New Roman" Text="3.Volumetric Mode"></TextBlock>
         </RadioButton>
         

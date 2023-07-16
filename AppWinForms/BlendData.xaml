@@ -124,7 +124,7 @@
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Background="Transparent">
                                 <TabPanel x:Name="headerPanel" Background="Transparent" IsItemsHost="true" Margin="2,2,2,0" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
-                                <Button Style="{DynamicResource ButtonStyle1}" RenderTransform="{StaticResource Rotate180}" x:Name="Next" Background="{DynamicResource SecondBlueColor}" Content="Next" Click="Next_Click"/>
+                                <Button x:Name="Next" Style="{DynamicResource ButtonStyle1}" RenderTransform="{StaticResource Rotate180}" Background="{DynamicResource SecondBlueColor}" Content="Next" Click="Next_Click"/>
                             </StackPanel>
                             <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="0, 12, 12, 12" Background="{DynamicResource SecondBlueColor}">
                                 <ContentPresenter ContentSource="SelectedContent"/>

@@ -90,7 +90,7 @@
         </Button>
         <!--I/O Config-->
         <Button x:Name="IOConfig" Grid.Column="1" Grid.Row="2" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="IOConfig_Click">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
                        FontFamily="Times New Roman" FontSize="60" Text="I/O Config"></TextBlock>
         </Button>
@@ -108,7 +108,7 @@
         </Button>
         <!--Cement Valve-->
         <Button x:Name="CementValve" Grid.Column="2" Grid.Row="0" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="CementValve_Click">
             <StackPanel>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                            FontFamily="Times New Roman" FontSize="60" Text="Cement"></TextBlock>
@@ -118,7 +118,7 @@
         </Button>
         <!--Water Valve-->
         <Button x:Name="WaterValve" Grid.Column="2" Grid.Row="1" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="WaterValve_Click">
             <StackPanel>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                            FontFamily="Times New Roman" FontSize="60" Text="Water"></TextBlock>

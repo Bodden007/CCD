@@ -58,6 +58,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IOConfig\IoConfig14.xaml.cs">
+      <DependentUpon>IoConfig14.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IOConfig\IoConfig58.xaml.cs">
+      <DependentUpon>IoConfig58.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IOConfig\IoConfig9B.xaml.cs">
+      <DependentUpon>IoConfig9B.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IOConfig\IoConfigCG.xaml.cs">
+      <DependentUpon>IoConfigCG.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IOConfig\IoConfigHSave.xaml.cs">
+      <DependentUpon>IoConfigHSave.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemCallibration\CementWaterValve.xaml.cs">
+      <DependentUpon>CementWaterValve.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemCallibration\DsPressure.xaml.cs">
       <DependentUpon>DsPressure.xaml</DependentUpon>
     </Compile>
@@ -137,6 +155,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="IOConfig\IoConfig14.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IOConfig\IoConfig58.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IOConfig\IoConfig9B.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IOConfig\IoConfigCG.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IOConfig\IoConfigHSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -197,6 +235,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SystemCallibration\CementWaterValve.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemCallibration\DsPressure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -77,5 +77,23 @@ namespace CCD.AppWinForms
             CCD.AppWinForms.RecircDensity recircDensity = new RecircDensity();
             recircDensity.Show();
         }
+
+        private void CementValve_Click(object sender, RoutedEventArgs e)
+        {
+            CCD.SystemCallibration.CementWaterValve cementWaterValve = new SystemCallibration.CementWaterValve();
+            cementWaterValve.Show();
+        }
+
+        private void WaterValve_Click(object sender, RoutedEventArgs e)
+        {
+            CCD.SystemCallibration.CementWaterValve cementWaterValve = new SystemCallibration.CementWaterValve();
+            cementWaterValve.Show();
+        }
+
+        private void IOConfig_Click(object sender, RoutedEventArgs e)
+        {
+            CCD.IOConfig.IoConfig14 ioConfig14 = new CCD.IOConfig.IoConfig14();
+            ioConfig14.Show();
+        }
     }
 }

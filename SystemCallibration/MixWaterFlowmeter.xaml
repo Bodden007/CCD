@@ -91,7 +91,7 @@
             <Border Grid.Column="3" Grid.Row="3" Background="White" VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch">
                 <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="15000.00"></TextBox>
+                       FontFamily="Times New Roman" FontSize="60" Text="00.00"></TextBox>
             </Border>
 
         </Grid>
