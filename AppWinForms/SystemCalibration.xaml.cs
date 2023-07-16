@@ -33,7 +33,9 @@ namespace CCD.AppWinForms
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-
+            CCD.SystemCallibration.Next next = new CCD.SystemCallibration.Next();
+            next.Show();
+            Close();
         }
 
         private void PSPressure_Click(object sender, RoutedEventArgs e)
@@ -94,6 +96,12 @@ namespace CCD.AppWinForms
         {
             CCD.IOConfig.IoConfig14 ioConfig14 = new CCD.IOConfig.IoConfig14();
             ioConfig14.Show();
+        }
+
+        private void TubLevel_Click(object sender, RoutedEventArgs e)
+        {
+            CCD.SystemCallibration.TubLevel tubLevel = new SystemCallibration.TubLevel();
+            tubLevel.Show();
         }
     }
 }

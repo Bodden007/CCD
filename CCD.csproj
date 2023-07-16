@@ -85,11 +85,17 @@
     <Compile Include="SystemCallibration\MixWaterFlowmeter.xaml.cs">
       <DependentUpon>MixWaterFlowmeter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemCallibration\Next.xaml.cs">
+      <DependentUpon>Next.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemCallibration\PsPressure.xaml.cs">
       <DependentUpon>PsPressure.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemCallibration\PSPump.xaml.cs">
       <DependentUpon>PSPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemCallibration\TubLevel.xaml.cs">
+      <DependentUpon>TubLevel.xaml</DependentUpon>
     </Compile>
     <Page Include="AppWinForms\BlendData.xaml">
       <SubType>Designer</SubType>
@@ -251,11 +257,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemCallibration\Next.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemCallibration\PsPressure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemCallibration\PSPump.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemCallibration\TubLevel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,6 +303,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="CCD.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CCD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

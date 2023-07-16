@@ -62,7 +62,7 @@
                        VerticalAlignment="Center" TextWrapping="Wrap" 
                        Text="Set Density" ></TextBlock>
                 <TextBlock FontSize="60" FontFamily="Times New Roman"  HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" TextWrapping="Wrap" Text="to value == &gt;" ></TextBlock>
+                       VerticalAlignment="Center" TextWrapping="Wrap" Text="to value -- &gt;" ></TextBlock>
             </StackPanel>
         </Button>
         <!--Button Exit-->

@@ -96,7 +96,7 @@
         </Button>
         <!--Tub Level-->
         <Button x:Name="TubLevel" Grid.Column="1" Grid.Row="3" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="TubLevel_Click" >
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
                        FontFamily="Times New Roman" FontSize="60" Text="Tub Level"></TextBlock>
         </Button>

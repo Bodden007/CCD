@@ -1,0 +1,133 @@
+﻿<Window x:Class="CCD.SystemCallibration.Next"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CCD.SystemCallibration"
+        mc:Ignorable="d"
+        Title="Next" Height="850" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Extra Pressure 1-->
+        <Button x:Name="ExtraPressure1" Grid.Column="0" Grid.Row="0" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Extra"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Pressure 1"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--Extra Pressure 2-->
+        <Button x:Name="ExtraPressure2" Grid.Column="0" Grid.Row="1" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Extra"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Pressure 2"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--Extra Rate 1-->
+        <Button x:Name="ExtraRate1" Grid.Column="0" Grid.Row="2" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Extra"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Rate 1"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--Extra Rate 2-->
+        <Button x:Name="ExtraRate2" Grid.Column="0" Grid.Row="3" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Extra"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Rate 2"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--F300 RDen Flow Rate-->
+        <Button x:Name="F300RDen" Grid.Column="1" Grid.Row="0" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="F300 RDen"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Flow Rate2"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--Volumetric Meter Rate-->
+        <Button x:Name="VolumetricMeterRate" Grid.Column="1" Grid.Row="1" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Volumetric"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Meter Rate"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--Water Test Mode On-->
+        <Button x:Name="WaterTestModeOn" Grid.Column="2" Grid.Row="1" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Water Test"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Mode On"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--Display Counts-->
+        <Button x:Name="DisplayCounts" Grid.Column="2" Grid.Row="2" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Display"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Counts"></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <!--<<<Back-->
+        <Button x:Name="Back" Grid.Column="2" Grid.Row="3" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Click="Back_Click">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="&lt;&lt;&lt; Back"></TextBlock>
+
+        </Button>
+
+        <!--Exit Calibration-->
+        <Button x:Name="ExitCalibration" Grid.Column="2" Grid.Row="4" Background="White"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Click="ExitCalibration_Click">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Exit"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       FontFamily="Times New Roman" FontSize="60" Text="Calibration"></TextBlock>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Window>
