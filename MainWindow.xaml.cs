@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CCD
 {
@@ -24,12 +25,25 @@ namespace CCD
         {
             InitializeComponent();
             WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+            WindowState = WindowState.Maximized;            
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(5);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            time.Text = DateTime.Now.ToString("HH:mm");
+        }
+
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.Menu menu = new CCD.AppWinForms.Menu();
-            //menu.Owner = this;
+            CCD.AppWinForms.Menu menu = new CCD.AppWinForms.Menu();            
             menu.Show();
         }
 
@@ -59,8 +73,7 @@ namespace CCD
 
         private void RecircDensity_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.RecircDensity recircDensity = new AppWinForms.RecircDensity();
-            //recircDensity.Owner= this;
+            CCD.AppWinForms.RecircDensity recircDensity = new AppWinForms.RecircDensity();           
             recircDensity.Show();
         }
 
@@ -87,7 +100,8 @@ namespace CCD
             CCD.AppWinForms.Event @event = new CCD.AppWinForms.Event();
             @event.Owner = this;
             @event.Show();
-
         }
+
+
     }
 }
