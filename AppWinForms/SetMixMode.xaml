@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CCD.AppWinForms"
         mc:Ignorable="d"
-        Title="SetMixMode" Height="450" Width="800">
+        Title="SetMixMode" Height="850" Width="1200">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -92,54 +92,51 @@
     </Window.Resources>
     <Grid Background="#CDC771">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>        
+            <RowDefinition Height="1*"></RowDefinition>            
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Select Mix Mode"></TextBlock>
+        
+        <TextBlock Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Select Mix Mode"></TextBlock>
         
         <!--1.Density Control Mode-->
-        <TextBlock Grid.Row="1" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer"></TextBlock>
-
-        <RadioButton GroupName="Uses" Grid.Row="2"  VerticalContentAlignment="Center" >
-            <TextBlock VerticalAlignment="Top" FontSize="60" FontFamily="Times New Roman" Text="1.Density Control Mode"></TextBlock>
-        </RadioButton>
+        <StackPanel Grid.Row="1">
+            <RadioButton GroupName="Uses" Grid.Row="1"  VerticalContentAlignment="Center" >
+                <TextBlock VerticalAlignment="Top" FontSize="60" FontFamily="Times New Roman" Text="1.Density Control Mode"></TextBlock>
+            </RadioButton>
+            <TextBlock Grid.Row="2" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer"></TextBlock>
+        </StackPanel>
        
         <!--2.Density Height Mode-->
-        <TextBlock Grid.Row="3" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer and Tub Height Sensor"></TextBlock>
-
-
-        <RadioButton GroupName="Uses" Grid.Row="4" VerticalContentAlignment="Center">
-            <TextBlock FontSize="60" FontFamily="Times New Roman" Text="2.Density Height Mode"></TextBlock>
-        </RadioButton>
+        <StackPanel Grid.Row="2">           
+            <RadioButton GroupName="Uses"  VerticalContentAlignment="Center">
+                <TextBlock FontSize="60" FontFamily="Times New Roman" Text="2.Density Height Mode"></TextBlock>
+            </RadioButton>
+            <TextBlock  FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer and Tub Height Sensor"></TextBlock>
+        </StackPanel>        
         
         <!--3.Volumetric Mode-->
-        <TextBlock Grid.Row="5" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Tub Height Sensor and Flow Totals"></TextBlock>
-
-
-        <RadioButton GroupName="Uses" Grid.Row="6" VerticalContentAlignment="Center" >
-            <TextBlock FontSize="60" FontFamily="Times New Roman" Text="3.Volumetric Mode"></TextBlock>
-        </RadioButton>
+        <StackPanel Grid.Row="3">
+            <RadioButton GroupName="Uses" VerticalContentAlignment="Center" >
+                <TextBlock FontSize="60" FontFamily="Times New Roman" Text="3.Volumetric Mode"></TextBlock>
+            </RadioButton>
+            <TextBlock  FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Tub Height Sensor and Flow Totals"></TextBlock>
+        </StackPanel>       
         
-        <Grid Grid.Row="8">
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-
             <!--Ok-->
             <Button x:Name="Ok" Grid.Column="1" Background="Green" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Ok_Click">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Ok"></TextBlock>
             </Button>
+            
         </Grid>
-
     </Grid>
 </Window>

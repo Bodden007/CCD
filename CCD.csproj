@@ -73,6 +73,7 @@
     <Compile Include="IOConfig\IoConfigHSave.xaml.cs">
       <DependentUpon>IoConfigHSave.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\Control.cs" />
     <Compile Include="SystemCallibration\CementWaterValve.xaml.cs">
       <DependentUpon>CementWaterValve.xaml</DependentUpon>
     </Compile>
