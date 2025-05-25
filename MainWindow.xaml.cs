@@ -51,6 +51,7 @@ namespace CCD
             textBlock_0.Text = e.ToString();
         }
 
+        //FIXMI uncomment
         private void Timer_Tick(object sender, EventArgs e)
         {
             time.Text = DateTime.Now.ToString("HH:mm");
