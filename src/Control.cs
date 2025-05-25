@@ -11,24 +11,24 @@ namespace CCD.src
     internal class Control
     {
 
-        public event EventHandler<int> EventFromLoop;
+        //public event EventHandler<int> EventFromLoop;
 
-        public void Start()
-        {
-            CCD.MainWindow mainWindow = new CCD.MainWindow();
+        //public void Start()
+        //{
+        //    CCD.MainWindow mainWindow = new CCD.MainWindow();
             
             
-                for (int i = 0; i < 25; i++)
-                {
-                mainWindow.textBlock_0.Text = i.ToString();
+        //        for (int i = 0; i < 25; i++)
+        //        {
+        //        mainWindow.textBlock_0.Text = i.ToString();
 
-                    if (EventFromLoop != null)
-                    {
-                        EventFromLoop(this, i);
-                    }
-                Thread.Sleep(1000);
-            }
+        //            if (EventFromLoop != null)
+        //            {
+        //                EventFromLoop(this, i);
+        //            }
+        //        Thread.Sleep(1000);
+        //    }
             
-        }
+        //}
     }
 }

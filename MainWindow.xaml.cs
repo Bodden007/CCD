@@ -37,7 +37,7 @@ namespace CCD
             timer.Tick += Timer_Tick;
             timer.Start();
 
-            CCD.src.Control control = new CCD.src.Control();
+            //CCD.src.Control control = new CCD.src.Control();
             //control.EventFromLoop += control_EventFromLoop;
             //Task.Run(() =>
             //{
@@ -54,7 +54,7 @@ namespace CCD
         private void Timer_Tick(object sender, EventArgs e)
         {
             time.Text = DateTime.Now.ToString("HH:mm");
-            StepChange();
+            //StepChange();
         }
 
         private void Menu_Click(object sender, RoutedEventArgs e)

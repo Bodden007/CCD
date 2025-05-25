@@ -21,7 +21,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Foreground="Red" Text="Бурсервис"></TextBlock>
+                   VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Foreground="Red" 
+                   FontWeight="Bold" Text="БУРСЕРВИС"></TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" HorizontalAlignment="Center" 
                    VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Control of Cementing Data"></TextBlock>
         <Button x:Name="Ok" Grid.Column="3" Grid.Row="4"  Background="Green" HorizontalAlignment="Stretch" 
