@@ -1,6 +1,9 @@
-﻿using System;
+﻿using CCD.Models;
+using NModbus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,33 +25,45 @@ namespace CCD
     /// </summary>
     public partial class MainWindow : Window
     {
-        int step =0;
+        private readonly MainViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            //FIXME верхний бар
             WindowStyle = WindowStyle.None;
+
+            //FIXMI В максимальный размер
             WindowState = WindowState.Maximized;
+
+
+            //FIXMI ВАЖНО!!! не забудь расскоментировать
+            //_viewModel = new MainViewModel();
+
+            //this.DataContext = _viewModel;
+
+            //Loaded += Window_Loaded;
+            //Closed += Window_Closed;
+
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+
+        //FIXMI ВАЖНО!!! не забудь расскоментировать
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-
-            //CCD.src.Control control = new CCD.src.Control();
-            //control.EventFromLoop += control_EventFromLoop;
-            //Task.Run(() =>
-            //{
-                //control.Start();
-            //});
-
+            //await _viewModel.StartPollingAsync();
         }
+
+        //private void Window_Closed(object sender, System.EventArgs e)
+        //{
+        //    _viewModel.StopPolling();
+        //}
 
         private void control_EventFromLoop(object sender, int e)
         {
-            textBlock_0.Text = e.ToString();
+            //textBlock_0.Text = e.ToString();
         }
 
         //FIXMI uncomment
@@ -78,57 +93,52 @@ namespace CCD
 
         private void CombiRate_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
-            combined.Show();
+            //CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
+            //combined.Show();
         }
 
         private void CombiTotal_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
-            combined.Show();
+            //CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
+            //combined.Show();
         }
 
         private void RecircDensity_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.RecircDensity recircDensity = new AppWinForms.RecircDensity();
-            recircDensity.Show();
+            //CCD.AppWinForms.RecircDensity recircDensity = new AppWinForms.RecircDensity();
+            //recircDensity.Show();
         }
 
         private void DownholeDensity_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.RecircDensity recircDensity = new AppWinForms.RecircDensity();
-            recircDensity.Show();
+            //CCD.AppWinForms.RecircDensity recircDensity = new AppWinForms.RecircDensity();
+            //recircDensity.Show();
         }
 
         private void MixControl_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.MixControl mixControl = new CCD.AppWinForms.MixControl();
-            mixControl.Show();
+            //CCD.AppWinForms.MixControl mixControl = new CCD.AppWinForms.MixControl();
+            //mixControl.Show();
         }
 
         private void MixWaterRate_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.MixWaterRate mixWaterRate = new AppWinForms.MixWaterRate();
-            mixWaterRate.Show();
+            //CCD.AppWinForms.MixWaterRate mixWaterRate = new AppWinForms.MixWaterRate();
+            //mixWaterRate.Show();
         }
 
         private void Event_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.Event @event = new CCD.AppWinForms.Event();
-            @event.Owner = this;
-            @event.Show();
+            //CCD.AppWinForms.Event @event = new CCD.AppWinForms.Event();
+            //@event.Owner = this;
+            //@event.Show();
         }
 
         private void ShowData(int data)
         {
-            textBlock_0.Text = data.ToString();
+            //textBlock_0.Text = data.ToString();
             
         }
 
-        private void StepChange()
-        {
-            textBlock_0.Text= step.ToString() +" psi";
-            step++;
-        }
     }
 }

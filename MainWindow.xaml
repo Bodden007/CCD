@@ -62,7 +62,30 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="ButtonStylyBig" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -75,80 +98,136 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <!--Butto Passenger Side-->
-        <Button x:Name="PS" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="PS_Click">
-            <Grid HorizontalAlignment="Stretch">
+        <!--Button Passenger Side-->
+        <Button x:Name="PS" Grid.Column="0" Grid.Row="0" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Click="PS_Click">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*" MinHeight="66"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>                    
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Passenger Side" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                <TextBlock x:Name ="textBlock_0" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0 psi</TextBlock>
-                <Label x:Name="Label_1" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" Background="#FFC9DEF5" FontSize="24" >PSKO = 0 psi</Label>
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
+                           Text="Passenger Side"/>
+
+                <TextBlock x:Name ="PSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           Text="{Binding PSPassenger}">100 PSI</TextBlock>
+
+                <Border Grid.Row="2" Background="#FFC9DEF5">
+                    <TextBlock x:Name="PSOpko" Style="{StaticResource StyleTextBlock_1}"
+                               Text="PSKO = 0 psi" ></TextBlock>
+                </Border>
+                <!--<Label x:Name="Label_1" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                       FontFamily="Times New Roman" Background="#FFC9DEF5" FontSize="12" 
+                        Content="PSKO = 0 psi"></Label>-->
             </Grid>
         </Button>
+
         <!--Button Driver Side-->
-        <Button x:Name="DS" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="DS_Click">
-            <Grid HorizontalAlignment="Stretch">
+        <Button x:Name="DS" Grid.Column="1" Grid.Row="0" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Click="DS_Click">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*" MinHeight="66"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Driver Side" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                <TextBlock x:Name ="textBlock_1" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0 psi</TextBlock>
-                <Label x:Name="Label_2" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" Background="#FFC9DEF5" FontSize="24" >DSKO = 0 psi</Label>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
+                           Text="Driver Side"/>
+
+                <TextBlock x:Name ="DSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           Text="{Binding DSPassenger}">100 PSI</TextBlock>
+
+                <Border Grid.Row="2" Background="#FFC9DEF5">
+                    <TextBlock x:Name="DSOpko" Style="{StaticResource StyleTextBlock_1}"
+                               Text="PSKO = 0 psi" ></TextBlock>
+                </Border>
+
+                <!--<Label x:Name="Label_2" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                       FontFamily="Times New Roman" Background="#FFC9DEF5" FontSize="20" >DSKO = 0 psi</Label>-->
             </Grid>
         </Button>
+
         <!--Button Combined HT400 Rate-->
-        <Button x:Name="CombiRate" Grid.Column="0" Grid.Row="1" Click="CombiRate_Click">
-            <Grid HorizontalAlignment="Stretch">
+        <Button x:Name="CombiRate" Grid.Column="0" Grid.Row="1" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Click="CombiRate_Click">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto" MinHeight="100"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Combined HT400 Rate" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                <TextBlock x:Name ="textBlock_2" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0.0 bpm</TextBlock>                
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
+                           Text="Combined HT400 Rate"/>
+
+                <TextBlock x:Name ="CombinedRate" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           >0.0 bpm</TextBlock>
             </Grid>
         </Button>
+
         <!--Button Combined Stage Total-->
-        <Button x:Name="CombiTotal" Grid.Column="1" Grid.Row="1" Click="CombiTotal_Click">
+        <Button x:Name="CombiTotal" Grid.Column="1" Grid.Row="1" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Click="CombiTotal_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto" MinHeight="100"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Combined Stage Total" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                <TextBlock x:Name ="textBlock_3" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0.0 bpm</TextBlock>
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
+                           Text="Combined Stage Total"/>
+                <TextBlock x:Name ="textBlock_3" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           >0.0 bpm</TextBlock>
             </Grid>
         </Button>
+
         <!--Button Recirc Density-->
-        <Button x:Name="RecircDensity" Grid.Column="0" Grid.Row="2" Click="RecircDensity_Click">
+        <Button x:Name="RecircDensity" Grid.Column="0" Grid.Row="2"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                 Click="RecircDensity_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto" MinHeight="66"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Recirc Density" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                <TextBlock x:Name ="textBlock_4" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0.0 ppg</TextBlock>
-                <Label x:Name="Label_3" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Times New Roman" FontSize="24" >0.0 gpm</Label>
+                <TextBlock Grid.Row="0" FontSize="20" Style="{StaticResource StyleTextBlock_1}"
+                           Text="Recirc Density"/>
+
+                <TextBlock x:Name ="textBlock_4" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           >0.0 ppg</TextBlock>
+
+                <TextBlock x:Name ="recircDensRate" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+                    >0.0 ppg</TextBlock>
             </Grid>
         </Button>
+        
         <!-- Button Downhole Density-->
-        <Button x:Name="DownholeDensity" Grid.Column="1" Grid.Row="2" Click="DownholeDensity_Click">
+        <Button x:Name="DownholeDensity" Grid.Column="1" Grid.Row="2" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Click="DownholeDensity_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto" MinHeight="100"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Downhole Density" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                <TextBlock x:Name ="textBlock_5" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold">0.0 ppg</TextBlock>
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" 
+                           Text="Downhole Density"/>
+                <TextBlock x:Name ="textBlock_5" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           >0.0 ppg</TextBlock>
             </Grid>
         </Button>
+        
         <!-- Button Mix Control-->
-        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="MixControl_Click">
+        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Click="MixControl_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -164,71 +243,103 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  Text="Mix Control" FontFamily="Times New Roman" FontSize="20" Foreground="#FF1814D8" FontWeight="Bold"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.00_den</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.0_rte</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.00_yld</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.00_wtr</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.00_wtr</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.00_wtr</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Foreground="#FF1814D8" Text="STAGE&lt;VOLUMES&gt;JOB" ></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0_Sks</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0_Sks</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0 gal</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0 gal</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.0 bbl</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" >0.0 bbl</TextBlock>
-
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" Foreground="#FF1814D8"
+                           Text="Mix Control"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource StyleTextBlock_1}"
+                           >0.00_den</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource StyleTextBlock_1}"
+                           >0.0_rte</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}" 
+                           >0.00_yld</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+                           >0.00_wtr</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource StyleTextBlock_1}" 
+                           >0.00_wtr</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource StyleTextBlock_1}"
+                           >0.00_wtr</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                           Foreground="#FF1814D8" 
+                           Text="STAGE&lt;VOLUMES&gt;JOB" ></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource StyleTextBlock_1}"
+                           >0_Sks</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="5" Style="{StaticResource StyleTextBlock_1}" 
+                           >0_Sks</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource StyleTextBlock_1}"
+                           >0 gal</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="6" Style="{StaticResource StyleTextBlock_1}"
+                           >0 gal</TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource StyleTextBlock_1}"
+                           >0.0 bbl</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="7" Style="{StaticResource StyleTextBlock_1}"
+                           >0.0 bbl</TextBlock>
             </Grid>
         </Button>
+        
         <!--Button Mix Water Rate-->
-        <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="MixWaterRate_Click">
+        <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="3" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Click="MixWaterRate_Click">
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" ></ColumnDefinition>
-                    <ColumnDefinition Width="550" ></ColumnDefinition>
+                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                    <ColumnDefinition Width="5*" ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ProgressBar Grid.Column="0" Minimum="0" Maximum="100" Orientation="Vertical" Width="100" Height="150" HorizontalAlignment="Left" />
+                <ProgressBar Grid.Column="0" Minimum="0" Maximum="100" Orientation="Vertical" Width="100" Height="150" 
+                             HorizontalAlignment="Left" />
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Mix Water Rate" IsEnabled="False" TextWrapping="WrapWithOverflow" Margin="170,0,0,0" />
-                    <TextBlock x:Name ="textBlock_6" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" FontWeight="Bold" Margin="-80,0,0,0" >0 gpm</TextBlock>
+                    <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
+                               Text="Mix Water Rate"/>
+                    <TextBlock x:Name ="textBlock_6" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                               >0 gpm</TextBlock>
 
-                </Grid>                
+                </Grid>
             </Grid>
-        </Button>        
+        </Button>
+        
         <Grid Grid.Column="1" Grid.Row="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <!--Button EVENT-->
-            <Button x:Name="Event" Grid.Column="0" Grid.Row="0" Click="Event_Click">
+            <Button x:Name="Event" Grid.Column="0" Grid.Row="0" 
+                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                    Click="Event_Click">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto" ></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*" ></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Time event was sent" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                    <TextBlock x:Name ="event" Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="EVENT" FontWeight="Bold"></TextBlock>
-                    <TextBlock Grid.Row="2" FontSize="20" FontFamily="Times New Roman" Text="Last Event Sent" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
+                    <TextBlock Grid.Row="0" FontSize="20" Style="{StaticResource StyleTextBlock_1}"
+                               Text="Time event was sent"/>
+                    <TextBlock x:Name ="event" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                               Text="EVENT" ></TextBlock>
+                    <TextBlock Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+                               Text="Last Event Sent"/>
                 </Grid>
             </Button>
             <!--Button Menu Click-->
-            <Button x:Name="Menu" Grid.Column="1" Grid.Row="0"  Click="Menu_Click">
+            <Button x:Name="Menu" Grid.Column="1" Grid.Row="0"  
+                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                    Click="Menu_Click">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto" ></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*" ></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" FontSize="20" FontFamily="Times New Roman" Text="Density Mode" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
-                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="MENU" FontWeight="Bold"></TextBlock>
-                    <TextBlock x:Name="time" Grid.Row="2" FontSize="20" FontFamily="Times New Roman" Text="Time" IsEnabled="False" TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" 
+                               Text="Density Mode"/>
+                    <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                               Text="MENU"></TextBlock>
+                    <TextBlock x:Name="time" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+                               Text="Time"/>
                 </Grid>
             </Button>
         </Grid>
