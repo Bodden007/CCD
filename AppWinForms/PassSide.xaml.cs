@@ -24,7 +24,21 @@ namespace CCD.AppWinForms
             InitializeComponent();
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
+
+            this.KeyDown += MainWindow_KeyDown;
         }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+
+                // Если нужно открыть модально (как диалог):
+                // newWindow.ShowDialog();
+            }
+        }
+
         private void SetPSZero_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -39,5 +53,6 @@ namespace CCD.AppWinForms
         {
             Close();
         }
+        
     }
 }

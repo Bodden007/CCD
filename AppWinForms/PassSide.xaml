@@ -6,57 +6,210 @@
         xmlns:local="clr-namespace:CCD.AppWinForms"
         mc:Ignorable="d"
         Title="PassSide" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+    </Window.Resources>
+
     <Grid Background="#CDC771">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Text="SET KICKOUT"></TextBlock>
-        <TextBox Grid.Column="0" Grid.Row="1" Background="White" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Times New Roman"></TextBox>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_2}"
+                   Text="SET KICKOUT"></TextBlock>
+
+        <Grid Grid.Row="1" Grid.Column="0" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0" Grid.ColumnSpan="3" FontSize="32" HorizontalContentAlignment="Center" 
+         VerticalContentAlignment="Center" FontFamily="Times New Roman" BorderThickness="0"
+                     IsEnabled="False"></TextBox>
+
+            <TextBlock Grid.Column="3" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right" 
+                       VerticalAlignment="Top"
+                       Text="F1"/>
+        </Grid>
+
         <Grid Grid.Column="1" Grid.Row="1" Background="GreenYellow">
-            <TextBlock FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Text="Yoke ON"></TextBlock>
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="Yoke ON"></TextBlock>
         </Grid>
-        <TextBox Grid.Column="2" Grid.Row="1" Background="White" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Times New Roman"></TextBox>
-       <!--SetPSKickout-->
-        <Button Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" Background="Red" >
-            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set PS Kickout"></TextBlock>
+
+        <Grid Grid.Row="1"  Grid.Column="2" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0" Grid.ColumnSpan="3" FontSize="32" HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" FontFamily="Times New Roman" BorderThickness="0"
+             IsEnabled="False" ></TextBox>
+ 
+            <TextBlock Grid.Column="3" HorizontalAlignment="Right" Style="{StaticResource StyleTextBlock_1}"
+               VerticalAlignment="Top"
+               Text="F5"/>
+        </Grid>
+
+        <!--SetPSKickout-->
+        <Button Grid.Column="0" Grid.Row="2"  
+                VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                Background="Red" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right"
+                           Text="F2"/>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                             Text="Set PS Kickout"/>
+            </Grid>
+
+
         </Button>
+
+        <!--Centr-->
+        <Grid Grid.Row="2" Grid.Column="1">
+            <TextBlock Style="{StaticResource StyleTextBlock_1}" VerticalAlignment="Bottom"
+                       Text="F3"/>
+        </Grid>
+
+
         <!--SetDSKickout-->
-        <Button Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Background="Red" >
-            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set DS Kickout"></TextBlock>
+        <Button Grid.Column="2" Grid.Row="2"  
+                VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                Background="Red" >
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right"
+               Text="F6"/>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                 Text="Set DS Kickout"/>
+            </Grid>
+
         </Button>
-        <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="ZERRO PRESSURE" ></TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="PS Pressure" ></TextBlock>
-        <TextBlock Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="DS Pressure" ></TextBlock>
-        <Grid Grid.Column="0" Grid.Row="6" Background="#0388C1">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0 psi"></TextBlock>
+
+        <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_2}"
+                   Text="ZERRO PRESSURE" ></TextBlock>
+
+        <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource StyleTextBlock_2}"
+                   Text="PS Pressure" ></TextBlock>
+
+        <TextBlock Grid.Column="2" Grid.Row="4" Style="{StaticResource StyleTextBlock_2}"
+                   Text="DS Pressure" ></TextBlock>
+
+        <Grid Grid.Column="0" Grid.Row="5" Background="#0388C1">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="0 psi"></TextBlock>
         </Grid>
-        <Grid Grid.Column="2" Grid.Row="6" Background="#0388C1">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0 psi"></TextBlock>
+
+        <Grid Grid.Column="2" Grid.Row="5" Background="#0388C1">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="0 psi"></TextBlock>
         </Grid>
+
         <!--Set PS to Zero-->
-        <Button x:Name="SetPSZero" Grid.Column="0" Grid.Row="7" Grid.RowSpan="2"  Background="#CDC771" Click="SetPSZero_Click">
-            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set PS to Zero"></TextBlock>
+        <Button x:Name="SetPSZero" Grid.Column="0" Grid.Row="6" Grid.RowSpan="2"  Background="#CDC771"
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Click="SetPSZero_Click">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right"
+                           Text="F4"/>
+
+                <TextBlock  Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                    Text="Set PS to Zero"/>
+            </Grid>
         </Button>
+
         <!--Clear Sets-->
-        <Button x:Name="ClearSets" Grid.Column="1" Grid.Row="7" Grid.RowSpan="2"  Background="#CDC771" Click="ClearSets_Click">
-            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Clear Sets"></TextBlock>
+        <Button x:Name="ClearSets" Grid.Column="1" Grid.Row="6" Grid.RowSpan="2"  Background="#CDC771" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"                   
+                Click="ClearSets_Click">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right"
+                 Text="F7"></TextBlock>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                    Text="Clear Sets"></TextBlock>
+            </Grid>
         </Button>
+
         <!--Set DS to Zero-->
-        <Button x:Name="SetDSZero" Grid.Column="2" Grid.Row="7" Grid.RowSpan="2"  Background="#CDC771" Click="SetDSZero_Click">
-            <TextBlock FontSize="60" TextWrapping="Wrap" FontFamily="Times New Roman" Text="Set DS to Zero"></TextBlock>
+        <Button x:Name="SetDSZero" Grid.Column="2" Grid.Row="6" Grid.RowSpan="2"  Background="#CDC771" 
+                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Click="SetDSZero_Click">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" 
+                    Text="F8"></TextBlock>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}" 
+                    Text="Set DS to Zero"></TextBlock>
+            </Grid>           
+            
         </Button>
     </Grid>
 </Window>

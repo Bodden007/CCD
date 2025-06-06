@@ -1,5 +1,5 @@
 # CCD
-# Net.Framework 4.7.2
+# Net.Framework 4.6
 
 #Pre-Alpha 1.0.1
 

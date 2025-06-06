@@ -46,6 +46,21 @@ namespace CCD
             //Loaded += Window_Loaded;
             //Closed += Window_Closed;
 
+            this.KeyDown += MainWindow_KeyDown;
+
+        }
+
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F3)
+            {
+                // Создаем и показываем новое окно
+                CCD.AppWinForms.PassSide passSide = new CCD.AppWinForms.PassSide();
+                passSide.Show();
+
+                // Если нужно открыть модально (как диалог):
+                // newWindow.ShowDialog();
+            }
         }
 
 

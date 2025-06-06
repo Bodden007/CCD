@@ -108,8 +108,21 @@
                     <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
-                           Text="Passenger Side"/>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                                        Text="Passenger Side"/>
+
+                    <TextBlock Grid.Column="3" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right" 
+                              Text="F3" />
+                </Grid>
+
 
                 <TextBlock x:Name ="PSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
                            Text="{Binding PSPassenger}">100 PSI</TextBlock>
@@ -135,19 +148,28 @@
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
-                           Text="Driver Side"/>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                          Text="Driver Side"/>
+
+                    <TextBlock Grid.Column="3" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right" 
+                Text="F3" />
+                </Grid>
 
                 <TextBlock x:Name ="DSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
                            Text="{Binding DSPassenger}">100 PSI</TextBlock>
 
                 <Border Grid.Row="2" Background="#FFC9DEF5">
                     <TextBlock x:Name="DSOpko" Style="{StaticResource StyleTextBlock_1}"
-                               Text="PSKO = 0 psi" ></TextBlock>
+                               Text="DSKO = 0 psi" ></TextBlock>
                 </Border>
-
-                <!--<Label x:Name="Label_2" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
-                       FontFamily="Times New Roman" Background="#FFC9DEF5" FontSize="20" >DSKO = 0 psi</Label>-->
             </Grid>
         </Button>
 
@@ -206,7 +228,7 @@
                     >0.0 ppg</TextBlock>
             </Grid>
         </Button>
-        
+
         <!-- Button Downhole Density-->
         <Button x:Name="DownholeDensity" Grid.Column="1" Grid.Row="2" 
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
@@ -223,7 +245,7 @@
                            >0.0 ppg</TextBlock>
             </Grid>
         </Button>
-        
+
         <!-- Button Mix Control-->
         <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" 
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
@@ -274,7 +296,7 @@
                            >0.0 bbl</TextBlock>
             </Grid>
         </Button>
-        
+
         <!--Button Mix Water Rate-->
         <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="3" 
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
@@ -300,7 +322,7 @@
                 </Grid>
             </Grid>
         </Button>
-        
+
         <Grid Grid.Column="1" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
