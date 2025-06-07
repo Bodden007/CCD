@@ -1,4 +1,5 @@
 ﻿using CCD.Models;
+using CCD.Models.ModelsForms;
 using NModbus;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace CCD
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly MainViewModel _viewModel;
+        private readonly MainWindowViewModel _viewModel;
 
         public MainWindow()
         {
@@ -38,16 +39,23 @@ namespace CCD
             WindowState = WindowState.Maximized;
 
 
-            //FIXMI ВАЖНО!!! не забудь расскоментировать
-            //_viewModel = new MainViewModel();
-
-            //this.DataContext = _viewModel;
-
-            //Loaded += Window_Loaded;
-            //Closed += Window_Closed;
+            _viewModel = new MainWindowViewModel();
+            DataContext = _viewModel;
+            Loaded += MainWindow_Loaded;
+            Closed += MainWindow_Closed;
 
             this.KeyDown += MainWindow_KeyDown;
 
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.StartPollingAsync();
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            _viewModel.StopPolling();
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)

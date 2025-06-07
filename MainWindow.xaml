@@ -125,11 +125,11 @@
 
 
                 <TextBlock x:Name ="PSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           Text="{Binding PSPassenger}">100 PSI</TextBlock>
+                           Text="{Binding PsPass}"></TextBlock>
 
                 <Border Grid.Row="2" Background="#FFC9DEF5">
                     <TextBlock x:Name="PSOpko" Style="{StaticResource StyleTextBlock_1}"
-                               Text="PSKO = 0 psi" ></TextBlock>
+                               Text="{Binding PSKO}" ></TextBlock>
                 </Border>
                 <!--<Label x:Name="Label_1" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
                        FontFamily="Times New Roman" Background="#FFC9DEF5" FontSize="12" 
@@ -164,11 +164,11 @@
                 </Grid>
 
                 <TextBlock x:Name ="DSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           Text="{Binding DSPassenger}">100 PSI</TextBlock>
+                           Text="{Binding DsPass}"></TextBlock>
 
                 <Border Grid.Row="2" Background="#FFC9DEF5">
                     <TextBlock x:Name="DSOpko" Style="{StaticResource StyleTextBlock_1}"
-                               Text="DSKO = 0 psi" ></TextBlock>
+                               Text="{Binding DSKO}" ></TextBlock>
                 </Border>
             </Grid>
         </Button>

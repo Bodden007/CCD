@@ -80,8 +80,10 @@
     <Compile Include="IOConfig\IoConfigHSave.xaml.cs">
       <DependentUpon>IoConfigHSave.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\MainViewModel.cs" />
-    <Compile Include="Models\RegisterData.cs" />
+    <Compile Include="Models\ModbusConnectionManager.cs" />
+    <Compile Include="Models\ModbusWindowViewModel.cs" />
+    <Compile Include="Models\ModelsForms\MainWindowViewModel.cs" />
+    <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="src\Control.cs" />
     <Compile Include="SystemCallibration\CementWaterValve.xaml.cs">
       <DependentUpon>CementWaterValve.xaml</DependentUpon>
@@ -320,5 +322,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
