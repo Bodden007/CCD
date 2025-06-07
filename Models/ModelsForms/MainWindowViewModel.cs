@@ -8,10 +8,10 @@ namespace CCD.Models.ModelsForms
 {
     internal class MainWindowViewModel : ModbusWindowViewModel
     {
-        private float _psPassBuf;
-        private float _dsPassBuf;
-        private float _pskoBuf;
-        private float _dskoBuf;
+        private int _psPassBuf;
+        private int _dsPassBuf;
+        private int _pskoBuf;
+        private int _dskoBuf;
         private float _psRate;
         private float _dsRate;
         private float _rateStageTotal;
@@ -27,12 +27,12 @@ namespace CCD.Models.ModelsForms
         //FIXME
         private int _psPassBufint;
 
-        public int PsPassBufint
+        public int PsPassBuf
         {
-            get => _psPassBufint;
+            get => _psPassBuf;
             set
             {
-                _psPassBufint = value;
+                _psPassBuf = value;
                 PsPass = value ==22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
@@ -66,13 +66,13 @@ namespace CCD.Models.ModelsForms
         //    }
         //}
 
-        public float DsPassBuf
+        public int DsPassBuf
         {
             get => _dsPassBuf;
             set
             {
                 _dsPassBuf = value;
-                DsPass = $"{value:F2} PSI";
+                DsPass =  value == 22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
         }
@@ -83,11 +83,11 @@ namespace CCD.Models.ModelsForms
             set { _psko = value; OnPropertyChanged(); }
         }
 
-        public float PskoBuf
+        public int PskoBuf
         {
             get => _pskoBuf;
             set { _pskoBuf = value; 
-                PSKO = $"OPKO = {value:F2} PSI";
+                PSKO = $"OPKO = {value} PSI";
                 OnPropertyChanged(); 
             }
         }
@@ -97,11 +97,11 @@ namespace CCD.Models.ModelsForms
             get => _dsko;
             set { _dsko = value; OnPropertyChanged(); }
         }
-        public float DskoBuf
+        public int DskoBuf
         {
             get => _dskoBuf;
             set { _dskoBuf = value;
-                DSKO = $"OPKO = {value:F2} PSI";
+                DSKO = $"OPKO = {value} PSI";
                 OnPropertyChanged(); 
             }
         }
@@ -140,18 +140,22 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(0, 1, 100, registers =>
+            await PollRegistersContinuously(0, 8, 400, registers =>
             {
 
-                PsPassBufint = (short)registers[0];
-                if (registers.Length >= 4)
-                {
-                    
-                    //PsPassBuf = CombineRegistersToFloat(registers[0], registers[1]);
-                    //DsPassBuf = CombineRegistersToFloat(registers[2], registers[3]);
-                    //PskoBuf = CombineRegistersToFloat(registers[4], registers[5]);
-                    //DskoBuf = CombineRegistersToFloat(registers[6], registers[7]);
-                }
+                PsPassBuf = (short)registers[0];
+                DsPassBuf = (short)registers[2];
+                PskoBuf = (short)registers[4];
+                DskoBuf = (short)registers[6];
+
+                //if (registers.Length >= 4)
+                //{
+
+                //    PsPassBuf = CombineRegistersToFloat(registers[0], registers[1]);
+                //    DsPassBuf = CombineRegistersToFloat(registers[2], registers[3]);
+                //    PskoBuf = CombineRegistersToFloat(registers[4], registers[5]);
+                //    DskoBuf = CombineRegistersToFloat(registers[6], registers[7]);
+                //}
             });
         }
 

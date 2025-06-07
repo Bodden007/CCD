@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CCD.Models.ModelsForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,31 @@ namespace CCD.AppWinForms
     /// </summary>
     public partial class PassSide : Window
     {
+        private readonly PassSideViewModel _viewModel;
         public PassSide()
         {
             InitializeComponent();
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+            //WindowStyle = WindowStyle.None;
+            //WindowState = WindowState.Maximized;
 
             this.KeyDown += MainWindow_KeyDown;
+
+            _viewModel = new PassSideViewModel();
+
+            DataContext = _viewModel;
+            Loaded += PassSideWindow_Loaded;
+            Closed += PassSideWindow_Closed;
         }
+
+        private async void PassSideWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.StartPollingAsync();
+        }
+
+        private void PassSideWindow_Closed(object sender, EventArgs e)
+        {
+            _viewModel?.StopPolling();
+        }      
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
@@ -39,20 +57,17 @@ namespace CCD.AppWinForms
             }
         }
 
-        private void SetPSZero_Click(object sender, RoutedEventArgs e)
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Close();
+            // Разрешаем только цифры
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
         }
-
-        private void ClearSets_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void SetDSZero_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-        
     }
 }
