@@ -1,4 +1,5 @@
-﻿using CCD.Models;
+﻿using CCD.AppWinForms;
+using CCD.Models;
 using CCD.Models.ModelsForms;
 using NModbus;
 using System;
@@ -28,6 +29,9 @@ namespace CCD
     {
         private readonly MainWindowViewModel _viewModel;
 
+        private bool _isTextChangedCombiRate = false; // Флаг для отслеживания состояния текста
+        private bool _isTextChangedCombiRateTotal = false; // Флаг для отслеживания состояния текста
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +45,10 @@ namespace CCD
 
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
+
+            // Делаем кнопку фокусируемой
+            CombiRate.Focusable = true;
+
             Loaded += MainWindow_Loaded;
             Closed += MainWindow_Closed;
 
@@ -69,7 +77,29 @@ namespace CCD
                 // Если нужно открыть модально (как диалог):
                 // newWindow.ShowDialog();
             }
+
+            // Если нажаты Ctrl + 2
+            if (e.Key == Key.D2 && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                CombinedHT400RateHandler();
+
+                _isTextChangedCombiRate = !_isTextChangedCombiRate; // Инвертируем флаг
+
+                e.Handled = true; // Отменяем дальнейшую обработку
+            }
+
+            // Если нажаты Ctrl + 3
+            if (e.Key == Key.D3 && Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                CombinedHT400RateTotalHandler();
+
+                _isTextChangedCombiRateTotal = !_isTextChangedCombiRateTotal; // Инвертируем флаг
+
+                e.Handled = true; // Отменяем дальнейшую обработку
+            }
         }
+
+        
 
 
         //FIXMI ВАЖНО!!! не забудь расскоментировать
@@ -160,8 +190,95 @@ namespace CCD
         private void ShowData(int data)
         {
             //textBlock_0.Text = data.ToString();
-            
+
         }
+
+        private void CombinedHT400RateHandler()
+        {
+            if (CombinedRateValue.Visibility == Visibility.Visible)
+            {
+                CombinedRateValue.Visibility = Visibility.Collapsed;
+                PSRateValue.Visibility = Visibility.Visible;
+                RowR_2.Height = GridLength.Auto;
+                RowR_3.Height = new GridLength(1, GridUnitType.Star);
+                RowR_5.Height = GridLength.Auto;
+            }
+            else
+            {
+                CombinedRateValue.Visibility = Visibility.Visible;
+                PSRateValue.Visibility = Visibility.Collapsed;
+                RowR_2.Height = new GridLength(1, GridUnitType.Star);
+                RowR_3.Height = GridLength.Auto;
+                RowR_5.Height = new GridLength(1, GridUnitType.Star);
+            }
+
+            // Переключаем видимость TextBlock4 и TextBlock5
+            DSRate.Visibility = DSRateValue.Visibility == Visibility.Visible
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+
+            DSRateValue.Visibility = DSRateValue.Visibility == Visibility.Visible
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+
+            // Меняем текст в TextBlock1
+            //PSRate_CombinedRate.Text = _isTextChanged
+            //    ? "Combined HT400 Rate"
+            //    : "DS HT400 Rate";
+
+            if (_isTextChangedCombiRate)
+            {
+                PSRate_CombinedRate.Text = "Combined HT400 Rate";
+            }
+            else
+            {
+                PSRate_CombinedRate.Text = "PS HT400 Rate";
+            }
+        }
+
+        private void CombinedHT400RateTotalHandler()
+        {
+            if (CombinedRateTotalValue.Visibility == Visibility.Visible)
+            {
+                CombinedRateTotalValue.Visibility = Visibility.Collapsed;
+                PSRateTotalValue.Visibility = Visibility.Visible;
+                RowS_2.Height = GridLength.Auto;
+                RowS_3.Height = new GridLength(1, GridUnitType.Star);
+                RowS_5.Height = GridLength.Auto;
+            }
+            else
+            {
+                CombinedRateTotalValue.Visibility = Visibility.Visible;
+                PSRateTotalValue.Visibility = Visibility.Collapsed;
+                RowS_2.Height = new GridLength(1, GridUnitType.Star);
+                RowS_3.Height = GridLength.Auto;
+                RowS_5.Height = new GridLength(1, GridUnitType.Star);
+            }
+
+            // Переключаем видимость TextBlock4 и TextBlock5
+            DSRateTotal.Visibility = DSRateTotalValue.Visibility == Visibility.Visible
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+
+            DSRateTotalValue.Visibility = DSRateTotalValue.Visibility == Visibility.Visible
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+
+            // Меняем текст в TextBlock1
+            //PSRate_CombinedRate.Text = _isTextChanged
+            //    ? "Combined HT400 Rate"
+            //    : "DS HT400 Rate";
+
+            if (_isTextChangedCombiRateTotal)
+            {
+                PSRateTotal_CombinedRate.Text = "Combined HT400 Rate"; 
+            }
+            else
+            {
+                PSRateTotal_CombinedRate.Text = "PS HT400 Total Rate";
+            }
+        }
+        
 
     }
 }

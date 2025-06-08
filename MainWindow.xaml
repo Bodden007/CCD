@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CCD"
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="1200" Loaded="Window_Loaded">
-    
+
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -99,7 +99,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <!--Button Passenger Side-->
         <Button x:Name="PS" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
@@ -117,7 +117,7 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                                         Text="Passenger Side"/>
 
@@ -176,21 +176,58 @@
         </Button>
 
         <!--Button Combined HT400 Rate-->
-        <Button x:Name="CombiRate" Grid.Column="0" Grid.Row="1" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
-                Click="CombiRate_Click">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
-                           Text="Combined HT400 Rate"/>
 
-                <TextBlock x:Name ="CombinedRate" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           >0.0 bpm</TextBlock>
+        <Button x:Name="CombiRate" Grid.Column="0" Grid.Row="1" Background="{Binding WindowBackground}"
+                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                    Click="CombiRate_Click">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="RowR_1" Height="1*"></RowDefinition>
+                    <RowDefinition x:Name="RowR_2" Height="1*"></RowDefinition>
+                    <RowDefinition x:Name="RowR_3" Height="auto"></RowDefinition>
+                    <RowDefinition x:Name="RowR_4" Height="1*"></RowDefinition>
+                    <RowDefinition x:Name="RowR_5" Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="F5" Style="{StaticResource StyleTextBlock_1}"
+                            HorizontalAlignment="Right"></TextBlock>
+
+                <TextBlock x:Name="PSRate_CombinedRate"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
+                           VerticalAlignment="Top"
+                       Text="Combined HT400 Rate" ></TextBlock>
+
+                <TextBlock x:Name="CombinedRateValue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                           VerticalAlignment="Top"                           
+                            Text="0.0 bpm" ></TextBlock>
+
+                <TextBlock  x:Name="PSRateValue" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                            VerticalAlignment="Top"
+                            Visibility="Collapsed"
+                Text="0.0 bpm" ></TextBlock>
+
+
+                <TextBlock x:Name="DSRate" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
+                           VerticalAlignment="Top" 
+                           Visibility="Collapsed"
+                        Text="DS HT400 Rate"/>
+
+                <TextBlock x:Name="DSRateValue" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                           VerticalAlignment="Top"
+                           Visibility="Collapsed" 
+                        Text="0.0 bpm"></TextBlock>
+
+                <TextBlock Grid.Row="4" Grid.Column="3" Text="2" Style="{StaticResource StyleTextBlock_1}"
+                    HorizontalAlignment="Right"></TextBlock>
+
             </Grid>
+
         </Button>
 
         <!--Button Combined Stage Total-->
@@ -199,14 +236,54 @@
                 Click="CombiTotal_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition x:Name="RowS_1" Height="1*"></RowDefinition>
+                    <RowDefinition x:Name="RowS_2" Height="1*"></RowDefinition>
+                    <RowDefinition x:Name="RowS_3" Height="auto"></RowDefinition>
+                    <RowDefinition x:Name="RowS_4" Height="1*"></RowDefinition>
+                    <RowDefinition x:Name="RowS_5" Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="F5" Style="{StaticResource StyleTextBlock_1}"
+                         HorizontalAlignment="Right"></TextBlock>
+
+                <TextBlock x:Name="PSRateTotal_CombinedRate"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
+                               VerticalAlignment="Top"
+                           Text="Combined Stage Total" ></TextBlock>
+
+                <TextBlock x:Name="CombinedRateTotalValue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                               VerticalAlignment="Top"                           
+                                Text="0.0 bbl" ></TextBlock>
+
+                <TextBlock  x:Name="PSRateTotalValue" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                                VerticalAlignment="Top"
+                                Visibility="Collapsed"
+                    Text="0.0 bbl" ></TextBlock>
+
+
+                <TextBlock x:Name="DSRateTotal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
+                           VerticalAlignment="Top" 
+                           Visibility="Collapsed"
+                        Text="DS HT400 Total Rate"/>
+
+                <TextBlock x:Name="DSRateTotalValue" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                           VerticalAlignment="Top"
+                           Visibility="Collapsed" 
+                        Text="0.0 bbl"></TextBlock>
+
+                <TextBlock Grid.Row="4" Grid.Column="3" Text="3" Style="{StaticResource StyleTextBlock_1}"
+                        HorizontalAlignment="Right"></TextBlock>
+
+                <!--<TextBlock  Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" VerticalAlignment="Top"
                            Text="Combined Stage Total"/>
                 <TextBlock x:Name ="textBlock_3" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           >0.0 bpm</TextBlock>
+                           >0.0 bbl</TextBlock>-->
             </Grid>
         </Button>
 
@@ -330,7 +407,7 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
+
             <!--Button EVENT-->
             <Button x:Name="Event" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}"
                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
@@ -349,7 +426,7 @@
                                Text="Last Event Sent"/>
                 </Grid>
             </Button>
-            
+
             <!--Button Menu Click-->
             <Button x:Name="Menu" Grid.Column="1" Grid.Row="0"  Background="{Binding WindowBackground}"
                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
