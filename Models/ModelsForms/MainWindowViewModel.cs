@@ -12,8 +12,8 @@ namespace CCD.Models.ModelsForms
         private int _dsPassBuf;
         private int _pskoBuf;
         private int _dskoBuf;
-        private float _psRate;
-        private float _dsRate;
+        //private float _psRate;
+        //private float _dsRate;
         private float _rateStageTotal;
         private float _recircDensity;
         private float _recircDensityRate;
@@ -23,6 +23,25 @@ namespace CCD.Models.ModelsForms
         private string _dSPass = "N/A";
         private string _psko = "N/A";
         private string _dsko = "N/A";
+
+
+        //NOTE изменение цвета фона
+        private string _windowBackground = "#CDC771"; // Стандартный цвет
+
+        public string WindowBackground
+        {
+            get => _windowBackground;
+            set
+            {
+                if (_windowBackground != value)
+                {
+                    _windowBackground = value;
+                    OnPropertyChanged(nameof(WindowBackground));
+                }
+            }
+        }
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         //FIXME
         private int _psPassBufint;
@@ -147,6 +166,12 @@ namespace CCD.Models.ModelsForms
                 DsPassBuf = (short)registers[2];
                 PskoBuf = (short)registers[4];
                 DskoBuf = (short)registers[6];
+
+                // Проверяем регистр 5 (значение 121) и регистр 7 (значение 122)
+                bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);
+
+                // Меняем цвет фона
+                WindowBackground = shouldTurnRed ? "Red" : "White";
 
                 //if (registers.Length >= 4)
                 //{

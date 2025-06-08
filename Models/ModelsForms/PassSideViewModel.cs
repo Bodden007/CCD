@@ -152,20 +152,20 @@ namespace CCD.Models.ModelsForms
         }
 
         //TODO команды
-        //public ICommand SetPSZeroCommand
-        //{
-        //    get { return _setPSZeroCommand ?? (_setPSZeroCommand = new RelayCommand(async () => await SetPSZero())); }
-        //}
+        public ICommand SetPSZeroCommand
+        {
+            get { return _setPSZeroCommand ?? (_setPSZeroCommand = new RelayCommand(async () => await SetPSZero())); }
+        }
 
-        //public ICommand SetDSZeroCommand
-        //{
-        //    get { return _setDSZeroCommand ?? (_setDSZeroCommand = new RelayCommand(async () => await SetDSZero())); }
-        //}
+        public ICommand SetDSZeroCommand
+        {
+            get { return _setDSZeroCommand ?? (_setDSZeroCommand = new RelayCommand(async () => await SetDSZero())); }
+        }
 
-        //public ICommand ClearSetsCommand
-        //{
-        //    get { return _clearSetsCommand ?? (_clearSetsCommand = new RelayCommand(async () => await ClearSets())); }
-        //}
+        public ICommand ClearSetsCommand
+        {
+            get { return _clearSetsCommand ?? (_clearSetsCommand = new RelayCommand(async () => await ClearSets())); }
+        }
 
         private async Task SetPSKickout()
         {
@@ -201,47 +201,43 @@ namespace CCD.Models.ModelsForms
         }
 
         //TODO команды
-        //private async Task SetPSZero()
-        //{
-        //    try
-        //    {
-        //        PskoBuf = 0;
-        //        await WriteValuesAsync();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
-        //    }
-        //}
+        private async Task SetPSZero()
+        {
+            try
+            {
+                await WriteRegisterAsync(1, 321); // Запись значения 321 в регистр 1
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
 
         //TODO команды
-        //private async Task SetDSZero()
-        //{
-        //    try
-        //    {
-        //        DskoBuf = 0;
-        //        await WriteValuesAsync();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine($"Ошибка в SetDSZero: {ex.Message}");
-        //    }
-        //}
+        private async Task SetDSZero()
+        {
+            try
+            {
+                await WriteRegisterAsync(3, 322); // Запись значения 321 в регистр 1
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
 
         //TODO команды
-        //private async Task ClearSets()
-        //{
-        //    try
-        //    {
-        //        PskoBuf = 0;
-        //        DskoBuf = 0;
-        //        await WriteValuesAsync();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine($"Ошибка в ClearSets: {ex.Message}");
-        //    }
-        //}
+        private async Task ClearSets()
+        {
+            try
+            {
+                await WriteRegisterAsync(1, 333); // Запись значения 321 в регистр 1
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
 
         public async Task StartPollingAsync()
         {

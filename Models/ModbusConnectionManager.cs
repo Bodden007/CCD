@@ -1,10 +1,7 @@
 ﻿using NModbus;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,17 +20,63 @@ namespace CCD.Models
         private bool _isProcessing;
         private int _reconnectAttempts;
 
+        // Настройки подключения
+        private const string ModbusIp = "10.0.6.10";
+        private const int ModbusPort = 502;
+
         // Настройки повторного подключения
         private const int MaxReconnectAttempts = 5;
         private const int InitialReconnectDelay = 1000;
         private const int MaxReconnectDelay = 10000;
+        private const int ConnectionCheckInterval = 5000; // 5 секунд между попытками подключения
 
         public static ModbusConnectionManager Instance => _instance.Value;
 
         private ModbusConnectionManager()
         {
+            // Запускаем фоновую задачу для обработки очереди
             Task.Factory.StartNew(async () => await ProcessQueueAsync().ConfigureAwait(false),
                 TaskCreationOptions.LongRunning);
+
+            // Запускаем фоновую задачу для поддержания соединения
+            Task.Factory.StartNew(async () => await MaintainConnectionAsync().ConfigureAwait(false),
+                TaskCreationOptions.LongRunning);
+        }
+
+        private async Task MaintainConnectionAsync()
+        {
+            while (!_cts.IsCancellationRequested)
+            {
+                try
+                {
+                    await _connectionLock.WaitAsync(_cts.Token);
+
+                    // Если соединение отсутствует или разорвано
+                    if (_client == null || !_client.Connected)
+                    {
+                        try
+                        {
+                            await TryReconnectWithRetryAsync();
+                        }
+                        catch
+                        {
+                            // Логируем ошибку или просто ждем следующей попытки
+                        }
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // Игнорируем отмену операции
+                }
+                finally
+                {
+                    if (_connectionLock.CurrentCount == 0)
+                        _connectionLock.Release();
+                }
+
+                // Ждем перед следующей проверкой соединения
+                await Task.Delay(ConnectionCheckInterval, _cts.Token);
+            }
         }
 
         public async Task<ushort[]> ReadInputRegistersAsync(byte slaveId, ushort startAddress, ushort numberOfPoints)
@@ -166,7 +209,7 @@ namespace CCD.Models
                 DisposeConnection();
                 _client = new TcpClient();
 
-                var connectTask = _client.ConnectAsync("10.0.6.10", 502);
+                var connectTask = _client.ConnectAsync(ModbusIp, ModbusPort);
                 var timeoutTask = Task.Delay(3000, _cts.Token);
 
                 if (await Task.WhenAny(connectTask, timeoutTask) == timeoutTask)

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CCD"
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="1200" Loaded="Window_Loaded">
+    
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -100,7 +101,7 @@
         </Grid.RowDefinitions>
         
         <!--Button Passenger Side-->
-        <Button x:Name="PS" Grid.Column="0" Grid.Row="0" 
+        <Button x:Name="PS" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                 Click="PS_Click">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -139,7 +140,7 @@
         </Button>
 
         <!--Button Driver Side-->
-        <Button x:Name="DS" Grid.Column="1" Grid.Row="0" 
+        <Button x:Name="DS" Grid.Column="1" Grid.Row="0" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                 Click="DS_Click">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -175,7 +176,7 @@
         </Button>
 
         <!--Button Combined HT400 Rate-->
-        <Button x:Name="CombiRate" Grid.Column="0" Grid.Row="1" 
+        <Button x:Name="CombiRate" Grid.Column="0" Grid.Row="1" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                 Click="CombiRate_Click">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -193,7 +194,7 @@
         </Button>
 
         <!--Button Combined Stage Total-->
-        <Button x:Name="CombiTotal" Grid.Column="1" Grid.Row="1" 
+        <Button x:Name="CombiTotal" Grid.Column="1" Grid.Row="1" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                 Click="CombiTotal_Click">
             <Grid HorizontalAlignment="Stretch">
@@ -210,7 +211,7 @@
         </Button>
 
         <!--Button Recirc Density-->
-        <Button x:Name="RecircDensity" Grid.Column="0" Grid.Row="2"
+        <Button x:Name="RecircDensity" Grid.Column="0" Grid.Row="2" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                  Click="RecircDensity_Click">
             <Grid HorizontalAlignment="Stretch">
@@ -231,7 +232,7 @@
         </Button>
 
         <!-- Button Downhole Density-->
-        <Button x:Name="DownholeDensity" Grid.Column="1" Grid.Row="2" 
+        <Button x:Name="DownholeDensity" Grid.Column="1" Grid.Row="2" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                 Click="DownholeDensity_Click">
             <Grid HorizontalAlignment="Stretch">
@@ -248,7 +249,7 @@
         </Button>
 
         <!-- Button Mix Control-->
-        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" 
+        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                 Click="MixControl_Click">
             <Grid HorizontalAlignment="Stretch">
@@ -299,7 +300,7 @@
         </Button>
 
         <!--Button Mix Water Rate-->
-        <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="3" 
+        <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="3" Background="{Binding WindowBackground}"
                 HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                 Click="MixWaterRate_Click">
             <Grid >
@@ -329,8 +330,9 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            
             <!--Button EVENT-->
-            <Button x:Name="Event" Grid.Column="0" Grid.Row="0" 
+            <Button x:Name="Event" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}"
                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                     Click="Event_Click">
                 <Grid HorizontalAlignment="Stretch">
@@ -347,8 +349,9 @@
                                Text="Last Event Sent"/>
                 </Grid>
             </Button>
+            
             <!--Button Menu Click-->
-            <Button x:Name="Menu" Grid.Column="1" Grid.Row="0"  
+            <Button x:Name="Menu" Grid.Column="1" Grid.Row="0"  Background="{Binding WindowBackground}"
                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
                     Click="Menu_Click">
                 <Grid HorizontalAlignment="Stretch">
