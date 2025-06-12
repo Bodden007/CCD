@@ -8,6 +8,47 @@
         Title="ManualControl" Height="450" Width="800">
     <Window.Resources>
         <SolidColorBrush x:Key="PrimaryBlueColor" Color="#CDC771"/>
+
+        <Style x:Key="StyleButton_1" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleF" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+
+        <Style x:Key="StyleTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
     </Window.Resources>
     <Grid Background="{DynamicResource PrimaryBlueColor}">
         <Grid.RowDefinitions>
@@ -25,82 +66,130 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
+            
             <!--Oscillate Cement-->
-            <Button x:Name="Cement" Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch"
-                    Background="{DynamicResource PrimaryBlueColor}">
-                <StackPanel>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Oscillate"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Cements"></TextBlock>
-                </StackPanel>
+            <Button x:Name="Cement" Grid.Column="0" Grid.Row="0" Style="{StaticResource StyleButton_1}"
+                    Background="{DynamicResource PrimaryBlueColor}"
+                    Command="{Binding OscillateCementsCommand}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Style="{StaticResource StyleTextBlock_2}" 
+                                Text="Oscillate&#x0a;Cements"></TextBlock>
+
+                    <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
+                                Text="F1"></TextBlock>
+                </Grid>                
+                                   
             </Button>
+            
             <!--Oscillate Both-->
-            <Button x:Name="Both" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch"
+            <Button x:Name="Both" Grid.Column="1" Grid.Row="0" Style="{StaticResource StyleButton_1}"
                     Background="{DynamicResource PrimaryBlueColor}">
-                <StackPanel>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Oscillate"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Both"></TextBlock>
-                </StackPanel>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Style="{StaticResource StyleTextBlock_2}" 
+                            Text="Oscillate&#x0a;Both"></TextBlock>
+
+                    <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
+                                Text="F2"></TextBlock>
+                </Grid>                                
+                
             </Button>
+            
             <!--Oscillate Water-->
-            <Button x:Name="Water" Grid.Column="2" Grid.Row="0" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch"
+            <Button x:Name="Water" Grid.Column="2" Grid.Row="0" Style="{StaticResource StyleButton_1}"
                     Background="{DynamicResource PrimaryBlueColor}">
-                <StackPanel>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Oscillate"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Water"></TextBlock>
-                </StackPanel>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Style="{StaticResource StyleTextBlock_2}"
+                            Text="Oscillate&#x0a;Water"></TextBlock>
+
+                    <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
+                     Text="F3"></TextBlock>
+                </Grid>               
+                    
             </Button>
             <!--Open All Valves-->
-            <Button x:Name="AllValves" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch"
+            <Button x:Name="AllValves" Grid.Column="1" Grid.Row="1" Style="{StaticResource StyleButton_1}"
                     Background="{DynamicResource PrimaryBlueColor}">
-                <StackPanel>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Open All"></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Valves"></TextBlock>
-                </StackPanel>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Style="{StaticResource StyleTextBlock_2}"
+                            Text="Open All&#x0a;Valves"></TextBlock>
+
+                    <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
+                            Text="F7"></TextBlock>
+                </Grid>                
+                    
             </Button>
+            
             <!--Close All Valves/Exit-->
-            <Button x:Name="AllValvesExit" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch"
-                    Background="{DynamicResource PrimaryBlueColor}" Click="AllValvesExit_Click">
-                <StackPanel>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Close All "></TextBlock>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="Valves/Exit"></TextBlock>
-                </StackPanel>
+            <Button x:Name="AllValvesExit" Grid.Column="1" Grid.Row="2" Style="{StaticResource StyleButton_1}"
+                    Background="{DynamicResource PrimaryBlueColor}" 
+                    Command="{Binding CloseAllValvesExitCommand}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="1" Style="{StaticResource StyleTextBlock_2}" 
+                        Text="Close All&#x0a;Valves/Exit"></TextBlock>
+
+                    <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
+                            Text="F4"></TextBlock>
+                </Grid>               
+                    
             </Button>
+            
             <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="0.00 ppg"></TextBlock>
-                <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="40" Text="Recirc Density"></TextBlock>
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}" 
+                           Text="0.00 ppg"></TextBlock>
+                <TextBlock Grid.Row="2" Style="{StaticResource StyleTextBlock_2}"
+                           Text="Recirc Density"></TextBlock>
             </Grid>
+            
             <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="0 gpm"></TextBlock>
-                <TextBlock Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="40" Text="Mix Water Rate"></TextBlock>
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           Text="0 gpm"></TextBlock>
+                <TextBlock Grid.Row="2" Style="{StaticResource StyleTextBlock_2}"
+                           Text="Mix Water Rate"></TextBlock>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
@@ -117,43 +206,40 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="20" 
+                       Style="{StaticResource StyleTextBlock_1}" 
                        Text="Enter number and press enter"></TextBlock>
 
             <Grid Grid.Column="1" Grid.Row="1" Background="White">
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="0">
+                <TextBox Style="{StaticResource StyleTextBox}" 
+                         Text="0">
                 </TextBox>
             </Grid>
+            
             <Grid Grid.Column="1" Grid.Row="2">
                 <Border Background="White" Margin="0,0,0,10">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="40" Text="CMT = 0.0%">
+                    <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                               Text="{Binding CMT}">
                     </TextBlock>
                 </Border>
             </Grid>
 
             <TextBlock Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2"
-                       HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="20" 
+                       Style="{StaticResource StyleTextBlock_1}" 
                        Text="Enter number and press enter"></TextBlock>
 
             <Grid Grid.Column="2" Grid.Row="1" Background="White">
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="60" Text="0">
+                <TextBox Style="{StaticResource StyleTextBox}"
+                         Text="0">
                 </TextBox>
             </Grid>
 
             <Grid Grid.Column="2" Grid.Row="2">
                 <Border Background="White" Margin="0,0,0,10">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               FontFamily="Times New Roman" FontSize="40" Text="WTR = 0.0%">
+                    <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                               Text="{Binding WTR}">
                     </TextBlock>
                 </Border>
             </Grid>
-
         </Grid>
-
     </Grid>
 </Window>

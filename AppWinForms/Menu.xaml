@@ -34,6 +34,8 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -62,6 +64,21 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>            
+        </Style>
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -76,65 +93,83 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        
         <!--Button Mix Control-->
-        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="MixControl_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Mix Control"></TextBlock>
+        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="0" Click="MixControl_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="Mix&#x0a;Control"></TextBlock>
         </Button>
+        
         <!--Button Blend Data-->
-        <Button x:Name="BlendData" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="BlendData_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Blend Data"></TextBlock>
+        <Button x:Name="BlendData" Grid.Column="1" Grid.Row="0" Click="BlendData_Click" IsEnabled="False">
+            <TextBlock  Style="{StaticResource StyleTextBlock_2}"
+                        Text="Blend&#x0a;Data"></TextBlock>
         </Button>
+        
         <!--Button Shutdown-->
-        <Button x:Name="Shutdown" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Shutdown_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Shutdown"></TextBlock>
+        <Button x:Name="Shutdown" Grid.Column="2" Grid.Row="0" Click="Shutdown_Click">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="Shutdown"></TextBlock>
         </Button>
         <!--Button Set Mix Mode-->
-        <Button x:Name="SetMixMod" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetMixMod_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" TextWrapping="Wrap" Text="Set Mix Mode"></TextBlock>
+        <Button x:Name="SetMixMod" Grid.Column="0" Grid.Row="1" Click="SetMixMod_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="Set Mix&#x0a;Mode"></TextBlock>
         </Button>
-        <!--Button Set Extra Pressures-->        
-        <Button x:Name="SetExtraPres" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetExtraPres_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" TextWrapping="Wrap" Text="Set Extra Pressures"></TextBlock>
+        <!--Button Set Extra Pressures-->
+        <Button x:Name="SetExtraPres" Grid.Column="1" Grid.Row="1" Click="SetExtraPres_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="Set Extra&#x0a;Pressures"></TextBlock>
         </Button>
         <!--Button Lockout Touch-->
-        <Button x:Name="Lockout" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Lockout_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Lockout Touch"></TextBlock>
+        <Button x:Name="Lockout" Grid.Column="2" Grid.Row="1" Click="Lockout_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="Lockout&#x0a;Touch"></TextBlock>
         </Button>
         <!--Button 60 sec Cool Test-->
-        <Button x:Name="CoolTest" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CoolTest_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" TextAlignment="Center" TextWrapping="Wrap" Text="60 sec Cool Test"></TextBlock>
+        <Button x:Name="CoolTest" Grid.Column="0" Grid.Row="2" Click="CoolTest_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="60 sec&#x0a;Cool Test"></TextBlock>
         </Button>
         <!--Button Totals-->
-        <Button x:Name="Totals" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Totals_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Totals"></TextBlock>
+        <Button x:Name="Totals" Grid.Column="1" Grid.Row="2" Click="Totals_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="Totals"></TextBlock>
         </Button>
         <!--Button Manual Control-->
-        <Button x:Name="ManualControl" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ManualControl_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Manual Control"></TextBlock>
+        <Button x:Name="ManualControl" Grid.Column="2" Grid.Row="2" Click="ManualControl_Click">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="Manual&#x0a;Control"></TextBlock>
         </Button>
         <!--Button Extra Display-->
-        <Button x:Name="ExtraDisplay" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ExtraDisplay_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Extra Display"></TextBlock>
+        <Button x:Name="ExtraDisplay" Grid.Column="0" Grid.Row="3" Click="ExtraDisplay_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"  
+                       Text="Extra&#x0a;Display"></TextBlock>
         </Button>
         <!--Button Set Pump Pressures-->
-        <Button x:Name="SetPumpPres" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetPumpPres_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" TextAlignment="Center" TextWrapping="Wrap" Text="Set Pump Pressures"></TextBlock>
+        <Button x:Name="SetPumpPres" Grid.Column="1" Grid.Row="3" Click="SetPumpPres_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="Set Pump&#x0a;Pressures"></TextBlock>
         </Button>
         <!--Button System Calibration-->
-        <Button x:Name="SystemCalibration" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SystemCalibration_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60"  TextAlignment="Center" TextWrapping="Wrap" Text="System Calibration"></TextBlock>
+        <Button x:Name="SystemCalibration" Grid.Column="2" Grid.Row="3" Click="SystemCalibration_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="System&#x0a;Calibration"></TextBlock>
         </Button>
         <!--Button System Information-->
-        <Button x:Name="SystemInformation" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SystemInformation_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" TextWrapping="Wrap" TextAlignment="Center" Text="System Information"></TextBlock>
+        <Button x:Name="SystemInformation" Grid.Column="0" Grid.Row="4" Click="SystemInformation_Click">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="System&#x0a;Information"></TextBlock>
         </Button>
         <!--Button Set Densities-->
-        <Button x:Name="SetDensities" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="SetDensities_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60" Text="Set Densities"></TextBlock>
+        <Button x:Name="SetDensities" Grid.Column="1" Grid.Row="4" Click="SetDensities_Click" IsEnabled="False">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}" 
+                       Text="Set&#x0a;Densities"></TextBlock>
         </Button>
         <!--Button Exit Menu-->
-        <Button x:Name="Button14" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="ExitMenu_Click">
-            <TextBlock FontFamily="Times New Roman" FontSize="60">Exit Menu</TextBlock>
+        <Button x:Name="Button14" Grid.Column="2" Grid.Row="4" Click="ExitMenu_Click">
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                       Text="Exit&#x0a;Menu"></TextBlock>
         </Button>
     </Grid>
-</Window>
+</Window> 

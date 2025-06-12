@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:CCD.AppWinForms"
         mc:Ignorable="d"
         Title="SystemInformation" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>

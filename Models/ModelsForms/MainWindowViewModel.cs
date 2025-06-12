@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NModbus.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +18,13 @@ namespace CCD.Models.ModelsForms
         private float _rateStageTotal;
         private float _recircDensity;
         private float _recircDensityRate;
-        private float _downholeDensity;
+        private float _downholeDensityBuf;
         private float _mixWaterRate;
         private string _pSPass = "N/A";
         private string _dSPass = "N/A";
         private string _psko = "N/A";
         private string _dsko = "N/A";
+        private string _downholeDensity = "N/A";
 
 
         //NOTE изменение цвета фона
@@ -52,10 +54,10 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _psPassBuf = value;
-                PsPass = value ==22222 ? "ERROR" : $"{value} PSI";
+                PsPass = value == 22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
-                
+
         }
 
         //private string _register2Text = "N/A";
@@ -91,7 +93,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _dsPassBuf = value;
-                DsPass =  value == 22222 ? "ERROR" : $"{value} PSI";
+                DsPass = value == 22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
         }
@@ -105,9 +107,11 @@ namespace CCD.Models.ModelsForms
         public int PskoBuf
         {
             get => _pskoBuf;
-            set { _pskoBuf = value; 
+            set
+            {
+                _pskoBuf = value;
                 PSKO = $"OPKO = {value} PSI";
-                OnPropertyChanged(); 
+                OnPropertyChanged();
             }
         }
 
@@ -119,9 +123,11 @@ namespace CCD.Models.ModelsForms
         public int DskoBuf
         {
             get => _dskoBuf;
-            set { _dskoBuf = value;
+            set
+            {
+                _dskoBuf = value;
                 DSKO = $"OPKO = {value} PSI";
-                OnPropertyChanged(); 
+                OnPropertyChanged();
             }
         }
 
@@ -143,12 +149,24 @@ namespace CCD.Models.ModelsForms
             set { _recircDensityRate = value; OnPropertyChanged(); }
         }
 
-        public float DownholeDensity
+
+        //NOTE плотность выход
+
+        public string DownholeDensity
         {
             get => _downholeDensity;
             set { _downholeDensity = value; OnPropertyChanged(); }
         }
+        public float DownholeDensityBuf
+        {
+            get => _downholeDensityBuf;
+            set { 
+                _downholeDensityBuf = value; 
+                DownholeDensity = value == 22222 ? "ERROR" : $"{value} ppg";
+                OnPropertyChanged(); }
+        }
 
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public float MixWaterRate
         {
             get => _mixWaterRate;
@@ -159,7 +177,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(0, 8, 400, registers =>
+            await PollRegistersContinuously(0, 26, 400, registers =>
             {
 
                 PsPassBuf = (short)registers[0];
@@ -172,6 +190,11 @@ namespace CCD.Models.ModelsForms
 
                 // Меняем цвет фона
                 WindowBackground = shouldTurnRed ? "Red" : "White";
+
+                ushort[] registr = new ushort[] {registers[25], registers[24]};
+
+                DownholeDensityBuf = ModbusUtility.GetSingle(registr[0], registr[1]);
+
 
                 //if (registers.Length >= 4)
                 //{

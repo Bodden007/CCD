@@ -270,7 +270,7 @@
                 <TextBlock x:Name="DSRateTotal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
                            VerticalAlignment="Top" 
                            Visibility="Collapsed"
-                        Text="DS HT400 Total Rate"/>
+                        Text="DS Stage Total"/>
 
                 <TextBlock x:Name="DSRateTotalValue" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
                            VerticalAlignment="Top"
@@ -321,7 +321,7 @@
                 <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" 
                            Text="Downhole Density"/>
                 <TextBlock x:Name ="textBlock_5" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           >0.0 ppg</TextBlock>
+                           Text="{Binding DownholeDensity}"></TextBlock>
             </Grid>
         </Button>
 

@@ -83,6 +83,7 @@
     <Compile Include="Models\ModbusConnectionManager.cs" />
     <Compile Include="Models\ModbusWindowViewModel.cs" />
     <Compile Include="Models\ModelsForms\MainWindowViewModel.cs" />
+    <Compile Include="Models\ModelsForms\ManualControlViewModel.cs" />
     <Compile Include="Models\ModelsForms\PassSideViewModel.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="src\Control.cs" />

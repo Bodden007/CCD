@@ -271,11 +271,11 @@ namespace CCD
 
             if (_isTextChangedCombiRateTotal)
             {
-                PSRateTotal_CombinedRate.Text = "Combined HT400 Rate"; 
+                PSRateTotal_CombinedRate.Text = "Combined Stage Total"; 
             }
             else
             {
-                PSRateTotal_CombinedRate.Text = "PS HT400 Total Rate";
+                PSRateTotal_CombinedRate.Text = "PS Stage Total";
             }
         }
         

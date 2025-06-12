@@ -32,6 +32,7 @@ namespace CCD.AppWinForms
             _viewModel = new PassSideViewModel();
 
             DataContext = _viewModel;
+
             Loaded += PassSideWindow_Loaded;
             Closed += PassSideWindow_Closed;
         }
