@@ -22,8 +22,8 @@ namespace CCD.AppWinForms
         public Menu()
         {
             InitializeComponent();
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+            //WindowStyle = WindowStyle.None;
+            //WindowState = WindowState.Maximized;
         }
 
         private void MixControl_Click(object sender, RoutedEventArgs e)

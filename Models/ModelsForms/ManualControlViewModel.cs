@@ -5,25 +5,78 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CCD.Models.ModelsForms
 {
     internal class ManualControlViewModel : ModbusWindowViewModel
     {
+        private Window _window;  // Добавляем поле для хранения окна
+
+        // Конструктор теперь принимает окно
+        public ManualControlViewModel(Window window)
+        {
+            _window = window;
+        }
+
         private RelayCommand _oscillateCements;
         private RelayCommand _oscillateBoth;
-        private RelayCommand _oscillateWater; 
+        private RelayCommand _oscillateWater;
         private RelayCommand _openAllValves;
         private RelayCommand _closeAllValvesExit;
+        private RelayCommand _updateCementCommand;
+        private RelayCommand _updateWaterCommand;
+
         private int _cmtBuf;
         private int _wtrBuf;
         private string _cmt = "N/A";
         private string _wtr = "N/A";
 
-        public string CMT
+        private string _cmtReg = "0";
+        private string _wtrReg = "0";
+
+        public string CMTReg
         {
-            get => _cmt; 
+            get => _cmtReg;
+            set
+            {
+                // Проверяем, что вводится число от 0 до 100
+                if (int.TryParse(value, out int num) && num >= 0 && num <= 100)
+                {
+                    _cmtReg = value;
+                    OnPropertyChanged();
+                }
+                else if (string.IsNullOrEmpty(value))
+                {
+                    _cmtReg = "0"; // Устанавливаем 0 если поле пустое
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string WTRReg
+        {
+            get => _cmtReg;
+            set
+            {
+                // Проверяем, что вводится число от 0 до 100
+                if (int.TryParse(value, out int num) && num >= 0 && num <= 100)
+                {
+                    _wtrReg = value;
+                    OnPropertyChanged();
+                }
+                else if (string.IsNullOrEmpty(value))
+                {
+                    _wtrReg = "0"; // Устанавливаем 0 если поле пустое
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string CMTStr
+        {
+            get => _cmt;
             set
             {
                 _cmt = value;
@@ -36,12 +89,13 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _cmtBuf = value;
-                CMT = $"CMT= {value}.0%";
+                CMTStr = $"CMT= {value}.0%";
                 OnPropertyChanged();
             }
         }
         public string WTR
-        { get => _wtr;
+        {
+            get => _wtr;
             set
             {
                 _wtr = value;
@@ -58,17 +112,143 @@ namespace CCD.Models.ModelsForms
                 OnPropertyChanged();
             }
         }
-
+        /// <summary>
+        /// Команда запуска генератора цем. дозатора
+        /// </summary>
         public ICommand OscillateCementsCommand
         {
             get { return _oscillateCements ?? (_oscillateCements = new RelayCommand(async () => await OscillateCements())); }
         }
+        private async Task OscillateCements()
+        {
 
+            try
+            {
+                await WriteRegisterAsync(54, 221); // Запись значения 221 в регистр 54 valveControl
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Команда запуска генератора водяного и цем дозаторов
+        /// </summary>
+        public ICommand OscillateBothCommand
+        {
+            get { return _oscillateBoth ?? (_oscillateBoth = new RelayCommand(async () => await OscillateBoth())); }
+        }
+        private async Task OscillateBoth()
+        {
+            try
+            {
+                await WriteRegisterAsync(54, 222); // Запись значения 222 в регистр 54 valveControl
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Команда запуска водяного дозатора
+        /// </summary>
+        public ICommand OscillateWaterCommand
+        {
+            get { return _oscillateWater ?? (_oscillateWater = new RelayCommand(async () => await OscillateWater())); }
+        }
+        private async Task OscillateWater()
+        {
+            try
+            {
+                await WriteRegisterAsync(54, 223); // Запись значения 223 в регистр 54 valveControl
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Команда открытия всех дозаторов
+        /// </summary>
+        public ICommand OpenAllValvesCommand
+        {
+            get { return _openAllValves ?? (_openAllValves = new RelayCommand(async () => await OpenAllValves())); }
+        }
+        private async Task OpenAllValves()
+        {
+            try
+            {
+                await WriteRegisterAsync(54, 224); // Запись значения 224 в регистр 54 valveControl
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Команда закрытия всех дозаторов и выход с экрана Manual Control
+        /// </summary>
         public ICommand CloseAllValvesExitCommand
         {
             get { return _closeAllValvesExit ?? (_closeAllValvesExit = new RelayCommand(async () => await CloseAllValvesExit())); }
         }
+        private async Task CloseAllValvesExit()
+        {
+            try
+            {
+                await WriteRegisterAsync(54, 225); // Запись значения 225 в регистр 54 valveControl
+                _window?.Close();                   // Закрываем окно
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Команда обновления значений цем дозатора
+        /// </summary>
+        public ICommand UpdateCementCommand
+        {
+            get { return _updateCementCommand ?? (_updateCementCommand = new RelayCommand(async () => await UpdateCement())); }
+        }
+        private async Task UpdateCement()
+        {
+            try
+            {
+                if (int.TryParse(CMTReg, out int cmtValue) && cmtValue >= 0 && cmtValue <= 100)
+                {
+                    //await WriteRegisterAsync(54, 225); // Закрыть все клапаны
+                    await WriteRegisterAsync(52, (ushort)cmtValue); // Установить новое значение
+                    /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"UpdateCement error: {ex.Message}");
+                // Можно добавить автоматический сброс при ошибке
+                CMTReg = "0";
+            }
+        }
+        /// <summary>
+        /// Команда обновления значений водяного дозатора
+        /// </summary>
+        public ICommand UpdateWaterCommand
+        {
+            get { return _updateWaterCommand ?? (_updateWaterCommand = new RelayCommand(async () => await UpdateWater())); }
 
+        }
+        private async Task UpdateWater()
+        {
+            try
+            {
+                await WriteRegisterAsync(53, 225); // Запись значения water position % в регистр 53 wtrBuf
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
         public async Task StartPollingAsync()
         {
             if (_isPolling) return;
@@ -77,37 +257,9 @@ namespace CCD.Models.ModelsForms
             {
                 CMTBuf = (short)registers[0];
                 WTRBuf = (short)registers[1];
-                
+
             });
         }
-
-       private async Task OscillateCements()
-        {
-
-            try
-            {
-                await WriteRegisterAsync(54, 221); // Запись значения 221 в регистр 52
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
-            }
-        }
-
-
-        private async Task CloseAllValvesExit()
-        {
-
-            try
-            {
-                await WriteRegisterAsync(54, 225); // Запись значения 225 в регистр 52
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
-            }
-        }
-
         private async Task WriteRegisterAsync(int register, ushort value) // Теперь принимает ushort
         {
             try

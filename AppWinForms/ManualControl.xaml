@@ -49,6 +49,12 @@
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
 
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
     </Window.Resources>
     <Grid Background="{DynamicResource PrimaryBlueColor}">
         <Grid.RowDefinitions>
@@ -66,7 +72,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <!--Oscillate Cement-->
             <Button x:Name="Cement" Grid.Column="0" Grid.Row="0" Style="{StaticResource StyleButton_1}"
                     Background="{DynamicResource PrimaryBlueColor}"
@@ -84,13 +90,14 @@
 
                     <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
                                 Text="F1"></TextBlock>
-                </Grid>                
-                                   
+                </Grid>
+
             </Button>
-            
+
             <!--Oscillate Both-->
             <Button x:Name="Both" Grid.Column="1" Grid.Row="0" Style="{StaticResource StyleButton_1}"
-                    Background="{DynamicResource PrimaryBlueColor}">
+                    Background="{DynamicResource PrimaryBlueColor}"
+                    Command="{Binding OscillateBothCommand}">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -104,13 +111,14 @@
 
                     <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
                                 Text="F2"></TextBlock>
-                </Grid>                                
-                
+                </Grid>
+
             </Button>
-            
+
             <!--Oscillate Water-->
             <Button x:Name="Water" Grid.Column="2" Grid.Row="0" Style="{StaticResource StyleButton_1}"
-                    Background="{DynamicResource PrimaryBlueColor}">
+                    Background="{DynamicResource PrimaryBlueColor}"
+                    Command="{Binding OscillateWaterCommand}">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -124,12 +132,13 @@
 
                     <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
                      Text="F3"></TextBlock>
-                </Grid>               
-                    
+                </Grid>
+
             </Button>
             <!--Open All Valves-->
             <Button x:Name="AllValves" Grid.Column="1" Grid.Row="1" Style="{StaticResource StyleButton_1}"
-                    Background="{DynamicResource PrimaryBlueColor}">
+                    Background="{DynamicResource PrimaryBlueColor}"
+                    Command="{Binding OpenAllValvesCommand}">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -143,10 +152,10 @@
 
                     <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
                             Text="F7"></TextBlock>
-                </Grid>                
-                    
+                </Grid>
+
             </Button>
-            
+
             <!--Close All Valves/Exit-->
             <Button x:Name="AllValvesExit" Grid.Column="1" Grid.Row="2" Style="{StaticResource StyleButton_1}"
                     Background="{DynamicResource PrimaryBlueColor}" 
@@ -164,10 +173,10 @@
 
                     <TextBlock Grid.Column="2" Style="{StaticResource StyleF}"
                             Text="F4"></TextBlock>
-                </Grid>               
-                    
+                </Grid>
+
             </Button>
-            
+
             <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -179,7 +188,7 @@
                 <TextBlock Grid.Row="2" Style="{StaticResource StyleTextBlock_2}"
                            Text="Recirc Density"></TextBlock>
             </Grid>
-            
+
             <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -192,6 +201,7 @@
                            Text="Mix Water Rate"></TextBlock>
             </Grid>
         </Grid>
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -200,36 +210,48 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
                        Style="{StaticResource StyleTextBlock_1}" 
                        Text="Enter number and press enter"></TextBlock>
-
+            
+            <!--Cement Box-->
             <Grid Grid.Column="1" Grid.Row="1" Background="White">
-                <TextBox Style="{StaticResource StyleTextBox}" 
-                         Text="0">
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                    Text="{Binding CMTReg, UpdateSourceTrigger=PropertyChanged}" >
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" 
+                        Command="{Binding UpdateCementCommand}"
+                        CommandParameter="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                    </TextBox.InputBindings>
                 </TextBox>
             </Grid>
-            
+
             <Grid Grid.Column="1" Grid.Row="2">
                 <Border Background="White" Margin="0,0,0,10">
                     <TextBlock Style="{StaticResource StyleTextBlock_2}" 
-                               Text="{Binding CMT}">
+                               Text="{Binding CMTStr}">
                     </TextBlock>
                 </Border>
             </Grid>
 
+            <!--Water Box-->
             <TextBlock Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2"
                        Style="{StaticResource StyleTextBlock_1}" 
                        Text="Enter number and press enter"></TextBlock>
 
             <Grid Grid.Column="2" Grid.Row="1" Background="White">
-                <TextBox Style="{StaticResource StyleTextBox}"
-                         Text="0">
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                 Text="{Binding WTRReg, UpdateSourceTrigger=PropertyChanged}" >
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" 
+                    Command="{Binding UpdateWaterCommand}"
+                    CommandParameter="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                    </TextBox.InputBindings>
                 </TextBox>
             </Grid>
 

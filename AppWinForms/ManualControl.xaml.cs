@@ -25,15 +25,15 @@ namespace CCD.AppWinForms
         {
             InitializeComponent();
            
-            _viewModel = new ManualControlViewModel();
+            _viewModel = new ManualControlViewModel(this);
 
             DataContext = _viewModel;
 
             Loaded += PassSideWindow_Loaded;
             Closed += PassSideWindow_Closed;
 
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+            //WindowStyle = WindowStyle.None;
+            //WindowState = WindowState.Maximized;
 
             this.KeyDown += MainWindow_KeyDown;
         }
@@ -42,26 +42,50 @@ namespace CCD.AppWinForms
         {
             await _viewModel.StartPollingAsync();
         }
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    Close();
+                    break;
 
+                case Key.F1:
+                    _viewModel.OscillateCementsCommand.Execute(null);
+                    break;
+
+                case Key.F2:
+                    _viewModel.OscillateBothCommand.Execute(null);
+                    break;
+
+                case Key.F3:
+                    _viewModel.OscillateWaterCommand.Execute(null);
+                    break;
+
+                case Key.F4:
+                    _viewModel.CloseAllValvesExitCommand.Execute(null);
+                    break;
+
+                case Key.F7:
+                    _viewModel.OpenAllValvesCommand.Execute(null);
+                    break;
+
+                case Key.Enter:
+                    if (Keyboard.FocusedElement is UIElement focusedElement)
+                    {
+                        var request = new TraversalRequest(FocusNavigationDirection.Next);
+                        focusedElement.MoveFocus(request);
+                    }
+                    break;
+            }
+
+            //e.Handled = true; // Предотвращаем всплытие события
+        }
         private async void PassSideWindow_Closed(object sender, EventArgs e)
         {
             _viewModel?.StopPolling();
         }
 
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-            {
-                Close();
-
-                // Если нужно открыть модально (как диалог):
-                // newWindow.ShowDialog();
-            }
-        }
-
-        private void AllValvesExit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        
     }
 }
