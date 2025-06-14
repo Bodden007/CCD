@@ -57,7 +57,7 @@ namespace CCD.Models.ModelsForms
 
         public string WTRReg
         {
-            get => _cmtReg;
+            get => _wtrReg;
             set
             {
                 // Проверяем, что вводится число от 0 до 100
@@ -93,7 +93,7 @@ namespace CCD.Models.ModelsForms
                 OnPropertyChanged();
             }
         }
-        public string WTR
+        public string WTRStr
         {
             get => _wtr;
             set
@@ -108,7 +108,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _wtrBuf = value;
-                WTR = $"WTR= {value}.0%";
+                WTRStr = $"WTR= {value}.0%";
                 OnPropertyChanged();
             }
         }
@@ -218,8 +218,8 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(CMTReg, out int cmtValue) && cmtValue >= 0 && cmtValue <= 100)
                 {
-                    //await WriteRegisterAsync(54, 225); // Закрыть все клапаны
-                    await WriteRegisterAsync(52, (ushort)cmtValue); // Установить новое значение
+                    await WriteRegisterAsync(54, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(55, (ushort)cmtValue); // Установить новое значение
                     /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
                 }
             }
@@ -242,7 +242,12 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(53, 225); // Запись значения water position % в регистр 53 wtrBuf
+                if (int.TryParse(WTRReg, out int wtrValue) && wtrValue >= 0 && wtrValue <= 100)
+                {
+                    await WriteRegisterAsync(54, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(56, (ushort)wtrValue); // Установить новое значение
+                    /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
+                }
             }
             catch (Exception ex)
             {

@@ -35,10 +35,24 @@ namespace CCD.Models.ModelsForms
         private string _pskoRegStr;
         private string _dskoRegStr;
 
+        //TODO переделать переменные
         public string PskoRegStr
         {
             get => _pskoRegStr;
-            set { _pskoRegStr = value; OnPropertyChanged(); }
+            set
+            {
+                // Проверяем, что вводится число от 0 до 15000
+                if (int.TryParse(value, out int num) && num >= 0 && num <= 15000)
+                {
+                    _pskoRegStr = value;
+                    OnPropertyChanged();
+                }
+                else if (string.IsNullOrEmpty(value))
+                {                    
+                    OnPropertyChanged();
+                }
+            }
+
         }
 
         public int PskoReg
@@ -54,7 +68,19 @@ namespace CCD.Models.ModelsForms
         public string DskoRegStr
         {
             get => _dskoRegStr;
-            set { _dskoRegStr = value; OnPropertyChanged(); }
+            set 
+            {
+                // Проверяем, что вводится число от 0 до 15000
+                if (int.TryParse(value, out int num) && num >= 0 && num <= 15000)
+                {
+                    _dskoRegStr = value;
+                    OnPropertyChanged();
+                }
+                else if (string.IsNullOrEmpty(value))
+                {
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public int DskoReg
@@ -249,7 +275,7 @@ namespace CCD.Models.ModelsForms
                 PsPassBuf = (short)registers[0];
                 DsPassBuf = (short)registers[2];
                 PskoBuf = (short)registers[4];
-                DskoBuf = (short)registers[6];              
+                DskoBuf = (short)registers[6];
 
             });
         }

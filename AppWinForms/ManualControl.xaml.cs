@@ -32,8 +32,8 @@ namespace CCD.AppWinForms
             Loaded += PassSideWindow_Loaded;
             Closed += PassSideWindow_Closed;
 
-            //WindowStyle = WindowStyle.None;
-            //WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
 
             this.KeyDown += MainWindow_KeyDown;
         }

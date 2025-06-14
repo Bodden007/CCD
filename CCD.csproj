@@ -86,6 +86,7 @@
     <Compile Include="Models\ModelsForms\ManualControlViewModel.cs" />
     <Compile Include="Models\ModelsForms\PassSideViewModel.cs" />
     <Compile Include="Models\RelayCommand.cs" />
+    <Compile Include="Models\SRC\ProgressToHeightConverter.cs" />
     <Compile Include="src\Control.cs" />
     <Compile Include="SystemCallibration\CementWaterValve.xaml.cs">
       <DependentUpon>CementWaterValve.xaml</DependentUpon>

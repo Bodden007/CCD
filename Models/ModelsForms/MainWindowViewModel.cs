@@ -20,6 +20,9 @@ namespace CCD.Models.ModelsForms
         private float _recircDensityRate;
         private float _downholeDensityBuf;
         private float _mixWaterRate;
+        private float _levelSensor;
+        private string _levelSensoreStr = "N/A";
+        //private double _progressBarValue;
         private string _pSPass = "N/A";
         private string _dSPass = "N/A";
         private string _psko = "N/A";
@@ -73,20 +76,6 @@ namespace CCD.Models.ModelsForms
             get => _dSPass;
             set { _dSPass = value; OnPropertyChanged(); }
         }
-
-
-        //FIXME раскоментируй
-        //public float PsPassBuf
-        //{
-        //    get => _psPassBuf;
-        //    set
-        //    {
-        //        _psPassBuf = value;
-        //        PsPass = $"{value:F2} PSI";
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public int DsPassBuf
         {
             get => _dsPassBuf;
@@ -160,10 +149,12 @@ namespace CCD.Models.ModelsForms
         public float DownholeDensityBuf
         {
             get => _downholeDensityBuf;
-            set { 
-                _downholeDensityBuf = value; 
+            set
+            {
+                _downholeDensityBuf = value;
                 DownholeDensity = value == 22222 ? "ERROR" : $"{value} ppg";
-                OnPropertyChanged(); }
+                OnPropertyChanged();
+            }
         }
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -173,11 +164,45 @@ namespace CCD.Models.ModelsForms
             set { _mixWaterRate = value; OnPropertyChanged(); }
         }
 
+        public string LevelSensoreStr
+        {
+            get => _levelSensoreStr;
+            set
+            {
+                _levelSensoreStr = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //public double ProgressBarValue
+        //{
+        //    get => _progressBarValue;
+        //    set
+        //    {
+        //        if (_progressBarValue != value)
+        //        {
+        //            _progressBarValue = value;
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //}
+        public float LevelSensore
+        {
+            get => _levelSensor;
+            set
+            {
+                _levelSensor = value;
+                LevelSensoreStr = value == 22222 ? "ERROR" : $"{value:N2} ft";
+                //ProgressBarValue = value;
+                OnPropertyChanged();
+            }
+        }
+
         public async Task StartPollingAsync()
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(0, 26, 400, registers =>
+            await PollRegistersContinuously(0, 56, 400, registers =>
             {
 
                 PsPassBuf = (short)registers[0];
@@ -185,13 +210,17 @@ namespace CCD.Models.ModelsForms
                 PskoBuf = (short)registers[4];
                 DskoBuf = (short)registers[6];
 
+                ushort[] level = new ushort[] { registers[31], registers[30] };
+
+                LevelSensore = ModbusUtility.GetSingle(level[0], level[1]);
+
                 // Проверяем регистр 5 (значение 121) и регистр 7 (значение 122)
                 bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);
 
                 // Меняем цвет фона
                 WindowBackground = shouldTurnRed ? "Red" : "White";
 
-                ushort[] registr = new ushort[] {registers[25], registers[24]};
+                ushort[] registr = new ushort[] { registers[25], registers[24] };
 
                 DownholeDensityBuf = ModbusUtility.GetSingle(registr[0], registr[1]);
 

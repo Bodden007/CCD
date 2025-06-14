@@ -37,10 +37,10 @@ namespace CCD
             InitializeComponent();
 
             //FIXME верхний бар
-            //WindowStyle = WindowStyle.None;
+            WindowStyle = WindowStyle.None;
 
-            ////FIXMI В максимальный размер
-            //WindowState = WindowState.Maximized;
+            //FIXMI В максимальный размер
+            WindowState = WindowState.Maximized;
 
 
             _viewModel = new MainWindowViewModel();
@@ -199,17 +199,21 @@ namespace CCD
             {
                 CombinedRateValue.Visibility = Visibility.Collapsed;
                 PSRateValue.Visibility = Visibility.Visible;
-                RowR_2.Height = GridLength.Auto;
-                RowR_3.Height = new GridLength(1, GridUnitType.Star);
-                RowR_5.Height = GridLength.Auto;
+                RowR_1.Height = new GridLength(2, GridUnitType.Star);
+                RowR_2.Height = new GridLength(5, GridUnitType.Star);
+                RowR_3.Height = new GridLength(0.5, GridUnitType.Star);
+                RowR_4.Height = new GridLength(2, GridUnitType.Star);
+                RowR_5.Height = new GridLength(5, GridUnitType.Star);
             }
             else
             {
                 CombinedRateValue.Visibility = Visibility.Visible;
                 PSRateValue.Visibility = Visibility.Collapsed;
+                RowR_1.Height = new GridLength(2, GridUnitType.Star);
                 RowR_2.Height = new GridLength(1, GridUnitType.Star);
-                RowR_3.Height = GridLength.Auto;
-                RowR_5.Height = new GridLength(1, GridUnitType.Star);
+                RowR_3.Height = new GridLength(5, GridUnitType.Star);
+                RowR_4.Height = new GridLength(1, GridUnitType.Star);
+                RowR_5.Height = new GridLength(2, GridUnitType.Star);
             }
 
             // Переключаем видимость TextBlock4 и TextBlock5
@@ -229,10 +233,12 @@ namespace CCD
             if (_isTextChangedCombiRate)
             {
                 PSRate_CombinedRate.Text = "Combined HT400 Rate";
+                PSRate_CombinedRate.FontSize = 16;
             }
             else
             {
                 PSRate_CombinedRate.Text = "PS HT400 Rate";
+                PSRate_CombinedRate.FontSize = 12;                
             }
         }
 
@@ -242,17 +248,21 @@ namespace CCD
             {
                 CombinedRateTotalValue.Visibility = Visibility.Collapsed;
                 PSRateTotalValue.Visibility = Visibility.Visible;
-                RowS_2.Height = GridLength.Auto;
-                RowS_3.Height = new GridLength(1, GridUnitType.Star);
-                RowS_5.Height = GridLength.Auto;
+                RowS_1.Height = new GridLength(2, GridUnitType.Star);
+                RowS_2.Height = new GridLength(5, GridUnitType.Star);
+                RowS_3.Height = new GridLength(0.5, GridUnitType.Star);
+                RowS_4.Height = new GridLength(2, GridUnitType.Star);
+                RowS_5.Height = new GridLength(5, GridUnitType.Star);
             }
             else
             {
                 CombinedRateTotalValue.Visibility = Visibility.Visible;
                 PSRateTotalValue.Visibility = Visibility.Collapsed;
+                RowS_1.Height = new GridLength(2, GridUnitType.Star);
                 RowS_2.Height = new GridLength(1, GridUnitType.Star);
-                RowS_3.Height = GridLength.Auto;
-                RowS_5.Height = new GridLength(1, GridUnitType.Star);
+                RowS_3.Height = new GridLength(5, GridUnitType.Star);
+                RowS_4.Height = new GridLength(1, GridUnitType.Star);
+                RowS_5.Height = new GridLength(2, GridUnitType.Star);
             }
 
             // Переключаем видимость TextBlock4 и TextBlock5
@@ -271,11 +281,13 @@ namespace CCD
 
             if (_isTextChangedCombiRateTotal)
             {
-                PSRateTotal_CombinedRate.Text = "Combined Stage Total"; 
+                PSRateTotal_CombinedRate.Text = "Combined Stage Total";
+                PSRateTotal_CombinedRate.FontSize = 16;
             }
             else
             {
                 PSRateTotal_CombinedRate.Text = "PS Stage Total";
+                PSRateTotal_CombinedRate.FontSize = 12;
             }
         }
         

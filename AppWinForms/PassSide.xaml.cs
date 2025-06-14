@@ -24,8 +24,8 @@ namespace CCD.AppWinForms
         public PassSide()
         {
             InitializeComponent();
-            //WindowStyle = WindowStyle.None;
-            //WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
 
             this.KeyDown += MainWindow_KeyDown;
 
