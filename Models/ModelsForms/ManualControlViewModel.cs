@@ -204,6 +204,10 @@ namespace CCD.Models.ModelsForms
             {
                 Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
             }
+            finally
+            {
+                _window?.Close();
+            }
         }
         /// <summary>
         /// Команда обновления значений цем дозатора

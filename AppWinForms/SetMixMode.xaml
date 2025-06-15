@@ -7,15 +7,7 @@
         mc:Ignorable="d"
         Title="SetMixMode" Height="850" Width="1200">
     <Window.Resources>
-        <Style x:Key="FocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+
         <Style x:Key="OptionMarkFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -25,8 +17,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FFFFFFFF"/>
-        <SolidColorBrush x:Key="RadioButton.Static.Border" Color="#FF707070"/>
         <SolidColorBrush x:Key="RadioButton.Static.Glyph" Color="#FF212121"/>
         <SolidColorBrush x:Key="RadioButton.MouseOver.Background" Color="#FFF3F9FF"/>
         <SolidColorBrush x:Key="RadioButton.MouseOver.Border" Color="#FF5593FF"/>
@@ -37,95 +27,166 @@
         <SolidColorBrush x:Key="RadioButton.Disabled.Background" Color="#FFE6E6E6"/>
         <SolidColorBrush x:Key="RadioButton.Disabled.Border" Color="#FFBCBCBC"/>
         <SolidColorBrush x:Key="RadioButton.Disabled.Glyph" Color="#FF707070"/>
-        <Style TargetType="{x:Type RadioButton}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource RadioButton.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type RadioButton}">
-                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Border x:Name="radioButtonBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="100" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,1,2,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                <Grid x:Name="markGrid" Margin="2">
-                                    <Ellipse x:Name="optionMark" Fill="{StaticResource RadioButton.Static.Glyph}" MinWidth="20" MinHeight="20" Opacity="0"/>
-                                </Grid>
-                            </Border>
-                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="HasContent" Value="true">
-                                <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
-                                <Setter Property="Padding" Value="4,-1,0,0"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.MouseOver.Border}"/>
-                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource RadioButton.MouseOver.Glyph}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Disabled.Border}"/>
-                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource RadioButton.Disabled.Glyph}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Pressed.Border}"/>
-                                <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource RadioButton.Pressed.Glyph}"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="true">
-                                <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="{x:Null}">
-                                <Setter Property="Opacity" TargetName="optionMark" Value="0.56"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+        <ControlTemplate x:Key="RadioButtonTemplate1" TargetType="{x:Type RadioButton}">
+            <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="radioButtonBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="100" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1,1,2,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid x:Name="markGrid" Margin="2">
+                        <Ellipse x:Name="optionMark" Fill="{StaticResource RadioButton.Static.Glyph}" MinWidth="20" MinHeight="20" Opacity="0"/>
+                    </Grid>
+                </Border>
+                <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="HasContent" Value="true">
+                    <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
+                    <Setter Property="Padding" Value="4,-1,0,0"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.MouseOver.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.MouseOver.Border}"/>
+                    <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource RadioButton.MouseOver.Glyph}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Disabled.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Disabled.Border}"/>
+                    <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource RadioButton.Disabled.Glyph}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Pressed.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="radioButtonBorder" Value="{StaticResource RadioButton.Pressed.Border}"/>
+                    <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource RadioButton.Pressed.Glyph}"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="{x:Null}">
+                    <Setter Property="Opacity" TargetName="optionMark" Value="0.56"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#E0FFE0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
         </Style>
+
+        <Style x:Key="RadioStyle" TargetType="RadioButton">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="20"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="FTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+
+        </Style>
+        
     </Window.Resources>
-    <Grid Background="#CDC771">
+
+    <Grid Background="#E0FFE0">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>        
-            <RowDefinition Height="1*"></RowDefinition>            
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <TextBlock Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Select Mix Mode"></TextBlock>
-        
+
+
+
+        <TextBlock Grid.Row="0"  Style="{StaticResource StyleTextBlock_2}" 
+                   Text="Select Mix Mode"></TextBlock>
+
+
         <!--1.Density Control Mode-->
-        <StackPanel Grid.Row="1">
-            <RadioButton GroupName="Uses" Grid.Row="1"  VerticalContentAlignment="Center" >
-                <TextBlock VerticalAlignment="Top" FontSize="60" FontFamily="Times New Roman" Text="1.Density Control Mode"></TextBlock>
-            </RadioButton>
-            <TextBlock Grid.Row="2" FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer"></TextBlock>
-        </StackPanel>
-       
+        <Button Grid.Row="1" Style="{StaticResource ButtonStyle}" Command="{Binding DensityControlModeCommand}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton  GroupName="Uses" Grid.Row="0" Template="{DynamicResource RadioButtonTemplate1}"  Style="{StaticResource RadioStyle}"
+                             Content="1.Density Control Mode" IsHitTestVisible="False" Focusable="False" IsEnabled="True"
+                              IsChecked="{Binding ModeUser}">
+                </RadioButton>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_1}"  
+                           Text="Uses Densometer"/>
+            </Grid>
+        </Button>
+
         <!--2.Density Height Mode-->
-        <StackPanel Grid.Row="2">           
-            <RadioButton GroupName="Uses"  VerticalContentAlignment="Center">
-                <TextBlock FontSize="60" FontFamily="Times New Roman" Text="2.Density Height Mode"></TextBlock>
-            </RadioButton>
-            <TextBlock  FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Densometer and Tub Height Sensor"></TextBlock>
-        </StackPanel>        
-        
+        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" Command="{Binding DensityHeightModeCommand}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton GroupName="Uses" Template="{DynamicResource RadioButtonTemplate1}"  Grid.Row="0" Style="{StaticResource RadioStyle}"
+                             Content="2.Density Height Mode" IsHitTestVisible="False" Focusable="False" IsEnabled="True"
+                             IsChecked="{Binding ModeDensty}">
+                </RadioButton>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_1}"  
+                           Text="Uses Densometer and Tub Height Sensor"/>
+            </Grid>
+        </Button>
+
         <!--3.Volumetric Mode-->
-        <StackPanel Grid.Row="3">
-            <RadioButton GroupName="Uses" VerticalContentAlignment="Center" >
-                <TextBlock FontSize="60" FontFamily="Times New Roman" Text="3.Volumetric Mode"></TextBlock>
-            </RadioButton>
-            <TextBlock  FontSize="40" VerticalAlignment="Bottom" Margin="80,0,0,0" FontFamily="Times New Roman" Text="Uses Tub Height Sensor and Flow Totals"></TextBlock>
-        </StackPanel>       
-        
-        <Grid Grid.Row="4">
+        <Button Grid.Row="3" Style="{StaticResource ButtonStyle}" Command="{Binding DensitySensorTotalsCommand}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton  GroupName="Uses" Grid.Row="0" Template="{DynamicResource RadioButtonTemplate1}"  Style="{StaticResource RadioStyle}"
+                             Content="3.Volumetric Mode" IsHitTestVisible="False" Focusable="False" IsEnabled="True"
+                              IsChecked="{Binding ModeTubHeight}">
+                </RadioButton>
+
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_1}"  
+                           Text="Uses Tub Height Sensor and Flow Totals"/>
+            </Grid>
+        </Button>
+
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -136,7 +197,7 @@
             <Button x:Name="Ok" Grid.Column="1" Background="Green" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Ok_Click">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" FontFamily="Times New Roman" Text="Ok"></TextBlock>
             </Button>
-            
+
         </Grid>
     </Grid>
 </Window>

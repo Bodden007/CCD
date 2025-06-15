@@ -186,6 +186,8 @@ namespace CCD.Models.ModelsForms
         //        }
         //    }
         //}
+
+        //TODO доделать уровня
         public float LevelSensore
         {
             get => _levelSensor;

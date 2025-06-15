@@ -23,8 +23,9 @@ namespace CCD.AppWinForms
         {
             InitializeComponent();
 
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+            //FIXME Раскоментируй
+            //WindowStyle = WindowStyle.None;
+            //WindowState = WindowState.Maximized;
         }
 
         private void MixControl_Click(object sender, RoutedEventArgs e)

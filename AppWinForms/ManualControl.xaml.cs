@@ -42,6 +42,10 @@ namespace CCD.AppWinForms
         {
             await _viewModel.StartPollingAsync();
         }
+        private async void PassSideWindow_Closed(object sender, EventArgs e)
+        {
+            _viewModel?.StopPolling();
+        }
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -81,10 +85,7 @@ namespace CCD.AppWinForms
 
             //e.Handled = true; // Предотвращаем всплытие события
         }
-        private async void PassSideWindow_Closed(object sender, EventArgs e)
-        {
-            _viewModel?.StopPolling();
-        }
+
 
         
     }

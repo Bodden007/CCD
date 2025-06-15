@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CCD.Models.ModelsForms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,29 @@ namespace CCD.AppWinForms
     /// </summary>
     public partial class SetMixMode : Window
     {
+        private readonly SetMixModeViewModel _viewModel;
         public SetMixMode()
         {
             InitializeComponent();
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+
+            _viewModel = new SetMixModeViewModel();
+
+            DataContext = _viewModel;
+
+            //FIXME Раскоментируй
+            //WindowStyle = WindowStyle.None;
+            //WindowState = WindowState.Maximized;
+
+            Loaded += PassSideWindow_Loaded;
+            Closed += PassSideWindow_Closed;
+        }
+        private async void PassSideWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.StartPollingAsync();
+        }
+        private async void PassSideWindow_Closed(object sender, EventArgs e)
+        {
+            _viewModel?.StopPolling();
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)

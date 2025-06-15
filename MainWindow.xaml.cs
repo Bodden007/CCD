@@ -37,10 +37,10 @@ namespace CCD
             InitializeComponent();
 
             //FIXME верхний бар
-            WindowStyle = WindowStyle.None;
+            //WindowStyle = WindowStyle.None;
 
             //FIXMI В максимальный размер
-            WindowState = WindowState.Maximized;
+            //WindowState = WindowState.Maximized;
 
 
             _viewModel = new MainWindowViewModel();
