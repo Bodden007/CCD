@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,26 @@ namespace CCD.AppWinForms
         public SystemCalibration()
         {
             InitializeComponent();
+
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
+
+            this.KeyDown += SystemCalibration_KeyDown;
+        }
+
+        private void SystemCalibration_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.Key)
+            {
+                case Key.Escape:
+                    Close();
+                    break;
+
+                case Key.F6:
+                    Close();
+                    break;
+
+            }
         }
 
         private void ExitCalibration_Click(object sender, RoutedEventArgs e)

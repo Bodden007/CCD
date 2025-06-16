@@ -29,22 +29,30 @@ namespace CCD.AppWinForms
 
             DataContext = _viewModel;
 
-            //FIXME Раскоментируй
-            //WindowStyle = WindowStyle.None;
-            //WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
 
             Loaded += PassSideWindow_Loaded;
             Closed += PassSideWindow_Closed;
-        }
+
+            this.KeyDown += SetMixMode_KeyDown;
+        }      
+
         private async void PassSideWindow_Loaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.StartPollingAsync();
+        }
+        private void SetMixMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
         }
         private async void PassSideWindow_Closed(object sender, EventArgs e)
         {
             _viewModel?.StopPolling();
         }
-
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
             Close();

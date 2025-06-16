@@ -152,7 +152,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _downholeDensityBuf = value;
-                DownholeDensity = value == 22222 ? "ERROR" : $"{value} ppg";
+                DownholeDensity = value == 22222 ? "ERROR" : $"{value:N2} ppg";
                 OnPropertyChanged();
             }
         }
@@ -188,14 +188,19 @@ namespace CCD.Models.ModelsForms
         //}
 
         //TODO доделать уровня
-        public float LevelSensore
+        public float LevelSensor
         {
             get => _levelSensor;
             set
             {
                 _levelSensor = value;
-                LevelSensoreStr = value == 22222 ? "ERROR" : $"{value:N2} ft";
+
+                //FIXMI убрать лишнее
+                //LevelSensoreStr = value == 22222 ? "ERROR" : $"{value:N2} ft";
                 //ProgressBarValue = value;
+                LevelSensoreStr = value == 22222 ? "ERROR" :
+                 value == 22221 ? "Off" :
+                 $"{value:N2} ft";
                 OnPropertyChanged();
             }
         }
@@ -214,7 +219,7 @@ namespace CCD.Models.ModelsForms
 
                 ushort[] level = new ushort[] { registers[31], registers[30] };
 
-                LevelSensore = ModbusUtility.GetSingle(level[0], level[1]);
+                LevelSensor = ModbusUtility.GetSingle(level[0], level[1]);
 
                 // Проверяем регистр 5 (значение 121) и регистр 7 (значение 122)
                 bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);

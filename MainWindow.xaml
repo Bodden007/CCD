@@ -64,9 +64,26 @@
             </Setter>
         </Style>
 
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F5F9FF"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>            
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+        
         <Style x:Key="ButtonStylyBig" TargetType="Button">
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="StyleTag" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
@@ -79,7 +96,7 @@
         </Style>
 
         <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontSize" Value="40"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -102,7 +119,7 @@
 
         <!--Button Passenger Side-->
         <Button x:Name="PS" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Style="{StaticResource ButtonStyle}"
                 Click="PS_Click">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -118,10 +135,10 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTag}"
                                         Text="Passenger Side"/>
 
-                    <TextBlock Grid.Column="3" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right" 
+                    <TextBlock Grid.Column="3" Style="{StaticResource StyleTag}" HorizontalAlignment="Right" 
                               Text="F3" />
                 </Grid>
 
@@ -133,15 +150,12 @@
                     <TextBlock x:Name="PSOpko" Style="{StaticResource StyleTextBlock_1}"
                                Text="{Binding PSKO}" ></TextBlock>
                 </Border>
-                <!--<Label x:Name="Label_1" Grid.Row="2"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
-                       FontFamily="Times New Roman" Background="#FFC9DEF5" FontSize="12" 
-                        Content="PSKO = 0 psi"></Label>-->
             </Grid>
         </Button>
 
         <!--Button Driver Side-->
         <Button x:Name="DS" Grid.Column="1" Grid.Row="0" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Style="{StaticResource ButtonStyle}"
                 Click="DS_Click">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -158,10 +172,10 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                    <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTag}"
                           Text="Driver Side"/>
 
-                    <TextBlock Grid.Column="3" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right" 
+                    <TextBlock Grid.Column="3" Style="{StaticResource StyleTag}" HorizontalAlignment="Right" 
                 Text="F3" />
                 </Grid>
 
@@ -177,7 +191,7 @@
 
         <!--Button Combined HT400 Rate-->
         <Button x:Name="CombiRate" Grid.Column="0" Grid.Row="1" Background="{Binding WindowBackground}"
-                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                    Style="{StaticResource ButtonStyle}"
                     Click="CombiRate_Click">
             <Grid>
                 <Grid.RowDefinitions>
@@ -195,11 +209,11 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="F5" Style="{StaticResource StyleTextBlock_1}"
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="F5" Style="{StaticResource StyleTag}"
                             HorizontalAlignment="Right"></TextBlock>
 
                 <TextBlock x:Name="PSRate_CombinedRate"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTextBlock_1}" 
+                           Style="{StaticResource StyleTag}" 
                            
                        Text="Combined HT400 Rate" ></TextBlock>
 
@@ -215,7 +229,7 @@
 
 
                 <TextBlock x:Name="DSRate" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTextBlock_1}" FontSize="12" 
+                           Style="{StaticResource StyleTag}" FontSize="12" 
                            
                            Visibility="Collapsed"
                         Text="DS HT400 Rate"/>
@@ -226,7 +240,7 @@
                            Visibility="Collapsed" 
                         Text="0.0 bpm"></TextBlock>
 
-                <TextBlock Grid.Row="4" Grid.Column="3" Text="2" Style="{StaticResource StyleTextBlock_1}"
+                <TextBlock Grid.Row="4" Grid.Column="3" Text="2" Style="{StaticResource StyleTag}"
                     HorizontalAlignment="Right"></TextBlock>
 
             </Grid>
@@ -235,7 +249,7 @@
 
         <!--Button Combined Stage Total-->
         <Button x:Name="CombiTotal" Grid.Column="1" Grid.Row="1" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Style="{StaticResource ButtonStyle}" 
                 Click="CombiTotal_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -253,11 +267,11 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="F5" Style="{StaticResource StyleTextBlock_1}"
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="F5" Style="{StaticResource StyleTag}"
                          HorizontalAlignment="Right"></TextBlock>
 
                 <TextBlock x:Name="PSRateTotal_CombinedRate"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTextBlock_1}" 
+                           Style="{StaticResource StyleTag}"
                                
                            Text="Combined Stage Total" ></TextBlock>
 
@@ -274,7 +288,7 @@
 
 
                 <TextBlock x:Name="DSRateTotal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTextBlock_1}" FontSize="12"
+                           Style="{StaticResource StyleTag}" FontSize="12"
                             
                            Visibility="Collapsed"
                         Text="DS Stage Total"/>
@@ -285,7 +299,7 @@
                            Visibility="Collapsed" 
                         Text="0.0 bbl"></TextBlock>
 
-                <TextBlock Grid.Row="4" Grid.Column="3" Style="{StaticResource StyleTextBlock_1}"
+                <TextBlock Grid.Row="4" Grid.Column="3" Style="{StaticResource StyleTag}"
                         HorizontalAlignment="Right"
                            Text="3"></TextBlock>
 
@@ -298,7 +312,7 @@
 
         <!--Button Recirc Density-->
         <Button x:Name="RecircDensity" Grid.Column="0" Grid.Row="2" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                Style="{StaticResource ButtonStyle}"
                  Click="RecircDensity_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
@@ -306,7 +320,7 @@
                     <RowDefinition Height="2*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
+                <TextBlock Grid.Row="0" Style="{StaticResource StyleTag}"
                            Text="Recirc Density"/>
 
                 <TextBlock x:Name ="textBlock_4" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
@@ -317,26 +331,9 @@
             </Grid>
         </Button>
 
-        <!-- Button Downhole Density-->
-        <Button x:Name="DownholeDensity" Grid.Column="1" Grid.Row="2" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
-                Click="DownholeDensity_Click">
-            <Grid HorizontalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" 
-                           Text="Downhole Density"/>
-                <TextBlock x:Name ="textBlock_5" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           Text="{Binding DownholeDensity}"></TextBlock>
-            </Grid>
-        </Button>
-
         <!-- Button Mix Control-->
         <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                Style="{StaticResource ButtonStyle}"
                 Click="MixControl_Click">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -385,27 +382,64 @@
             </Grid>
         </Button>
 
-        <!--Grid Progress Bar & Mix Water Rate-->
-        <Grid Grid.Column="1" Grid.Row="3" >
+        <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-            <!--Progress Bar-->
-            <Grid Grid.Column="0">
-                <ProgressBar  Orientation="Vertical"                          
+            <Button x:Name="LevelSensor" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource ButtonStylyBig}" 
+                    Click="LevelSensor_Click">
+                <Grid>
+                    <ProgressBar  Orientation="Vertical"                          
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                          Minimum="0"
                          Maximum="3.7"
-                         Value="{Binding LevelSensore}"/>
-                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                         Value="{Binding LevelSensor}">
+                        <ProgressBar.Style>
+                            <Style TargetType="ProgressBar">
+                                <Setter Property="Foreground" Value="#00B4D8"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding LevelSensor}" Value="22221">
+                                        <Setter Property="Foreground" Value="#DAD8FF"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding LevelSensor}" Value="22222">
+                                        <Setter Property="Foreground" Value="#FF7266"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ProgressBar.Style>
+                    </ProgressBar>
+                    <TextBlock Style="{StaticResource StyleTextBlock_1}"
                     Text="{Binding LevelSensoreStr}"/>
-            </Grid>
+                </Grid>
+            </Button>
 
-            <!--Button Mix Water Rate-->
-            <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="3" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <!-- Button Downhole Density-->
+            <Button x:Name="DownholeDensity" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" Background="{Binding WindowBackground}"
+               Style="{StaticResource ButtonStyle}"
+                Click="DownholeDensity_Click">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Style="{StaticResource StyleTag}"
+                           Text="Downhole Density"/>
+                    <TextBlock x:Name ="textBlock_5" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           Text="{Binding DownholeDensity}"></TextBlock>
+                </Grid>
+            </Button>
+
+            <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Background="{Binding WindowBackground}"
+                Style="{StaticResource ButtonStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
@@ -419,44 +453,60 @@
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                    <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTag}"
                         Text="Mix Water Rate"/>
 
-                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right"
+                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource StyleTag}" HorizontalAlignment="Right"
                             Text="F8"/>
 
                     <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}"
                           Text="0 gpm"></TextBlock>
-
                 </Grid>
             </Button>
 
         </Grid>
 
-        <!--Button Mix Water Rate-->
-        <!--<Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="3" Background="{Binding WindowBackground}"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
-                Click="MixWaterRate_Click">
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" ></ColumnDefinition>
-                    <ColumnDefinition Width="5*" ></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <ProgressBar Grid.Column="0" Minimum="0" Maximum="100" Orientation="Vertical" Width="100" Height="150" 
-                             HorizontalAlignment="Left" />
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="2*"></RowDefinition>
-                        <RowDefinition Height="1*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}"
-                               Text="Mix Water Rate"/>
-                    <TextBlock x:Name ="textBlock_6" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                               >0 gpm</TextBlock>
+        
+
+
+        <!--Grid Progress Bar & Mix Water Rate--><!--
+        <Grid Grid.Column="1" Grid.Row="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            --><!--Progress Bar--><!--
+            <Button x:Name="LevelSensor" Grid.Column="0" Style="{StaticResource ButtonStylyBig}" Click="LevelSensor_Click">
+                <Grid>
+                    <ProgressBar  Orientation="Vertical"                          
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                         Minimum="0"
+                         Maximum="3.7"
+                         Value="{Binding LevelSensor}">
+                        <ProgressBar.Style>
+                            <Style TargetType="ProgressBar">
+                                <Setter Property="Foreground" Value="#00B4D8"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding LevelSensor}" Value="22221">
+                                        <Setter Property="Foreground" Value="#DAD8FF"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding LevelSensor}" Value="22222">
+                                        <Setter Property="Foreground" Value="#FF7266"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ProgressBar.Style>
+                    </ProgressBar>
+                    <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                    Text="{Binding LevelSensoreStr}"/>
                 </Grid>
-            </Grid>
-        </Button>-->
+            </Button>
+
+            --><!--Button Mix Water Rate-->
+
+
+        <!--</Grid>-->
 
         <Grid Grid.Column="1" Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -466,7 +516,7 @@
 
             <!--Button EVENT-->
             <Button x:Name="Event" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}"
-                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                    Style="{StaticResource ButtonStyle}" 
                     Click="Event_Click">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
@@ -474,18 +524,18 @@
                         <RowDefinition Height="2*" ></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" FontSize="20" Style="{StaticResource StyleTextBlock_1}"
+                    <TextBlock Grid.Row="0" FontSize="20" Style="{StaticResource StyleTag}"
                                Text="Time event was sent"/>
                     <TextBlock x:Name ="event" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
                                Text="EVENT" ></TextBlock>
-                    <TextBlock Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+                    <TextBlock Grid.Row="2" Style="{StaticResource StyleTag}"
                                Text="Last Event Sent"/>
                 </Grid>
             </Button>
 
             <!--Button Menu Click-->
             <Button x:Name="Menu" Grid.Column="1" Grid.Row="0"  Background="{Binding WindowBackground}"
-                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                    Style="{StaticResource ButtonStyle}"
                     Click="Menu_Click">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
@@ -493,7 +543,7 @@
                         <RowDefinition Height="2*" ></RowDefinition>
                         <RowDefinition Height="1*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" 
+                    <TextBlock Grid.Row="0" Style="{StaticResource StyleTag}"
                                Text="Density Mode"/>
                     <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
                                Text="MENU"></TextBlock>

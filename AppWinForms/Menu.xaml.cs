@@ -24,8 +24,41 @@ namespace CCD.AppWinForms
             InitializeComponent();
 
             //FIXME Раскоментируй
-            //WindowStyle = WindowStyle.None;
-            //WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
+
+            this.KeyDown += Menu_KeyDown;
+        }
+
+        private void Menu_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    Close();
+                    break;
+
+                case Key.F2:
+                    new CCD.AppWinForms.SetMixMode().Show();
+                    break;
+
+                case Key.F6:
+                    Application.Current.Shutdown();
+                    break;
+
+                case Key.D4:
+                    new CCD.AppWinForms.PassSide().Show();
+                    break;
+
+                case Key.D7:
+                    new CCD.AppWinForms.ManualControl().Show();
+                    break;
+
+                case Key.D8:
+                    new CCD.AppWinForms.SystemCalibration().Show();
+                    break;
+
+            }
         }
 
         private void MixControl_Click(object sender, RoutedEventArgs e)
@@ -53,7 +86,7 @@ namespace CCD.AppWinForms
 
         private void SetExtraPres_Click(object sender, RoutedEventArgs e)
         {
-            CCD.AppWinForms.SetExtraPressures setExtraPressures = new SetExtraPressures();  
+            CCD.AppWinForms.SetExtraPressures setExtraPressures = new SetExtraPressures();
             setExtraPressures.Show();
         }
 

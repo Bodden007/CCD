@@ -37,10 +37,10 @@ namespace CCD
             InitializeComponent();
 
             //FIXME верхний бар
-            //WindowStyle = WindowStyle.None;
+            WindowStyle = WindowStyle.None;
 
             //FIXMI В максимальный размер
-            //WindowState = WindowState.Maximized;
+            WindowState = WindowState.Maximized;
 
 
             _viewModel = new MainWindowViewModel();
@@ -97,22 +97,18 @@ namespace CCD
 
                 e.Handled = true; // Отменяем дальнейшую обработку
             }
-        }
+        }      
 
-        
-
-
-        //FIXMI ВАЖНО!!! не забудь расскоментировать
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //await _viewModel.StartPollingAsync();
+            await _viewModel.StartPollingAsync();
         }
 
-        //private void Window_Closed(object sender, System.EventArgs e)
-        //{
-        //    _viewModel.StopPolling();
-        //}
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            _viewModel.StopPolling();
+        }
 
         private void control_EventFromLoop(object sender, int e)
         {
@@ -290,7 +286,11 @@ namespace CCD
                 PSRateTotal_CombinedRate.FontSize = 12;
             }
         }
-        
 
+        private void LevelSensor_Click(object sender, RoutedEventArgs e)
+        {
+            CCD.AppWinForms.SetMixMode setMixMode = new SetMixMode();
+            setMixMode.Show();
+        }
     }
 }

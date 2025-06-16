@@ -6,6 +6,38 @@
         xmlns:local="clr-namespace:CCD.AppWinForms"
         mc:Ignorable="d"
         Title="SystemCalibration" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F5F9FF"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="FTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -19,136 +51,273 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
+
         <!--PS Pressure-->
-        <Button x:Name="PSPressure" Grid.Column="0" Grid.Row="0" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        <Button x:Name="PSPressure" Grid.Column="0" Style="{StaticResource ButtonStyle}"
                 Click="PSPressure_Click">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontFamily="Times New Roman" FontSize="60" Text="PS Pressure"></TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                        Text="PS Pressure"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="F1"/>
+            </Grid>
         </Button>
 
         <!--DS Pressure-->
-        <Button x:Name="DSPressure" Grid.Column="0" Grid.Row="1" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        <Button x:Name="DSPressure" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonStyle}"
                 Click="DSPressure_Click">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="DS Pressure"></TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+            Text="DS Pressure"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="F2"/>
+            </Grid>
         </Button>
+
         <!--Mix Water Flowmeter-->
-        <Button x:Name="MixWaterFlowmeter" Grid.Column="0" Grid.Row="2" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="MixWaterFlowmeter_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Mix Water"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Flowmeter"></TextBlock>
-            </StackPanel>
+        <Button x:Name="MixWaterFlowmeter" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonStyle}"
+                Click="MixWaterFlowmeter_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                    Text="Mix Water&#x0a;Flowmeter"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="F3"/>
+            </Grid>
         </Button>
+
         <!--PS Pump Rate-->
-        <Button x:Name="PSPumpRate" Grid.Column="0" Grid.Row="3" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        <Button x:Name="PSPumpRate" Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonStyle}"
                 Click="PSPumpRate_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="PS Pump"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                           FontFamily="Times New Roman" FontSize="60" Text="Rate"></TextBlock>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+          Text="PS Pump&#x0a;Rate"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="F4"/>
+            </Grid>
         </Button>
+
         <!--DS Pump Rate-->
-        <Button x:Name="DSPumpRate" Grid.Column="0" Grid.Row="4" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        <Button x:Name="DSPumpRate" Grid.Column="0" Grid.Row="4" Style="{StaticResource ButtonStyle}"
                 Click="DSPumpRate_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="DS Pump"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Rate"></TextBlock>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+          Text="DS Pump&#x0a;Rate"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="F5"/>
+            </Grid>
         </Button>
+
         <!--Recirc Density-->
-        <Button x:Name="RecircDensity" Grid.Column="1" Grid.Row="0" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        <Button x:Name="RecircDensity" Grid.Column="1" Grid.Row="0" Style="{StaticResource ButtonStyle}"
                 Click="RecircDensity_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Recirc"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Density"></TextBlock>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+         Text="Recirc&#x0a;Density"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="1"/>
+            </Grid>
         </Button>
+
         <!--Dounhole Densit-->
-        <Button x:Name="DounholeDensity" Grid.Column="1" Grid.Row="1" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        <Button x:Name="DounholeDensity" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonStyle}"
                 Click="DounholeDensity_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Dounhole"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Density"></TextBlock>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+         Text="Dounhole&#x0a;Density"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="2"/>
+            </Grid>
         </Button>
+
         <!--I/O Config-->
-        <Button x:Name="IOConfig" Grid.Column="1" Grid.Row="2" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="IOConfig_Click">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="I/O Config"></TextBlock>
+        <Button x:Name="IOConfig" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonStyle}" IsEnabled="False"
+                Click="IOConfig_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                    Text="I/O Config"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="3"/>
+            </Grid>
         </Button>
+
         <!--Tub Level-->
-        <Button x:Name="TubLevel" Grid.Column="1" Grid.Row="3" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="TubLevel_Click" >
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="Tub Level"></TextBlock>
+        <Button x:Name="TubLevel" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonStyle}"
+                Click="TubLevel_Click" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                    Text="Tub Level"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="4"/>
+            </Grid>
         </Button>
+
         <!--Unit Type-->
-        <Button x:Name="UnitType" Grid.Column="1" Grid.Row="4" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="Unit Type"></TextBlock>
+        <Button x:Name="UnitType" Grid.Column="1" Grid.Row="4" Style="{StaticResource ButtonStyle}" IsEnabled="False">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                    Text="Unit Type"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="5"/>
+            </Grid>
         </Button>
+
         <!--Cement Valve-->
-        <Button x:Name="CementValve" Grid.Column="2" Grid.Row="0" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="CementValve_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Cement"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Valve"></TextBlock>
-            </StackPanel>
+        <Button x:Name="CementValve" Grid.Column="2" Grid.Row="0" Style="{StaticResource ButtonStyle}"
+                Click="CementValve_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+         Text="Cement&#x0a;Valve"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="6"/>
+            </Grid>
         </Button>
+
         <!--Water Valve-->
-        <Button x:Name="WaterValve" Grid.Column="2" Grid.Row="1" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="WaterValve_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Water"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Valve"></TextBlock>
-            </StackPanel>
+        <Button x:Name="WaterValve" Grid.Column="2" Grid.Row="1" Style="{StaticResource ButtonStyle}"
+                Click="WaterValve_Click">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                        Text="Water&#x0a;Valve"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="7"/>
+            </Grid>
         </Button>
+
         <!--Set Time-->
-        <Button x:Name="SetTime" Grid.Column="2" Grid.Row="2" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="Set Time"></TextBlock>
+        <Button x:Name="SetTime" Grid.Column="2" Grid.Row="2" Style="{StaticResource ButtonStyle}" IsEnabled="False">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                        Text="Set Time"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="8"/>
+            </Grid>
         </Button>
+        
         <!--Next >>>-->
-        <Button x:Name="Next" Grid.Column="2" Grid.Row="3" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        <Button x:Name="Next" Grid.Column="2" Grid.Row="3" Style="{StaticResource ButtonStyle}" IsEnabled="False"
                 Click="Next_Click">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="Next >>>"></TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                        Text="Next >>>"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="9"/>
+            </Grid>
         </Button>
+        
         <!--Exit Calibration-->
-        <Button x:Name="ExitCalibration" Grid.Column="2" Grid.Row="4" Background="White"
-                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" 
+        <Button x:Name="ExitCalibration" Grid.Column="2" Grid.Row="4" Style="{StaticResource ButtonStyle}"
                 Click="ExitCalibration_Click">
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Exit"></TextBlock>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontFamily="Times New Roman" FontSize="60" Text="Calibration"></TextBlock>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
+                        Text="Exit&#x0a;Calibration"></TextBlock>
+
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="F6"/>
+            </Grid> 
         </Button>
     </Grid>
 </Window>

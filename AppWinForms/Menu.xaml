@@ -91,7 +91,6 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="TextAlignment" Value="Center"/>
-
         </Style>
 
     </Window.Resources>
@@ -294,7 +293,7 @@
         
         <!--Button Set Pump Pressures-->
         <Button x:Name="SetPumpPres" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonStyle}"
-                Click="SetPumpPres_Click" IsEnabled="False">
+                Click="SetPumpPres_Click">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -312,7 +311,7 @@
         
         <!--Button System Calibration-->
         <Button x:Name="SystemCalibration" Grid.Column="2" Grid.Row="3" Style="{StaticResource ButtonStyle}"
-                Click="SystemCalibration_Click" IsEnabled="False">
+                Click="SystemCalibration_Click">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
