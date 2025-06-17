@@ -31,7 +31,8 @@ namespace CCD.Models.ModelsForms
 
 
         //NOTE изменение цвета фона
-        private string _windowBackground = "#CDC771"; // Стандартный цвет
+        private string _windowBackground = "#F5F9FF"; // Стандартный цвет
+        private string _mixControlBackground = "#C4B454"; //цвет панели  Mix Control
 
         public string WindowBackground
         {
@@ -42,6 +43,19 @@ namespace CCD.Models.ModelsForms
                 {
                     _windowBackground = value;
                     OnPropertyChanged(nameof(WindowBackground));
+                }
+            }
+        }
+
+        public string MixControlBackground
+        {
+            get => _mixControlBackground;
+            set
+            {
+                if (_mixControlBackground != value)
+                {
+                    _mixControlBackground = value;
+                    OnPropertyChanged(nameof(MixControlBackground));
                 }
             }
         }
@@ -138,7 +152,6 @@ namespace CCD.Models.ModelsForms
             set { _recircDensityRate = value; OnPropertyChanged(); }
         }
 
-
         //NOTE плотность выход
 
         public string DownholeDensity
@@ -174,19 +187,6 @@ namespace CCD.Models.ModelsForms
             }
         }
 
-        //public double ProgressBarValue
-        //{
-        //    get => _progressBarValue;
-        //    set
-        //    {
-        //        if (_progressBarValue != value)
-        //        {
-        //            _progressBarValue = value;
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //}
-
         //TODO доделать уровня
         public float LevelSensor
         {
@@ -194,10 +194,6 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _levelSensor = value;
-
-                //FIXMI убрать лишнее
-                //LevelSensoreStr = value == 22222 ? "ERROR" : $"{value:N2} ft";
-                //ProgressBarValue = value;
                 LevelSensoreStr = value == 22222 ? "ERROR" :
                  value == 22221 ? "Off" :
                  $"{value:N2} ft";
@@ -225,7 +221,8 @@ namespace CCD.Models.ModelsForms
                 bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);
 
                 // Меняем цвет фона
-                WindowBackground = shouldTurnRed ? "Red" : "White";
+                WindowBackground = shouldTurnRed ? "Red" : "#F5F9FF";
+                MixControlBackground = shouldTurnRed ? "Red" : "#C4B454";
 
                 ushort[] registr = new ushort[] { registers[25], registers[24] };
 

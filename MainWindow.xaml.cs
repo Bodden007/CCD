@@ -55,6 +55,65 @@ namespace CCD
             this.KeyDown += MainWindow_KeyDown;
 
         }
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.F3:
+                    new CCD.AppWinForms.PassSide().Show();
+                    break;
+
+                case Key.F6:
+                    new CCD.AppWinForms.Menu().Show();
+                    break;
+
+                case Key.F11:
+                    new CCD.AppWinForms.SetMixMode().Show();
+                    break;
+
+                case Key.D2:
+                    CombinedHT400RateHandler();
+                    _isTextChangedCombiRate = !_isTextChangedCombiRate; // Инвертируем флаг
+                    e.Handled = true; // Отменяем дальнейшую обработку
+                    break;
+
+                case Key.D3:
+                    CombinedHT400RateTotalHandler();
+                    _isTextChangedCombiRateTotal = !_isTextChangedCombiRateTotal; // Инвертируем флаг
+                    e.Handled = true; // Отменяем дальнейшую обработку
+                    break;
+
+            }
+            //if (e.Key == Key.F3)
+            //{
+            //    // Создаем и показываем новое окно
+            //    CCD.AppWinForms.PassSide passSide = new CCD.AppWinForms.PassSide();
+            //    passSide.Show();
+
+            //    // Если нужно открыть модально (как диалог):
+            //    // newWindow.ShowDialog();
+            //}
+
+            //// Если нажаты Ctrl + 2
+            //if (e.Key == Key.D2 && Keyboard.Modifiers == ModifierKeys.Control)
+            //{
+            //    CombinedHT400RateHandler();
+
+            //    _isTextChangedCombiRate = !_isTextChangedCombiRate; // Инвертируем флаг
+
+            //    e.Handled = true; // Отменяем дальнейшую обработку
+            //}
+
+            //// Если нажаты Ctrl + 3
+            //if (e.Key == Key.D3 && Keyboard.Modifiers == ModifierKeys.Control)
+            //{
+            //    CombinedHT400RateTotalHandler();
+
+            //    _isTextChangedCombiRateTotal = !_isTextChangedCombiRateTotal; // Инвертируем флаг
+
+            //    e.Handled = true; // Отменяем дальнейшую обработку
+            //}
+        }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -65,39 +124,6 @@ namespace CCD
         {
             _viewModel.StopPolling();
         }
-
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.F3)
-            {
-                // Создаем и показываем новое окно
-                CCD.AppWinForms.PassSide passSide = new CCD.AppWinForms.PassSide();
-                passSide.Show();
-
-                // Если нужно открыть модально (как диалог):
-                // newWindow.ShowDialog();
-            }
-
-            // Если нажаты Ctrl + 2
-            if (e.Key == Key.D2 && Keyboard.Modifiers == ModifierKeys.Control)
-            {
-                CombinedHT400RateHandler();
-
-                _isTextChangedCombiRate = !_isTextChangedCombiRate; // Инвертируем флаг
-
-                e.Handled = true; // Отменяем дальнейшую обработку
-            }
-
-            // Если нажаты Ctrl + 3
-            if (e.Key == Key.D3 && Keyboard.Modifiers == ModifierKeys.Control)
-            {
-                CombinedHT400RateTotalHandler();
-
-                _isTextChangedCombiRateTotal = !_isTextChangedCombiRateTotal; // Инвертируем флаг
-
-                e.Handled = true; // Отменяем дальнейшую обработку
-            }
-        }      
 
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -234,7 +260,7 @@ namespace CCD
             else
             {
                 PSRate_CombinedRate.Text = "PS HT400 Rate";
-                PSRate_CombinedRate.FontSize = 12;                
+                PSRate_CombinedRate.FontSize = 12;
             }
         }
 

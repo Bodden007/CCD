@@ -8,7 +8,7 @@
         Title="MainWindow" Height="850" Width="1200" Loaded="Window_Loaded">
 
     <Window.Resources>
-        <Style x:Key="FocusVisual">
+        <!--<Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
@@ -45,10 +45,10 @@
                             <Trigger Property="IsDefaulted" Value="true">
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                             </Trigger>
-                            <!--<Trigger Property="IsMouseOver" Value="true">
+                            <Trigger Property="IsMouseOver" Value="False">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
-                            </Trigger>-->
+                            </Trigger>
                             <Trigger Property="IsPressed" Value="true">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
@@ -62,14 +62,29 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
 
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#F5F9FF"/>
+            <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Stretch"/>            
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter 
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         
         <Style x:Key="ButtonStylyBig" TargetType="Button">
@@ -302,11 +317,6 @@
                 <TextBlock Grid.Row="4" Grid.Column="3" Style="{StaticResource StyleTag}"
                         HorizontalAlignment="Right"
                            Text="3"></TextBlock>
-
-                <!--<TextBlock  Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" VerticalAlignment="Top"
-                           Text="Combined Stage Total"/>
-                <TextBlock x:Name ="textBlock_3" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           >0.0 bbl</TextBlock>-->
             </Grid>
         </Button>
 
@@ -332,9 +342,9 @@
         </Button>
 
         <!-- Button Mix Control-->
-        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Background="{Binding WindowBackground}"
+        <Button x:Name="MixControl" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Background="{Binding MixControlBackground}"
                 Style="{StaticResource ButtonStyle}"
-                Click="MixControl_Click">
+                Click="MixControl_Click">            
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -394,6 +404,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
+            <!--Level Sensor-->
             <Button x:Name="LevelSensor" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource ButtonStylyBig}" 
                     Click="LevelSensor_Click">
                 <Grid>
@@ -418,6 +429,8 @@
                     </ProgressBar>
                     <TextBlock Style="{StaticResource StyleTextBlock_1}"
                     Text="{Binding LevelSensoreStr}"/>
+                    <TextBlock Style="{StaticResource StyleTag}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                               Text="F11"/>
                 </Grid>
             </Button>
 
@@ -438,6 +451,7 @@
                 </Grid>
             </Button>
 
+            <!--Mix Water Rate-->
             <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Background="{Binding WindowBackground}"
                 Style="{StaticResource ButtonStyle}">
                 <Grid>
@@ -464,49 +478,8 @@
                 </Grid>
             </Button>
 
-        </Grid>
+        </Grid>       
 
-        
-
-
-        <!--Grid Progress Bar & Mix Water Rate--><!--
-        <Grid Grid.Column="1" Grid.Row="3" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            --><!--Progress Bar--><!--
-            <Button x:Name="LevelSensor" Grid.Column="0" Style="{StaticResource ButtonStylyBig}" Click="LevelSensor_Click">
-                <Grid>
-                    <ProgressBar  Orientation="Vertical"                          
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                         Minimum="0"
-                         Maximum="3.7"
-                         Value="{Binding LevelSensor}">
-                        <ProgressBar.Style>
-                            <Style TargetType="ProgressBar">
-                                <Setter Property="Foreground" Value="#00B4D8"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding LevelSensor}" Value="22221">
-                                        <Setter Property="Foreground" Value="#DAD8FF"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding LevelSensor}" Value="22222">
-                                        <Setter Property="Foreground" Value="#FF7266"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ProgressBar.Style>
-                    </ProgressBar>
-                    <TextBlock Style="{StaticResource StyleTextBlock_1}"
-                    Text="{Binding LevelSensoreStr}"/>
-                </Grid>
-            </Button>
-
-            --><!--Button Mix Water Rate-->
-
-
-        <!--</Grid>-->
 
         <Grid Grid.Column="1" Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -515,7 +488,7 @@
             </Grid.ColumnDefinitions>
 
             <!--Button EVENT-->
-            <Button x:Name="Event" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}"
+            <Button x:Name="Event" Grid.Column="0" Grid.Row="0" Background="{Binding WindowBackground}" 
                     Style="{StaticResource ButtonStyle}" 
                     Click="Event_Click">
                 <Grid HorizontalAlignment="Stretch">
@@ -541,13 +514,22 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
                         <RowDefinition Height="2*" ></RowDefinition>
-                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>                        
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Style="{StaticResource StyleTag}"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTag}"
                                Text="Density Mode"/>
-                    <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                    <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource StyleTag}" HorizontalAlignment="Right"
+                               Text="F6"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StyleTextBlock_2}"
                                Text="MENU"></TextBlock>
-                    <TextBlock x:Name="time" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+                    <TextBlock x:Name="time" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StyleTextBlock_1}"
                                Text="Time"/>
                 </Grid>
             </Button>
