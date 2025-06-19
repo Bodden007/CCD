@@ -9,12 +9,15 @@ namespace CCD.Models.ModelsForms
 {
     internal class MainWindowViewModel : ModbusWindowViewModel
     {
-        private int _psPassBuf;
-        private int _dsPassBuf;
-        private int _pskoBuf;
-        private int _dskoBuf;
-        //private float _psRate;
-        //private float _dsRate;
+        private int _psPass;
+        private int _dsPass;
+        private int _psko;
+        private int _dsko;
+        private float _psRate;
+        private float _dsRate;
+        private float _rateCombined;
+        private float _psRateStage;
+        private float _dsRateStage;
         private float _rateStageTotal;
         private float _recircDensity;
         private float _recircDensityRate;
@@ -22,18 +25,27 @@ namespace CCD.Models.ModelsForms
         private float _mixWaterRate;
         private float _levelSensor;
         private string _levelSensoreStr = "N/A";
-        //private double _progressBarValue;
-        private string _pSPass = "N/A";
-        private string _dSPass = "N/A";
-        private string _psko = "N/A";
-        private string _dsko = "N/A";
-        private string _downholeDensity = "N/A";
 
+        private string _pSPassStr = "N/A";
+        private string _dSPassStr = "N/A";
+        private string _pskoStr = "N/A";
+        private string _dskoStr = "N/A";
+        private string _psRateStr = "N/A";
+        private string _dsRateStr = "N/A";
+        private string _rateCombinedStr = "N/A";
+        private string _psRateStageStr = "N/A";
+        private string _dsRateStageStr = "N/A";
+        private string _rateStageTotalStr = "N/A";
+        private string _recircDensityStr = "N/A";
+        private string _recircDensityRateStr = "N/A";
+        private string _mixWaterRateStr = "N/A";
+        private string _downholeDensity = "N/A";
 
         //NOTE изменение цвета фона
         private string _windowBackground = "#F5F9FF"; // Стандартный цвет
         private string _mixControlBackground = "#C4B454"; //цвет панели  Mix Control
 
+        //NOTE Смена цвета при высоком давлении
         public string WindowBackground
         {
             get => _windowBackground;
@@ -46,7 +58,6 @@ namespace CCD.Models.ModelsForms
                 }
             }
         }
-
         public string MixControlBackground
         {
             get => _mixControlBackground;
@@ -60,100 +71,220 @@ namespace CCD.Models.ModelsForms
             }
         }
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        //FIXME
-        private int _psPassBufint;
-
-        public int PsPassBuf
+        //NOTE давление пасажирской стороны
+        public string PsPassStr
         {
-            get => _psPassBuf;
+            get => _pSPassStr;
+            set { _pSPassStr = value; OnPropertyChanged(); }
+        }
+        public int PsPass
+        {
+            get => _psPass;
             set
             {
-                _psPassBuf = value;
-                PsPass = value == 22222 ? "ERROR" : $"{value} PSI";
+                _psPass = value;
+                PsPassStr = value == 22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
 
         }
 
-        //private string _register2Text = "N/A";
-        //!!!!!!!!!!!!!!!!!!!!!
-        public string PsPass
+        //NOTE давление водительской стороны
+        public string DsPassStr
         {
-            get => _pSPass;
-            set { _pSPass = value; OnPropertyChanged(); }
+            get => _dSPassStr;
+            set { _dSPassStr = value; OnPropertyChanged(); }
         }
-
-        public string DsPass
+        public int DsPass
         {
-            get => _dSPass;
-            set { _dSPass = value; OnPropertyChanged(); }
-        }
-        public int DsPassBuf
-        {
-            get => _dsPassBuf;
+            get => _dsPass;
             set
             {
-                _dsPassBuf = value;
-                DsPass = value == 22222 ? "ERROR" : $"{value} PSI";
+                _dsPass = value;
+                DsPassStr = value == 22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
         }
 
-        public string PSKO
+        //NOTE уставка отсечки пассажирской стороны
+        public string PSKOStr
+        {
+            get => _pskoStr;
+            set { _pskoStr = value; OnPropertyChanged(); }
+        }
+        public int PSKO
         {
             get => _psko;
-            set { _psko = value; OnPropertyChanged(); }
-        }
-
-        public int PskoBuf
-        {
-            get => _pskoBuf;
             set
             {
-                _pskoBuf = value;
-                PSKO = $"OPKO = {value} PSI";
+                _psko = value;
+                PSKOStr = $"OPKO = {value} psi";
                 OnPropertyChanged();
             }
         }
 
-        public string DSKO
+        //NOTE уставка отсечки водительской стороны
+        public string DSKOStr
+        {
+            get => _dskoStr;
+            set { _dskoStr = value; OnPropertyChanged(); }
+        }
+        public int DSKO
         {
             get => _dsko;
-            set { _dsko = value; OnPropertyChanged(); }
-        }
-        public int DskoBuf
-        {
-            get => _dskoBuf;
             set
             {
-                _dskoBuf = value;
-                DSKO = $"OPKO = {value} PSI";
+                _dsko = value;
+                DSKOStr = $"OPKO = {value} psi";
                 OnPropertyChanged();
             }
         }
 
+        //NOTE расход насоса пасажирская сторона
+        public string PsRateStr
+        {
+            get => _psRateStr;
+            set { _psRateStr = value; OnPropertyChanged(); }
+        }
+        public float PsRate
+        {
+            get => _psRate;
+            set
+            {
+                _psRate = value;
+                PsRateStr = $"{value} bpm";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE расход насоса водительская сторона
+        public string DsRateStr
+        {
+            get => _dsRateStr;
+            set { _dsRateStr = value; OnPropertyChanged(); }
+        }
+        public float DsRate
+        {
+            get => _dsRate;
+            set
+            {
+                _dsRate = value;
+                DsRateStr = $"{value} bpm";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE комбинированный расход
+        public string RateCombinedStr
+        {
+            get => _rateCombinedStr;
+            set
+            {
+                _rateCombinedStr = value;
+                OnPropertyChanged();
+            }
+        }
+        public float RateCombined
+        {
+            get => _rateCombined;
+            set
+            {
+                _rateCombined = value;
+                RateCombinedStr = $"{value} bpm";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE Общий расход пассажирская сторона
+        public string PsRateStageStr
+        {
+            get => _psRateStageStr;
+            set { _psRateStageStr = value; OnPropertyChanged(); }
+        }
+        public float PsRateStage
+        {
+            get => _psRateStage;
+            set
+            {
+                _psRateStage = value;
+                PsRateStageStr = $"{value:N2} bbl";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE Общий расход водительская сторона
+        public string DsRateStageStr
+        {
+            get => _dsRateStageStr;
+            set { _dsRateStageStr = value; OnPropertyChanged(); }
+        }
+        public float DsRateStage
+        {
+            get => _dsRateStage;
+            set
+            {
+                _dsRateStage = value;
+                DsRateStageStr = $"{value:N2} bbl";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE Общий сумарный расход 
+        public string RateStageTotalStr
+        {
+            get => _rateStageTotalStr;
+            set { _rateStageTotalStr = value; OnPropertyChanged(); }
+        }
         public float RateStageTotal
         {
             get => _rateStageTotal;
-            set { _rateStageTotal = value; OnPropertyChanged(); }
+            set
+            {
+                _rateStageTotal = value;
+                RateStageTotalStr = $"{value:N2} bbl";
+                OnPropertyChanged();
+            }
         }
 
+        //NOTE Плотность линии рециркуляции
+        public string RecircDensityStr
+        {
+            get => _recircDensityStr;
+            set
+            {
+                _recircDensityStr = value; OnPropertyChanged();
+            }
+        }
         public float RecircDensity
         {
             get => _recircDensity;
-            set { _recircDensity = value; OnPropertyChanged(); }
+            set
+            {
+                _recircDensity = value;
+                RecircDensityStr = $"{value:N2} ppg";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE Поток линии рециркуляции
+        public string RecircDensityRateStr
+        {
+            get => _recircDensityRateStr;
+            set { _recircDensityRateStr = value; OnPropertyChanged(); }
         }
 
         public float RecircDensityRate
         {
             get => _recircDensityRate;
-            set { _recircDensityRate = value; OnPropertyChanged(); }
+            set
+            {
+                _recircDensityRate = value;
+                RecircDensityRateStr = $"{value:N2} gpm";
+                OnPropertyChanged();
+            }
         }
 
         //NOTE плотность выход
-
         public string DownholeDensity
         {
             get => _downholeDensity;
@@ -170,13 +301,22 @@ namespace CCD.Models.ModelsForms
             }
         }
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //NOTE Поток жидкости через Flow Meter
+        public string MixWaterRateStr
+        {
+            get => _mixWaterRateStr;
+            set { _mixWaterRateStr = value; OnPropertyChanged(); }
+        }
         public float MixWaterRate
         {
             get => _mixWaterRate;
-            set { _mixWaterRate = value; OnPropertyChanged(); }
+            set { 
+                _mixWaterRate = value;
+                MixWaterRateStr = $"{value:N2} gpm";
+                OnPropertyChanged(); }
         }
 
+        //NOTE Уровень RCM
         public string LevelSensoreStr
         {
             get => _levelSensoreStr;
@@ -208,14 +348,32 @@ namespace CCD.Models.ModelsForms
             await PollRegistersContinuously(0, 56, 400, registers =>
             {
 
-                PsPassBuf = (short)registers[0];
-                DsPassBuf = (short)registers[2];
-                PskoBuf = (short)registers[4];
-                DskoBuf = (short)registers[6];
+                PsPass = (short)registers[0];
+                DsPass = (short)registers[2];
+                PSKO = (short)registers[4];
+                DSKO = (short)registers[6];
 
-                ushort[] level = new ushort[] { registers[31], registers[30] };
+                PsRate = ModbusUtility.GetSingle(registers[9], registers[8]);
 
-                LevelSensor = ModbusUtility.GetSingle(level[0], level[1]);
+                DsRate = ModbusUtility.GetSingle(registers[11], registers[10]);
+
+                RateCombined = ModbusUtility.GetSingle(registers[13], registers[12]);
+
+                PsRateStage = ModbusUtility.GetSingle(registers[15], registers[14]);
+
+                DsRateStage = ModbusUtility.GetSingle(registers[17], registers[16]);
+
+                RateStageTotal = ModbusUtility.GetSingle(registers[19], registers[18]);
+
+                RecircDensity = ModbusUtility.GetSingle(registers[21], registers[20]);
+
+                RecircDensityRate = ModbusUtility.GetSingle(registers[23], registers[22]);
+
+                DownholeDensityBuf = ModbusUtility.GetSingle(registers[25], registers[24]);
+
+                MixWaterRate = ModbusUtility.GetSingle(registers[27], registers[26]);
+
+                LevelSensor = ModbusUtility.GetSingle(registers[31], registers[30]);
 
                 // Проверяем регистр 5 (значение 121) и регистр 7 (значение 122)
                 bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);
@@ -223,29 +381,16 @@ namespace CCD.Models.ModelsForms
                 // Меняем цвет фона
                 WindowBackground = shouldTurnRed ? "Red" : "#F5F9FF";
                 MixControlBackground = shouldTurnRed ? "Red" : "#C4B454";
-
-                ushort[] registr = new ushort[] { registers[25], registers[24] };
-
-                DownholeDensityBuf = ModbusUtility.GetSingle(registr[0], registr[1]);
-
-
-                //if (registers.Length >= 4)
-                //{
-
-                //    PsPassBuf = CombineRegistersToFloat(registers[0], registers[1]);
-                //    DsPassBuf = CombineRegistersToFloat(registers[2], registers[3]);
-                //    PskoBuf = CombineRegistersToFloat(registers[4], registers[5]);
-                //    DskoBuf = CombineRegistersToFloat(registers[6], registers[7]);
-                //}
             });
         }
 
-        private float CombineRegistersToFloat(ushort highRegister, ushort lowRegister)
-        {
-            byte[] bytes = new byte[4];
-            BitConverter.GetBytes(highRegister).CopyTo(bytes, 0);
-            BitConverter.GetBytes(lowRegister).CopyTo(bytes, 2);
-            return BitConverter.ToSingle(bytes, 0);
-        }
+        //FIXME Удалить
+        //private float CombineRegistersToFloat(ushort highRegister, ushort lowRegister)
+        //{
+        //    byte[] bytes = new byte[4];
+        //    BitConverter.GetBytes(highRegister).CopyTo(bytes, 0);
+        //    BitConverter.GetBytes(lowRegister).CopyTo(bytes, 2);
+        //    return BitConverter.ToSingle(bytes, 0);
+        //}
     }
 }

@@ -159,11 +159,11 @@
 
 
                 <TextBlock x:Name ="PSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           Text="{Binding PsPass}"></TextBlock>
+                           Text="{Binding PsPassStr}"></TextBlock>
 
                 <Border Grid.Row="2" Background="#FFC9DEF5">
                     <TextBlock x:Name="PSOpko" Style="{StaticResource StyleTextBlock_1}"
-                               Text="{Binding PSKO}" ></TextBlock>
+                               Text="{Binding PSKOStr}" ></TextBlock>
                 </Border>
             </Grid>
         </Button>
@@ -195,11 +195,11 @@
                 </Grid>
 
                 <TextBlock x:Name ="DSPassanger" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           Text="{Binding DsPass}"></TextBlock>
+                           Text="{Binding DsPassStr}"></TextBlock>
 
                 <Border Grid.Row="2" Background="#FFC9DEF5">
                     <TextBlock x:Name="DSOpko" Style="{StaticResource StyleTextBlock_1}"
-                               Text="{Binding DSKO}" ></TextBlock>
+                               Text="{Binding DSKOStr}" ></TextBlock>
                 </Border>
             </Grid>
         </Button>
@@ -226,40 +226,36 @@
 
                 <TextBlock Grid.Row="0" Grid.Column="3" Text="F5" Style="{StaticResource StyleTag}"
                             HorizontalAlignment="Right"></TextBlock>
-
+                
                 <TextBlock x:Name="PSRate_CombinedRate"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTag}" 
-                           
+                           Style="{StaticResource StyleTag}"                            
                        Text="Combined HT400 Rate" ></TextBlock>
-
-                <TextBlock x:Name="CombinedRateValue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
-                                                     
-                            Text="0.0 bpm" ></TextBlock>
-
+                
+                <!--Value Combined Rate-->
+                <TextBlock x:Name="CombinedRateValue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
+                           Style="{StaticResource StyleTextBlock_2}"                                                      
+                            Text="{Binding RateCombinedStr}" ></TextBlock>
+                
+                <!--Value PS Rate-->
                 <TextBlock  x:Name="PSRateValue" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
-                            Style="{StaticResource StyleTextBlock_2}" FontSize="24"
-                            
+                            Style="{StaticResource StyleTextBlock_2}" FontSize="24"                            
                             Visibility="Collapsed"
-                Text="0.0 bpm" ></TextBlock>
-
+                            Text="{Binding PsRateStr}" ></TextBlock>
 
                 <TextBlock x:Name="DSRate" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTag}" FontSize="12" 
-                           
+                           Style="{StaticResource StyleTag}" FontSize="12"                            
                            Visibility="Collapsed"
-                        Text="DS HT400 Rate"/>
-
+                            Text="DS HT400 Rate"/>
+                
+                <!--Value DS Rate-->
                 <TextBlock x:Name="DSRateValue" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTextBlock_2}" FontSize="24" 
-                           
+                           Style="{StaticResource StyleTextBlock_2}" FontSize="24"                           
                            Visibility="Collapsed" 
-                        Text="0.0 bpm"></TextBlock>
+                        Text="{Binding DsRateStr}"></TextBlock>
 
                 <TextBlock Grid.Row="4" Grid.Column="3" Text="2" Style="{StaticResource StyleTag}"
                     HorizontalAlignment="Right"></TextBlock>
-
             </Grid>
-
         </Button>
 
         <!--Button Combined Stage Total-->
@@ -286,33 +282,30 @@
                          HorizontalAlignment="Right"></TextBlock>
 
                 <TextBlock x:Name="PSRateTotal_CombinedRate"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTag}"
-                               
+                           Style="{StaticResource StyleTag}"                               
                            Text="Combined Stage Total" ></TextBlock>
 
+                <!--Value PS Stage Total-->
                 <TextBlock  x:Name="PSRateTotalValue" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
-                            Style="{StaticResource StyleTextBlock_2}" FontSize="24"
-                
+                            Style="{StaticResource StyleTextBlock_2}" FontSize="24"                
                             Visibility="Collapsed"
-                               Text="0.0 bbl" ></TextBlock>
+                               Text="{Binding PsRateStageStr}" ></TextBlock>
 
+                <!--Value Combined Stage Total-->
                 <TextBlock x:Name="CombinedRateTotalValue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTextBlock_2}" 
-                                                          
-                                Text="0.0 bbl" ></TextBlock>
-
+                           Style="{StaticResource StyleTextBlock_2}"                                                          
+                                Text="{Binding RateStageTotalStr}" ></TextBlock>
 
                 <TextBlock x:Name="DSRateTotal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTag}" FontSize="12"
-                            
+                           Style="{StaticResource StyleTag}" FontSize="12"                            
                            Visibility="Collapsed"
                         Text="DS Stage Total"/>
 
+                <!--Value Ds Stage Total-->
                 <TextBlock x:Name="DSRateTotalValue" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
-                           Style="{StaticResource StyleTextBlock_2}" FontSize="24"
-                           
+                           Style="{StaticResource StyleTextBlock_2}" FontSize="24"                           
                            Visibility="Collapsed" 
-                        Text="0.0 bbl"></TextBlock>
+                            Text="{Binding DsRateStageStr}"></TextBlock>
 
                 <TextBlock Grid.Row="4" Grid.Column="3" Style="{StaticResource StyleTag}"
                         HorizontalAlignment="Right"
@@ -333,11 +326,14 @@
                 <TextBlock Grid.Row="0" Style="{StaticResource StyleTag}"
                            Text="Recirc Density"/>
 
-                <TextBlock x:Name ="textBlock_4" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           >0.0 ppg</TextBlock>
+                <!--Value Recirc Density-->
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
+                           Text="{Binding RecircDensityStr}"
+                           ></TextBlock>
 
-                <TextBlock x:Name ="recircDensRate" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
-                    >0.0 ppg</TextBlock>
+                <!--Value Rate recirc density-->
+                <TextBlock Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+                    Text="{Binding RecircDensityRateStr}"></TextBlock>
             </Grid>
         </Button>
 
@@ -474,7 +470,7 @@
                             Text="F8"/>
 
                     <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}"
-                          Text="0 gpm"></TextBlock>
+                          Text="{Binding MixWaterRateStr}"></TextBlock>
                 </Grid>
             </Button>
 
