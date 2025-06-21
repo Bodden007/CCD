@@ -82,37 +82,7 @@ namespace CCD
                     _isTextChangedCombiRateTotal = !_isTextChangedCombiRateTotal; // Инвертируем флаг
                     e.Handled = true; // Отменяем дальнейшую обработку
                     break;
-
             }
-            //if (e.Key == Key.F3)
-            //{
-            //    // Создаем и показываем новое окно
-            //    CCD.AppWinForms.PassSide passSide = new CCD.AppWinForms.PassSide();
-            //    passSide.Show();
-
-            //    // Если нужно открыть модально (как диалог):
-            //    // newWindow.ShowDialog();
-            //}
-
-            //// Если нажаты Ctrl + 2
-            //if (e.Key == Key.D2 && Keyboard.Modifiers == ModifierKeys.Control)
-            //{
-            //    CombinedHT400RateHandler();
-
-            //    _isTextChangedCombiRate = !_isTextChangedCombiRate; // Инвертируем флаг
-
-            //    e.Handled = true; // Отменяем дальнейшую обработку
-            //}
-
-            //// Если нажаты Ctrl + 3
-            //if (e.Key == Key.D3 && Keyboard.Modifiers == ModifierKeys.Control)
-            //{
-            //    CombinedHT400RateTotalHandler();
-
-            //    _isTextChangedCombiRateTotal = !_isTextChangedCombiRateTotal; // Инвертируем флаг
-
-            //    e.Handled = true; // Отменяем дальнейшую обработку
-            //}
         }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -168,14 +138,14 @@ namespace CCD
 
         private void CombiRate_Click(object sender, RoutedEventArgs e)
         {
-            //CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
-            //combined.Show();
+            CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
+            combined.Show();
         }
 
         private void CombiTotal_Click(object sender, RoutedEventArgs e)
         {
-            //CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
-            //combined.Show();
+            CCD.AppWinForms.Combined combined = new CCD.AppWinForms.Combined();
+            combined.Show();
         }
 
         private void RecircDensity_Click(object sender, RoutedEventArgs e)
@@ -198,8 +168,8 @@ namespace CCD
 
         private void MixWaterRate_Click(object sender, RoutedEventArgs e)
         {
-            //CCD.AppWinForms.MixWaterRate mixWaterRate = new AppWinForms.MixWaterRate();
-            //mixWaterRate.Show();
+            CCD.AppWinForms.MixWaterRate mixWaterRate = new AppWinForms.MixWaterRate();
+            mixWaterRate.Show();
         }
 
         private void Event_Click(object sender, RoutedEventArgs e)

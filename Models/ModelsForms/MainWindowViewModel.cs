@@ -23,6 +23,7 @@ namespace CCD.Models.ModelsForms
         private float _recircDensityRate;
         private float _downholeDensityBuf;
         private float _mixWaterRate;
+        private float _totalWaterRate;
         private float _levelSensor;
         private string _levelSensoreStr = "N/A";
 
@@ -39,6 +40,7 @@ namespace CCD.Models.ModelsForms
         private string _recircDensityStr = "N/A";
         private string _recircDensityRateStr = "N/A";
         private string _mixWaterRateStr = "N/A";
+        private string _totalWaterRateStr = "N/A";
         private string _downholeDensity = "N/A";
 
         //NOTE изменение цвета фона
@@ -316,6 +318,23 @@ namespace CCD.Models.ModelsForms
                 OnPropertyChanged(); }
         }
 
+        //NOTE общий расход через Flow Meter в gpm
+        public string TotalWaterRateStr
+        {
+            get => _totalWaterRateStr;
+            set { _totalWaterRateStr  = value; OnPropertyChanged(); }            
+        }
+        public float TotalWaterRate
+        {
+            get => _totalWaterRate;
+            set
+            {
+                _totalWaterRate = value;
+                TotalWaterRateStr = $"{value:N2} gal";
+                OnPropertyChanged();
+            }
+        }
+
         //NOTE Уровень RCM
         public string LevelSensoreStr
         {
@@ -372,6 +391,8 @@ namespace CCD.Models.ModelsForms
                 DownholeDensityBuf = ModbusUtility.GetSingle(registers[25], registers[24]);
 
                 MixWaterRate = ModbusUtility.GetSingle(registers[27], registers[26]);
+
+                TotalWaterRate = ModbusUtility.GetSingle(registers[29], registers[28]);
 
                 LevelSensor = ModbusUtility.GetSingle(registers[31], registers[30]);
 

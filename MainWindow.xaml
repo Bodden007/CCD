@@ -343,18 +343,18 @@
                 Click="MixControl_Click">            
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" Foreground="#FF1814D8"
                            Text="Mix Control"></TextBlock>
@@ -376,7 +376,7 @@
                 <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource StyleTextBlock_1}"
                            >0_Sks</TextBlock>
                 <TextBlock Grid.Column="1" Grid.Row="5" Style="{StaticResource StyleTextBlock_1}" 
-                           >0_Sks</TextBlock>
+                           Text="{Binding TotalWaterRateStr}"></TextBlock>
                 <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource StyleTextBlock_1}"
                            >0 gal</TextBlock>
                 <TextBlock Grid.Column="1" Grid.Row="6" Style="{StaticResource StyleTextBlock_1}"
@@ -449,7 +449,7 @@
 
             <!--Mix Water Rate-->
             <Button x:Name="MixWaterRate" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Background="{Binding WindowBackground}"
-                Style="{StaticResource ButtonStyle}">
+                Style="{StaticResource ButtonStyle}" Click="MixWaterRate_Click">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"></RowDefinition>
