@@ -28,10 +28,10 @@ namespace CCD.Models.ModelsForms
         private RelayCommand _updateCementCommand;
         private RelayCommand _updateWaterCommand;
 
-        private int _cmtBuf;
-        private int _wtrBuf;
-        private string _cmt = "N/A";
-        private string _wtr = "N/A";
+        private int _cmt;
+        private string _cmtStr = "N/A";
+        private int _wtr;        
+        private string _wtrStr = "N/A";
 
         private string _cmtReg = "0";
         private string _wtrReg = "0";
@@ -74,44 +74,40 @@ namespace CCD.Models.ModelsForms
             }
         }
 
+        //NOTE Позиция цементного дозатора
         public string CMTStr
+        {
+            get => _cmtStr;
+            set{ _cmtStr = value; OnPropertyChanged(); }
+        }
+        public int CMT
         {
             get => _cmt;
             set
             {
                 _cmt = value;
-                OnPropertyChanged();
-            }
-        }
-        public int CMTBuf
-        {
-            get => _cmtBuf;
-            set
-            {
-                _cmtBuf = value;
                 CMTStr = $"CMT= {value}.0%";
                 OnPropertyChanged();
             }
         }
+
+        //NOTE Позиция водяного дозатора
         public string WTRStr
+        {
+            get => _wtrStr;
+            set{_wtrStr = value; OnPropertyChanged(); }
+        }
+        public int WTR
         {
             get => _wtr;
             set
             {
                 _wtr = value;
-                OnPropertyChanged();
-            }
-        }
-        public int WTRBuf
-        {
-            get => _wtrBuf;
-            set
-            {
-                _wtrBuf = value;
                 WTRStr = $"WTR= {value}.0%";
                 OnPropertyChanged();
             }
         }
+
         /// <summary>
         /// Команда запуска генератора цем. дозатора
         /// </summary>
@@ -124,13 +120,14 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(54, 221); // Запись значения 221 в регистр 54 valveControl
+                await WriteRegisterAsync(62, 221); // Запись значения 221 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
             }
         }
+
         /// <summary>
         /// Команда запуска генератора водяного и цем дозаторов
         /// </summary>
@@ -142,7 +139,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(54, 222); // Запись значения 222 в регистр 54 valveControl
+                await WriteRegisterAsync(62, 222); // Запись значения 222 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -161,7 +158,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(54, 223); // Запись значения 223 в регистр 54 valveControl
+                await WriteRegisterAsync(62, 223); // Запись значения 223 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -179,13 +176,14 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(54, 224); // Запись значения 224 в регистр 54 valveControl
+                await WriteRegisterAsync(62, 224); // Запись значения 224 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
             }
         }
+
         /// <summary>
         /// Команда закрытия всех дозаторов и выход с экрана Manual Control
         /// </summary>
@@ -197,7 +195,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(54, 225); // Запись значения 225 в регистр 54 valveControl
+                await WriteRegisterAsync(62, 225); // Запись значения 225 в регистр 54 valveControl
                 _window?.Close();                   // Закрываем окно
             }
             catch (Exception ex)
@@ -209,6 +207,7 @@ namespace CCD.Models.ModelsForms
                 _window?.Close();
             }
         }
+
         /// <summary>
         /// Команда обновления значений цем дозатора
         /// </summary>
@@ -222,8 +221,8 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(CMTReg, out int cmtValue) && cmtValue >= 0 && cmtValue <= 100)
                 {
-                    await WriteRegisterAsync(54, 0); // Закрыть все клапаны
-                    await WriteRegisterAsync(55, (ushort)cmtValue); // Установить новое значение
+                    await WriteRegisterAsync(62, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(63, (ushort)cmtValue); // Установить новое значение
                     /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
                 }
             }
@@ -234,6 +233,7 @@ namespace CCD.Models.ModelsForms
                 CMTReg = "0";
             }
         }
+
         /// <summary>
         /// Команда обновления значений водяного дозатора
         /// </summary>
@@ -248,8 +248,8 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(WTRReg, out int wtrValue) && wtrValue >= 0 && wtrValue <= 100)
                 {
-                    await WriteRegisterAsync(54, 0); // Закрыть все клапаны
-                    await WriteRegisterAsync(56, (ushort)wtrValue); // Установить новое значение
+                    await WriteRegisterAsync(62, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(64, (ushort)wtrValue); // Установить новое значение
                     /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
                 }
             }
@@ -262,10 +262,10 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(52, 4, 400, registers =>
+            await PollRegistersContinuously(60, 4, 400, registers =>
             {
-                CMTBuf = (short)registers[0];
-                WTRBuf = (short)registers[1];
+                CMT = (short)registers[0];
+                WTR = (short)registers[1];
 
             });
         }

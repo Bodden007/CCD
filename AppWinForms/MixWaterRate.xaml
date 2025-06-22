@@ -66,8 +66,8 @@
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#F5F9FF"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Template">
@@ -108,6 +108,16 @@
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="FTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
 
@@ -157,7 +167,7 @@
 
         <Grid Grid.Column="5" Grid.Row="2"  Grid.ColumnSpan="3" Background="LightBlue" >
             <TextBlock Style="{StaticResource StyleTextBlock_1}"
-                     Text="10000 gal"></TextBlock>
+                     Text="{Binding StageTotalWTRStr}"></TextBlock>
         </Grid>
         
         <TextBlock Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
@@ -165,26 +175,68 @@
 
         <Grid Grid.Column="5" Grid.Row="5"  Grid.ColumnSpan="3" Background="LightBlue">
             <TextBlock Style="{StaticResource StyleTextBlock_1}"
-                       Text="0 gal"></TextBlock>
+                       Text="{Binding JobTotalWTRStr}"></TextBlock>
         </Grid>
 
         <!--Set Totals to entered values-->
         <Button x:Name="SetTotals" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" 
                 Click="SetTotals_Click">
-            <TextBlock Style="{StaticResource StyleTextBlock_2}"
-                       Text="Set Totals&#x0a;values" ></TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}"
+                    Text="Set Totals&#x0a;values" ></TextBlock>
+
+                <TextBlock Grid.Column="3"  Style="{StaticResource FTextBlock}"
+                    Text="F1" ></TextBlock>
+
+            </Grid>
+            
         </Button>
+        
         <!--Zero Job Totals-->
         <Button x:Name="ZeroJob" Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" Grid.RowSpan="2" Style="{StaticResource ButtonStyle}" 
-                Click="ZeroJob_Click">
-            <TextBlock Style="{StaticResource StyleTextBlock_2}"
-                Text="Zero Job&#x0a;Totals" ></TextBlock>
+                Command="{Binding ZeroJobTotalsCommand}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}"
+                        Text="Zero Job&#x0a;Totals" ></TextBlock>
+
+                <TextBlock Grid.Column="3"  Style="{StaticResource FTextBlock}"
+                     Text="F2" ></TextBlock>
+            </Grid>
         </Button>
+        
         <!--Zero Stage Total-->
         <Button x:Name="ZeroStage" Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="3"  Style="{StaticResource ButtonStyle}"
-                Click="ZeroStage_Click">
-            <TextBlock Style="{StaticResource StyleTextBlock_2}"
-                       Text="Zero Stage&#x0a;Total" ></TextBlock>
+                Command="{Binding ZeroStageTotalsCommand}">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}"
+                    Text="Zero Stage&#x0a;Total" ></TextBlock>
+
+                <TextBlock Grid.Column="3"  Style="{StaticResource FTextBlock}"
+                 Text="F3" ></TextBlock>
+            </Grid>
         </Button>
     </Grid>
 </Window>

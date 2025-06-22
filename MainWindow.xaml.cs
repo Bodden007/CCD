@@ -49,8 +49,8 @@ namespace CCD
             // Делаем кнопку фокусируемой
             CombiRate.Focusable = true;
 
-            Loaded += MainWindow_Loaded;
-            Closed += MainWindow_Closed;
+            //Loaded += MainWindow_Loaded;
+            //Closed += MainWindow_Closed;
 
             this.KeyDown += MainWindow_KeyDown;
 
@@ -65,6 +65,10 @@ namespace CCD
 
                 case Key.F6:
                     new CCD.AppWinForms.Menu().Show();
+                    break;
+
+                case Key.F8:
+                    new CCD.AppWinForms.MixWaterRate().Show();
                     break;
 
                 case Key.F11:
@@ -85,15 +89,15 @@ namespace CCD
             }
         }
 
-        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            await _viewModel.StartPollingAsync();
-        }
+        //private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    await _viewModel.StartPollingAsync();
+        //}
 
-        private void MainWindow_Closed(object sender, EventArgs e)
-        {
-            _viewModel.StopPolling();
-        }
+        //private void MainWindow_Closed(object sender, EventArgs e)
+        //{
+        //    _viewModel.StopPolling();
+        //}
 
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)

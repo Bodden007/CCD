@@ -10,38 +10,44 @@ namespace CCD.Models.ModelsForms
     internal class MainWindowViewModel : ModbusWindowViewModel
     {
         private int _psPass;
-        private int _dsPass;
-        private int _psko;
-        private int _dsko;
-        private float _psRate;
-        private float _dsRate;
-        private float _rateCombined;
-        private float _psRateStage;
-        private float _dsRateStage;
-        private float _rateStageTotal;
-        private float _recircDensity;
-        private float _recircDensityRate;
-        private float _downholeDensityBuf;
-        private float _mixWaterRate;
-        private float _totalWaterRate;
-        private float _levelSensor;
-        private string _levelSensoreStr = "N/A";
-
         private string _pSPassStr = "N/A";
+        private int _dsPass;
         private string _dSPassStr = "N/A";
+        private int _psko;
         private string _pskoStr = "N/A";
+        private int _dsko;
         private string _dskoStr = "N/A";
+        private float _psRate;
         private string _psRateStr = "N/A";
+        private float _dsRate;
         private string _dsRateStr = "N/A";
+        private float _rateCombined;
         private string _rateCombinedStr = "N/A";
+        private float _psRateStage;
         private string _psRateStageStr = "N/A";
+        private float _dsRateStage;
         private string _dsRateStageStr = "N/A";
+        private float _rateStageTotal;
         private string _rateStageTotalStr = "N/A";
+        private float _recircDensity;
         private string _recircDensityStr = "N/A";
+        private float _recircDensityRate;
         private string _recircDensityRateStr = "N/A";
+        private float _downholeDensity;
+        private string _downholeDensityStr = "N/A";
+        private float _mixWaterRate;
         private string _mixWaterRateStr = "N/A";
+        private float _stageTotalWTR;
+        private string _stageTotalWTRStr = "N/A";
+        private float _jobTotalWTR;
+        private string _jobTotalWTRStr = "N/A";
+        private float _levelSensor;
         private string _totalWaterRateStr = "N/A";
-        private string _downholeDensity = "N/A";
+        private string _levelSensoreStr = "N/A";
+        private int _cmt;
+        private string _cmtStr = "N/A";
+        private int _wtr;
+        private string _wtrStr = "N/A";
 
         //NOTE изменение цвета фона
         private string _windowBackground = "#F5F9FF"; // Стандартный цвет
@@ -287,23 +293,23 @@ namespace CCD.Models.ModelsForms
         }
 
         //NOTE плотность выход
-        public string DownholeDensity
+        public string DownholeDensityStr
+        {
+            get => _downholeDensityStr;
+            set { _downholeDensityStr = value; OnPropertyChanged(); }
+        }
+        public float DownholeDensity
         {
             get => _downholeDensity;
-            set { _downholeDensity = value; OnPropertyChanged(); }
-        }
-        public float DownholeDensityBuf
-        {
-            get => _downholeDensityBuf;
             set
             {
-                _downholeDensityBuf = value;
-                DownholeDensity = value == 22222 ? "ERROR" : $"{value:N2} ppg";
+                _downholeDensity = value;
+                DownholeDensityStr = value == 22222 ? "ERROR" : $"{value:N2} ppg";
                 OnPropertyChanged();
             }
         }
 
-        //NOTE Поток жидкости через Flow Meter
+        //NOTE Поток жидкости через Flow Meter gpm
         public string MixWaterRateStr
         {
             get => _mixWaterRateStr;
@@ -318,19 +324,36 @@ namespace CCD.Models.ModelsForms
                 OnPropertyChanged(); }
         }
 
-        //NOTE общий расход через Flow Meter в gpm
-        public string TotalWaterRateStr
+        //NOTE Stage расход через Flow Meter в gal
+        public string StageTotalWTRStr
         {
-            get => _totalWaterRateStr;
-            set { _totalWaterRateStr  = value; OnPropertyChanged(); }            
+            get => _stageTotalWTRStr;
+            set { _stageTotalWTRStr = value; OnPropertyChanged(); }
         }
-        public float TotalWaterRate
+        public float StageTotalWTR
         {
-            get => _totalWaterRate;
+            get => _stageTotalWTR;
             set
             {
-                _totalWaterRate = value;
-                TotalWaterRateStr = $"{value:N2} gal";
+                _stageTotalWTR = value;
+                StageTotalWTRStr = $"{value:N2} gal";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE Job расход через Flow Meter в gal
+        public string JobTotalWTRStr
+        {
+            get => _jobTotalWTRStr;
+            set { _jobTotalWTRStr = value; OnPropertyChanged(); }
+        }
+        public float JobTotalWTR
+        {
+            get => _jobTotalWTR;
+            set
+            {
+                _jobTotalWTR = value;
+                JobTotalWTRStr = $"{value:N2} gal";
                 OnPropertyChanged();
             }
         }
@@ -360,11 +383,45 @@ namespace CCD.Models.ModelsForms
             }
         }
 
+        //NOTE Позиция цементного дозатора
+        public string CMTStr
+        {
+            get => _cmtStr;
+            set { _cmtStr = value; OnPropertyChanged(); }
+        }
+        public int CMT
+        {
+            get => _cmt;
+            set
+            {
+                _cmt = value;
+                CMTStr = $"CMT= {value} %";
+                OnPropertyChanged();
+            }
+        }
+
+        //NOTE Позиция водяного дозатора
+        public string WTRStr
+        {
+            get => _wtrStr;
+            set { _wtrStr = value; OnPropertyChanged(); }
+        }
+        public int WTR
+        {
+            get => _wtr;
+            set
+            {
+                _wtr = value;
+                WTRStr = $"WTR= {value} %";
+                OnPropertyChanged();
+            }
+        }
+
         public async Task StartPollingAsync()
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(0, 56, 400, registers =>
+            await PollRegistersContinuously(0, 64, 500, registers =>
             {
 
                 PsPass = (short)registers[0];
@@ -384,17 +441,22 @@ namespace CCD.Models.ModelsForms
 
                 RateStageTotal = ModbusUtility.GetSingle(registers[19], registers[18]);
 
-                RecircDensity = ModbusUtility.GetSingle(registers[21], registers[20]);
+                MixWaterRate = ModbusUtility.GetSingle(registers[23], registers[22]);
 
-                RecircDensityRate = ModbusUtility.GetSingle(registers[23], registers[22]);
+                StageTotalWTR = ModbusUtility.GetSingle(registers[25], registers[24]);
 
-                DownholeDensityBuf = ModbusUtility.GetSingle(registers[25], registers[24]);
+                JobTotalWTR = ModbusUtility.GetSingle(registers[27], registers[26]);
 
-                MixWaterRate = ModbusUtility.GetSingle(registers[27], registers[26]);
+                RecircDensity = ModbusUtility.GetSingle(registers[29], registers[28]);
 
-                TotalWaterRate = ModbusUtility.GetSingle(registers[29], registers[28]);
+                RecircDensityRate = ModbusUtility.GetSingle(registers[31], registers[30]);
 
-                LevelSensor = ModbusUtility.GetSingle(registers[31], registers[30]);
+                DownholeDensity = ModbusUtility.GetSingle(registers[33], registers[32]);                               
+
+                LevelSensor = ModbusUtility.GetSingle(registers[39], registers[38]);
+
+                CMT = (short)registers[60];
+                WTR = (short)registers[61];
 
                 // Проверяем регистр 5 (значение 121) и регистр 7 (значение 122)
                 bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);

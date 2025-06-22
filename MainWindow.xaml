@@ -343,8 +343,12 @@
                 Click="MixControl_Click">            
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -356,34 +360,58 @@
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" Foreground="#FF1814D8"
+                <TextBlock Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" Foreground="#FF1814D8"
                            Text="Mix Control"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource StyleTextBlock_1}"
+
+                <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            >0.00_den</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource StyleTextBlock_1}"
+
+                <TextBlock Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            >0.0_rte</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}" 
+
+                <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
                            >0.00_yld</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+
+                <TextBlock Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            >0.00_wtr</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="3" Style="{StaticResource StyleTextBlock_1}" 
-                           >0.00_wtr</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource StyleTextBlock_1}"
-                           >0.00_wtr</TextBlock>
+
+                <!--CMT dispenser-->
+                <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
+                           Text="{Binding CMTStr}"></TextBlock>
+
+                <!--CMT dispenser-->
+                <TextBlock Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                           Text="{Binding WTRStr}"></TextBlock>
+                
+                <TextBlock Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                           Foreground="#FF1814D8" 
+                           Text="VOLUMES" ></TextBlock>
+
                 <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            Foreground="#FF1814D8" 
-                           Text="STAGE&lt;VOLUMES&gt;JOB" ></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="5" Style="{StaticResource StyleTextBlock_1}"
+                           Text="STAGE" ></TextBlock>
+
+                <TextBlock Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                           Foreground="#FF1814D8" 
+                           Text="JOB" ></TextBlock>
+
+                <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            >0_Sks</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="5" Style="{StaticResource StyleTextBlock_1}" 
-                           Text="{Binding TotalWaterRateStr}"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="6" Style="{StaticResource StyleTextBlock_1}"
-                           >0 gal</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="6" Style="{StaticResource StyleTextBlock_1}"
-                           >0 gal</TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="7" Style="{StaticResource StyleTextBlock_1}"
+                
+                <!--Stage Total Flow Meter-->
+                <TextBlock Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
+                           >0_Sks</TextBlock>
+
+                <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}" 
+                           Text="{Binding StageTotalWTRStr}"></TextBlock>
+
+                <TextBlock Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
+                           Text="{Binding JobTotalWTRStr}"></TextBlock>
+                
+                <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            >0.0 bbl</TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="7" Style="{StaticResource StyleTextBlock_1}"
+                
+                <TextBlock Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            >0.0 bbl</TextBlock>
             </Grid>
         </Button>
@@ -443,7 +471,7 @@
                     <TextBlock Grid.Row="0" Style="{StaticResource StyleTag}"
                            Text="Downhole Density"/>
                     <TextBlock x:Name ="textBlock_5" Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
-                           Text="{Binding DownholeDensity}"></TextBlock>
+                           Text="{Binding DownholeDensityStr}"></TextBlock>
                 </Grid>
             </Button>
 

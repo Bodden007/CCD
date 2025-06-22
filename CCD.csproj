@@ -84,6 +84,7 @@
     <Compile Include="Models\ModbusWindowViewModel.cs" />
     <Compile Include="Models\ModelsForms\MainWindowViewModel.cs" />
     <Compile Include="Models\ModelsForms\ManualControlViewModel.cs" />
+    <Compile Include="Models\ModelsForms\MixWaterRateViewModel.cs" />
     <Compile Include="Models\ModelsForms\PassSideViewModel.cs" />
     <Compile Include="Models\ModelsForms\SetMixModeViewModel.cs" />
     <Compile Include="Models\RelayCommand.cs" />

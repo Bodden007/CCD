@@ -29,8 +29,8 @@ namespace CCD.AppWinForms
 
             DataContext = _viewModel;
 
-            Loaded += PassSideWindow_Loaded;
-            Closed += PassSideWindow_Closed;
+            Loaded += ManualControlWindow_Loaded;
+            Closed += ManualControlWindow_Closed;
 
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
@@ -38,11 +38,11 @@ namespace CCD.AppWinForms
             this.KeyDown += MainWindow_KeyDown;
         }
 
-        private async void PassSideWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void ManualControlWindow_Loaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.StartPollingAsync();
         }
-        private async void PassSideWindow_Closed(object sender, EventArgs e)
+        private void ManualControlWindow_Closed(object sender, EventArgs e)
         {
             _viewModel?.StopPolling();
         }
