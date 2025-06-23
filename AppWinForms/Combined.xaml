@@ -7,116 +7,323 @@
         mc:Ignorable="d"
         Title="Combined" Height="450" Width="800">
     <Window.Resources>
-        <Style x:Key="FocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#CDC771"/>
-        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F5F9FF"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter 
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_1_non" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="FTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Background" Value="Gray"/>
+        </Style>
+
+        <Style x:Key="GridStyle" TargetType="Grid">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
+
     </Window.Resources>
+
     <Grid Background="#CDC771">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="Pump Stage Total"></TextBlock>
-        <Grid Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Background="White">
-        <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0.0 bbl"></TextBox>
-        </Grid>
-        <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="PS Pump"></TextBlock>
-        <Grid Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Background="White">
-            <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0.0 bbl"></TextBox>
-        </Grid>
-        <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="DS Pump"></TextBlock>
-        <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Background="White">
-            <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0.0 bbl"></TextBox>
-        </Grid>
-        <TextBlock Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="Pump Job Total"></TextBlock>
-        <Grid Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Background="White">
-            <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0.0 bbl"></TextBox>
-        </Grid>
-        <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="PS Pump"></TextBlock>
-        <Grid Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Background="White">
-            <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0.0 bbl"></TextBox>
-        </Grid>
-        <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="DS Pump"></TextBlock>
-        <Grid Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" Background="White">
-            <TextBox HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40" FontFamily="Times New Roman" Text="0.0 bbl"></TextBox>
-        </Grid>
-        <!--Set Totals to entered values-->
-        <Button x:Name="SetTotals" Grid.Column="0" Grid.Row="8" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="SetTotals_Click">
-            <TextBlock FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" TextWrapping="Wrap" Text="Set Totals to entered values" ></TextBlock>
+
+        <!--Pump Stage Total-->
+        <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1_non}" 
+                   Text="Pump Stage Total"></TextBlock>
+        <Border Grid.Column="3" Grid.Row="1"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid Style="{StaticResource GridStyle}" >
+                <TextBlock Style="{StaticResource StyleTextBlock_1}" Background="LightBlue" 
+                Text="0.0 bbl"></TextBlock>
+            </Grid>
+        </Border>
+
+        <!--TextBox Pump Stage Total-->
+        <Border Grid.Column="5" Grid.Row="1"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="StageTotalPump"  Background="White" >
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                    Text="0">
+                </TextBox>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="ctrl&#x0a;+1"></TextBlock>
+            </Grid>
+        </Border>
+
+        <!-- Button SET PS Pump Stage Total-->
+        <Button Grid.Column="8" Grid.Row="1" Style="{StaticResource ButtonStyle}" 
+                Command="{Binding UpdateStageTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1_non}"
+                    Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F1"></TextBlock>
+            </Grid>
         </Button>
+
+        <!-- PS Pump Stage Total-->
+        <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1_non}"
+           Text="PS Pump"></TextBlock>
+
+        <Border Grid.Column="3" Grid.Row="2"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid  Background="LightBlue" >
+                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                    Text="0.0 bbl"></TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="5" Grid.Row="2"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="PSPumpStageTotal"  Background="White" >
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                    Text="0">
+                </TextBox>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="ctrl&#x0a;+2"></TextBlock>
+            </Grid>
+        </Border>
+
+        <!-- Button SET PM Pump Stage Total-->
+        <Button Grid.Column="8" Grid.Row="2" Style="{StaticResource ButtonStyle}" 
+        Command="{Binding UpdateStageTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1_non}"
+            Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F2"></TextBlock>
+            </Grid>
+        </Button>
+
+        <!-- DS Pump Stage Total-->
+        <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1_non}"
+                    Text="DS Pump"></TextBlock>
+
+        <Border Grid.Column="3" Grid.Row="3"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid  Background="LightBlue" >
+                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                Text="0.0 bbl"></TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="5" Grid.Row="3"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="DSPumpStageTotal"  Background="White" >
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                Text="0">
+                </TextBox>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="ctrl&#x0a;+3"></TextBlock>
+            </Grid>
+        </Border>
+
+        <!-- Button SET DS Pump Stage Total-->
+        <Button Grid.Column="8" Grid.Row="3" Style="{StaticResource ButtonStyle}" 
+                Command="{Binding UpdateStageTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1_non}"
+                    Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F3"></TextBlock>
+            </Grid>
+        </Button>
+
+
+        <!-- Pump Job Total-->
+        <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1_non}"
+                Text="Pump Job Total"></TextBlock>
+
+        <Border Grid.Column="3" Grid.Row="5"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid  Background="LightBlue" >
+                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                    Text="0.0 bbl"></TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="5" Grid.Row="5"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="PumpJobTotal"  Background="White" >
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                    Text="0">
+                </TextBox>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="ctrl&#x0a;+4"></TextBlock>
+            </Grid>
+        </Border>
+        <!-- Button SET Pump Job Total-->
+        <Button Grid.Column="8" Grid.Row="5" Style="{StaticResource ButtonStyle}" 
+                Command="{Binding UpdateStageTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1_non}"
+                    Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F4"></TextBlock>
+            </Grid>
+        </Button>
+
+        <!-- PS Pump Job Total-->
+        <TextBlock Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1_non}"
+                Text="PS Pump"></TextBlock>
+
+        <Border Grid.Column="3" Grid.Row="6"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid  Background="LightBlue" >
+                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                Text="0.0 bbl"></TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="5" Grid.Row="6"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="PSPumpJobTotal"  Background="White" >
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                Text="0">
+                </TextBox>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="ctrl&#x0a;+5"></TextBlock>
+            </Grid>
+        </Border>
+
+        <!-- Button SET PM Pump Job Total-->
+        <Button Grid.Column="8" Grid.Row="6" Style="{StaticResource ButtonStyle}" 
+                Command="{Binding UpdateStageTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1_non}"
+                        Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F5"></TextBlock>
+            </Grid>
+        </Button>
+
+        <!-- DS Pump Stage Total-->
+        <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1_non}"
+            Text="DS Pump"></TextBlock>
+
+        <Border Grid.Column="3" Grid.Row="7"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid  Background="LightBlue" >
+                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                    Text="0.0 bbl"></TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="5" Grid.Row="7"  Grid.ColumnSpan="2" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="DSPumpJobTotal"  Background="White" >
+                <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+                            Text="0">
+                </TextBox>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="ctrl&#x0a;+6"></TextBlock>
+            </Grid>
+        </Border>
+        
+        <!-- Button SET DS Pump Job Total-->
+        <Button Grid.Column="8" Grid.Row="7" Style="{StaticResource ButtonStyle}" 
+            Command="{Binding UpdateStageTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1_non}"
+                    Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F6"></TextBlock>
+            </Grid>
+        </Button>
+
+
+        <!--EXIT-->
+        <Button x:Name="EXIT" Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}"
+                Click="EXIT_Click">
+            <Grid>
+                <TextBlock  Style="{StaticResource StyleTextBlock_2}"
+                        Text="EXIT" ></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}"
+                    Text="esc"></TextBlock>
+            </Grid>
+        </Button>
+
         <!--Zero Job Totals-->
-        <Button x:Name="ZeroJob" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="ZeroJob_Click">
-            <TextBlock FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" TextWrapping="Wrap" Text="Zero Job Totals" ></TextBlock>
+        <Button x:Name="ZeroJob" Grid.Column="3" Grid.Row="10" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}">
+            <Grid>
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                Text="Zero Job&#x0a;Totals" ></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}"
+                    Text="F8"></TextBlock> 
+            </Grid>
         </Button>
+
         <!--Zero Stage Total-->
-        <Button x:Name="ZeroStage" Grid.Column="3" Grid.Row="8" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="ZeroStage_Click">
-            <TextBlock FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" TextWrapping="Wrap" Text="Zero Stage Total" ></TextBlock>
+        <Button x:Name="ZeroStage" Grid.Column="6" Grid.Row="10" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}">
+            <Grid>
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"
+                      Text="Zero Stage&#x0a;Total"></TextBlock>
+            <TextBlock Style="{StaticResource FTextBlock}"
+                       Text="F9"></TextBlock>
+
+            </Grid>
         </Button>
     </Grid>
 </Window>

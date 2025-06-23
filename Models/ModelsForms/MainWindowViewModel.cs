@@ -421,7 +421,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(0, 64, 500, registers =>
+            await PollRegistersContinuously(0, 50, 500, registers =>
             {
 
                 PsPass = (short)registers[0];
@@ -455,8 +455,8 @@ namespace CCD.Models.ModelsForms
 
                 LevelSensor = ModbusUtility.GetSingle(registers[39], registers[38]);
 
-                CMT = (short)registers[60];
-                WTR = (short)registers[61];
+                CMT = (short)registers[40];
+                WTR = (short)registers[41];
 
                 // Проверяем регистр 5 (значение 121) и регистр 7 (значение 122)
                 bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);
@@ -465,15 +465,6 @@ namespace CCD.Models.ModelsForms
                 WindowBackground = shouldTurnRed ? "Red" : "#F5F9FF";
                 MixControlBackground = shouldTurnRed ? "Red" : "#C4B454";
             });
-        }
-
-        //FIXME Удалить
-        //private float CombineRegistersToFloat(ushort highRegister, ushort lowRegister)
-        //{
-        //    byte[] bytes = new byte[4];
-        //    BitConverter.GetBytes(highRegister).CopyTo(bytes, 0);
-        //    BitConverter.GetBytes(lowRegister).CopyTo(bytes, 2);
-        //    return BitConverter.ToSingle(bytes, 0);
-        //}
+        }        
     }
 }

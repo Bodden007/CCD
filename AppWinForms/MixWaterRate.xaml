@@ -7,62 +7,7 @@
         mc:Ignorable="d"
         Title="MixWaterRate" Height="450" Width="800">
     <Window.Resources>
-        <!--<Style x:Key="FocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#CDC771"/>
-        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>-->
-
+        
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#F5F9FF"/>
             <Setter Property="BorderThickness" Value="2"/>
@@ -87,7 +32,7 @@
         </Style>
 
         <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontSize" Value="26"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -116,7 +61,7 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
@@ -126,61 +71,82 @@
     <Grid Background="#CDC771">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
-           Text="Set water Stage Total"></TextBlock>
+        <!--Water Stage Total-->
+        <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
+            Text="Water Stage Total"></TextBlock>
 
-        <Grid Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="3" Background="White" >
-            <TextBox Style="{StaticResource StyleTextBox}"
-             Text="0"></TextBox>
-        </Grid>
-
-        <TextBlock Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
-            Text="Set water Job Total"></TextBlock>
-
-        <Grid Grid.Column="1" Grid.Row="5"  Grid.ColumnSpan="3" Background="White">
-            <TextBox Style="{StaticResource StyleTextBox}"
-               Text="0"></TextBox>
-        </Grid>
-
-        <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
-                   Text="Water Stage Total"></TextBlock>
-
-        <Grid Grid.Column="5" Grid.Row="2"  Grid.ColumnSpan="3" Background="LightBlue" >
+        <Grid Grid.Column="3" Grid.Row="2"  Grid.ColumnSpan="2" Background="LightBlue" >
             <TextBlock Style="{StaticResource StyleTextBlock_1}"
-                     Text="{Binding StageTotalWTRStr}"></TextBlock>
+             Text="{Binding StageTotalWTRStr}"></TextBlock>
         </Grid>
-        
-        <TextBlock Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
+
+        <!--TextBox Stage Total-->
+        <Grid x:Name="StageTotalGrid" Grid.Column="5" Grid.Row="2"  Grid.ColumnSpan="2" Background="White" >
+            <TextBox Style="{StaticResource StyleTextBox}" IsReadOnly="False"
+             Text="{Binding StageTotalWTR_Reg, UpdateSourceTrigger=PropertyChanged}">                
+            </TextBox>
+            <TextBlock Style="{StaticResource FTextBlock}" Text="F1"></TextBlock>
+        </Grid>
+
+        <!-- Button SET Water Stage Total-->
+        <Button Grid.Column="8" Grid.Row="2" Style="{StaticResource ButtonStyle}" 
+                Command="{Binding UpdateStageTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+                    Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F3"></TextBlock>
+            </Grid>
+        </Button>
+
+        <!--Water JOB Total-->
+        <TextBlock Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
                     Text="Water Job Total"></TextBlock>
 
-        <Grid Grid.Column="5" Grid.Row="5"  Grid.ColumnSpan="3" Background="LightBlue">
+        <Grid Grid.Column="3" Grid.Row="5"  Grid.ColumnSpan="2" Background="LightBlue">
             <TextBlock Style="{StaticResource StyleTextBlock_1}"
                        Text="{Binding JobTotalWTRStr}"></TextBlock>
         </Grid>
 
-        <!--Set Totals to entered values-->
-        <Button x:Name="SetTotals" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" 
-                Click="SetTotals_Click">
+        <!--TextBox Job Total-->
+        <Grid x:Name="JobTotalGrid" Grid.Column="5" Grid.Row="5"  Grid.ColumnSpan="2" Background="White">
+            <TextBox Style="{StaticResource StyleTextBox}" 
+              Text="{Binding JobTotalWTR_Reg, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Style="{StaticResource FTextBlock}" Text="F2"></TextBlock>
+        </Grid>
+
+        <!--Button SET Water Job Total-->
+        <Button Grid.Column="8" Grid.Row="5" Style="{StaticResource ButtonStyle}"
+                Command="{Binding UpdateJobTotalsCommand}">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_1}"
+           Text="Set"></TextBlock>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F4"></TextBlock>
+            </Grid>            
+        </Button>
+
+        <!--EXIT-->
+        <Button x:Name="Exit" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" 
+                Click="Exit_Click">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -190,10 +156,10 @@
                 </Grid.ColumnDefinitions>
                 
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}"
-                    Text="Set Totals&#x0a;values" ></TextBlock>
+                    Text="EXIT" ></TextBlock>
 
                 <TextBlock Grid.Column="3"  Style="{StaticResource FTextBlock}"
-                    Text="F1" ></TextBlock>
+                    Text="esc" ></TextBlock>
 
             </Grid>
             
@@ -215,7 +181,7 @@
                         Text="Zero Job&#x0a;Totals" ></TextBlock>
 
                 <TextBlock Grid.Column="3"  Style="{StaticResource FTextBlock}"
-                     Text="F2" ></TextBlock>
+                     Text="F5" ></TextBlock>
             </Grid>
         </Button>
         
@@ -235,7 +201,7 @@
                     Text="Zero Stage&#x0a;Total" ></TextBlock>
 
                 <TextBlock Grid.Column="3"  Style="{StaticResource FTextBlock}"
-                 Text="F3" ></TextBlock>
+                 Text="F6" ></TextBlock>
             </Grid>
         </Button>
     </Grid>

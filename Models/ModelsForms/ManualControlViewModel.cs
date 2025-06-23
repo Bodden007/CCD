@@ -120,7 +120,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(62, 221); // Запись значения 221 в регистр 54 valveControl
+                await WriteRegisterAsync(42, 221); // Запись значения 221 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -139,7 +139,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(62, 222); // Запись значения 222 в регистр 54 valveControl
+                await WriteRegisterAsync(42, 222); // Запись значения 222 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -158,7 +158,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(62, 223); // Запись значения 223 в регистр 54 valveControl
+                await WriteRegisterAsync(42, 223); // Запись значения 223 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -176,7 +176,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(62, 224); // Запись значения 224 в регистр 54 valveControl
+                await WriteRegisterAsync(42, 224); // Запись значения 224 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -195,7 +195,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(62, 225); // Запись значения 225 в регистр 54 valveControl
+                await WriteRegisterAsync(42, 225); // Запись значения 225 в регистр 54 valveControl
                 _window?.Close();                   // Закрываем окно
             }
             catch (Exception ex)
@@ -221,8 +221,8 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(CMTReg, out int cmtValue) && cmtValue >= 0 && cmtValue <= 100)
                 {
-                    await WriteRegisterAsync(62, 0); // Закрыть все клапаны
-                    await WriteRegisterAsync(63, (ushort)cmtValue); // Установить новое значение
+                    await WriteRegisterAsync(42, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(43, (ushort)cmtValue); // Установить новое значение
                     /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
                 }
             }
@@ -248,8 +248,8 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(WTRReg, out int wtrValue) && wtrValue >= 0 && wtrValue <= 100)
                 {
-                    await WriteRegisterAsync(62, 0); // Закрыть все клапаны
-                    await WriteRegisterAsync(64, (ushort)wtrValue); // Установить новое значение
+                    await WriteRegisterAsync(42, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(44, (ushort)wtrValue); // Установить новое значение
                     /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
                 }
             }
@@ -262,7 +262,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(60, 4, 400, registers =>
+            await PollRegistersContinuously(40, 4, 400, registers =>
             {
                 CMT = (short)registers[0];
                 WTR = (short)registers[1];

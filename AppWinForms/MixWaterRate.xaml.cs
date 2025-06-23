@@ -47,11 +47,41 @@ namespace CCD.AppWinForms
                     Close();
                     break;
 
+                case Key.F1:
+                    // Получаем TextBox внутри Grid
+                    var stageTextBox = StageTotalGrid.Children.OfType<TextBox>().FirstOrDefault();
+                    if (stageTextBox != null)
+                    {
+                        stageTextBox.Focus();
+                        stageTextBox.SelectAll();
+                    }
+                    e.Handled = true;
+                    break;
+
                 case Key.F2:
-                    _viewModel.ZeroJobTotalsCommand.Execute(null);
+                    // Получаем TextBox внутри Grid
+                    var jobTextBox = JobTotalGrid.Children.OfType<TextBox>().FirstOrDefault();
+                    if (jobTextBox != null)
+                    {
+                        jobTextBox.Focus();
+                        jobTextBox.SelectAll();
+                    }
+                    e.Handled = true;
                     break;
 
                 case Key.F3:
+                    _viewModel.UpdateStageTotalsCommand.Execute(null);
+                    break;
+
+                case Key.F4:
+                    _viewModel.UpdateJobTotalsCommand.Execute(null);
+                    break;
+
+                case Key.F5:
+                    _viewModel.ZeroJobTotalsCommand.Execute(null);
+                    break;
+
+                case Key.F6:
                     _viewModel.ZeroStageTotalsCommand.Execute(null);
                     break;
             }
@@ -66,18 +96,9 @@ namespace CCD.AppWinForms
             _viewModel?.StopPolling();
         }
 
-        private void SetTotals_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
-        //private void ZeroJob_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Close();
-        //}
-        //private void ZeroStage_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Close();
-        //}
     }
 }

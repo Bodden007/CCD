@@ -22,21 +22,24 @@ namespace CCD.AppWinForms
         public Combined()
         {
             InitializeComponent();
+
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
+
+            this.KeyDown += Combined_KeyDown;
         }
 
-        private void SetTotals_Click(object sender, RoutedEventArgs e)
+        private void Combined_KeyDown(object sender, KeyEventArgs e)
         {
-            Close();
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    Close();
+                    break;
+            }
         }
 
-        private void ZeroJob_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void ZeroStage_Click(object sender, RoutedEventArgs e)
+        private void EXIT_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

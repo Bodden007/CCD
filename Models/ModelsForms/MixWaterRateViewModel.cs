@@ -13,12 +13,15 @@ namespace CCD.Models.ModelsForms
     {
         private RelayCommand _zeroJobTotalsCommand;
         private RelayCommand _zeroStageTotalsCommand;
+        private RelayCommand _updateJobTotalsCommand;
+        private RelayCommand _updateStageTotalsCommand;
 
         private float _stageTotalWTR;
         private string _stageTotalWTRStr = "N/A";
-
         private float _jobTotalWTR;
         private string _jobTotalWTRStr = "N/A";
+        private string _stageTotalWTR_Reg = "0";
+        private string _jobTotalWTR_Reg = "0";
 
         //NOTE Stage расход через Flow Meter в gal
         public string StageTotalWTRStr
@@ -54,6 +57,34 @@ namespace CCD.Models.ModelsForms
             }
         }
 
+        //NOTE Переменная для нового значения JobTotal
+        public string StageTotalWTR_Reg
+        {
+            get => _stageTotalWTR_Reg;
+            set
+            {
+                if (_stageTotalWTR_Reg != value)
+                {
+                    _stageTotalWTR_Reg = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        //NOTE Переменная для нового значения JobTotal
+        public string JobTotalWTR_Reg
+        {
+            get => _jobTotalWTR_Reg;
+            set
+            {
+                if (_jobTotalWTR_Reg != value)
+                {
+                    _jobTotalWTR_Reg = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
         /// Команда обнуления Job Total
         /// </summary>
@@ -61,6 +92,7 @@ namespace CCD.Models.ModelsForms
         {
             get { return _zeroJobTotalsCommand ?? (_zeroJobTotalsCommand = new RelayCommand(async () => await ZeroJobTotals())); }
         }
+
         //TODO запись в регист Job Total
         private async Task ZeroJobTotals()
         {
@@ -73,6 +105,7 @@ namespace CCD.Models.ModelsForms
                 Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
             }
         }
+
         /// <summary>
         /// Команда обнуления Stage Total
         /// </summary>
@@ -89,6 +122,56 @@ namespace CCD.Models.ModelsForms
             catch (Exception ex)
             {
                 Debug.WriteLine($"Ошибка в SetPSZero: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Команда обновления Job Totals
+        /// </summary>
+        /// <returns></returns>
+        public ICommand UpdateJobTotalsCommand
+        {
+            get { return _updateJobTotalsCommand ?? (_updateJobTotalsCommand = new RelayCommand(async () => await UpdateJobTotals())); }
+        }
+        private async Task UpdateJobTotals()
+        {
+            if (string.IsNullOrEmpty(JobTotalWTR_Reg))
+            {
+                JobTotalWTR_Reg = "0"; // Автоматически подставляем 0 если поле пустое
+            }
+
+            if (float.TryParse(JobTotalWTR_Reg, out float value))
+            {
+                await WriteRegisterAsync(26, value);
+            }
+            else
+            {
+                JobTotalWTR_Reg = "0"; // Сбрасываем на 0 при ошибке
+            }
+        }
+
+        /// <summary>
+        /// Команда обновления Stage Totals
+        /// </summary>
+        /// <returns></returns>
+        public ICommand UpdateStageTotalsCommand
+        {
+            get { return _updateStageTotalsCommand ?? (_updateStageTotalsCommand = new RelayCommand(async () => await UpdateStageTotals())); }
+        }
+        private async Task UpdateStageTotals()
+        {
+            if (string.IsNullOrEmpty(StageTotalWTR_Reg))
+            {
+                StageTotalWTR_Reg = "0"; // Автоматически подставляем 0 если поле пустое
+            }
+
+            if (float.TryParse(StageTotalWTR_Reg, out float value))
+            {
+                await WriteRegisterAsync(24, value);
+            }
+            else
+            {
+                StageTotalWTR_Reg = "0"; // Сбрасываем на 0 при ошибке
             }
         }
         public async Task StartPollingAsync()
@@ -108,8 +191,8 @@ namespace CCD.Models.ModelsForms
                 byte[] floatBytes = BitConverter.GetBytes(value);
                 ushort[] registers = new ushort[2];
 
-                registers[0] = BitConverter.ToUInt16(floatBytes, 2); // Старшие 2 байта
-                registers[1] = BitConverter.ToUInt16(floatBytes, 0); // Младшие 2 байта
+                registers[0] = BitConverter.ToUInt16(floatBytes, 0); // Старшие 2 байта
+                registers[1] = BitConverter.ToUInt16(floatBytes, 2); // Младшие 2 байта
 
                 await _connection.WriteMultipleRegistersAsync(
                     slaveId: 15,
