@@ -54,7 +54,6 @@ namespace CCD.Models.ModelsForms
             }
 
         }
-
         public int PskoReg
         {
             get => _pskoReg;
@@ -82,7 +81,6 @@ namespace CCD.Models.ModelsForms
                 }
             }
         }
-
         public int DskoReg
         {
             get => _dskoReg;
@@ -93,7 +91,6 @@ namespace CCD.Models.ModelsForms
                 OnPropertyChanged();
             }
         }
-
         public string PsPass
         {
             get => _pSPass;
@@ -126,7 +123,6 @@ namespace CCD.Models.ModelsForms
                 OnPropertyChanged();
             }
         }
-
         public string PSKO
         {
             get => _pskostr;
@@ -143,13 +139,9 @@ namespace CCD.Models.ModelsForms
                     _pskoBuf = value;
                     PSKO = $"OPKO = {value} PSI";
                     OnPropertyChanged();
-
-                    // Можно добавить автоматическую запись при изменении
-                    // Task.Run(() => WriteValuesAsync());
                 }
             }
         }
-
         public string DSKO
         {
             get => _dskostr;
@@ -199,7 +191,7 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(PskoRegStr.Replace(" PSI", ""), out int pskoValue))
                 {
-                    await WriteRegisterAsync(4, (ushort)pskoValue); // Запись только в регистр 4
+                    await WriteRegisterAsync(6, (ushort)pskoValue); // Запись только в регистр 4
                     PskoBuf = pskoValue;
                 }
             }
@@ -216,7 +208,7 @@ namespace CCD.Models.ModelsForms
                 if (int.TryParse(DskoRegStr.Replace(" PSI", ""), out int dskoValue))
                 {
                     // Явное преобразование int -> ushort
-                    await WriteRegisterAsync(6, (ushort)dskoValue);
+                    await WriteRegisterAsync(8, (ushort)dskoValue);
                     DskoBuf = dskoValue;
                 }
             }
@@ -231,7 +223,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(1, 321); // Запись значения 321 в регистр 1
+                await WriteRegisterAsync(3, 321); // Запись значения 321 в регистр 1
             }
             catch (Exception ex)
             {
@@ -244,7 +236,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(3, 322); // Запись значения 321 в регистр 1
+                await WriteRegisterAsync(5, 322); // Запись значения 321 в регистр 1
             }
             catch (Exception ex)
             {
@@ -257,7 +249,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(1, 333); // Запись значения 321 в регистр 1
+                await WriteRegisterAsync(3, 333); // Запись значения 321 в регистр 1
             }
             catch (Exception ex)
             {
@@ -272,10 +264,10 @@ namespace CCD.Models.ModelsForms
             await PollRegistersContinuously(0, 8, 400, registers =>
             {
                 //NOTE Логика чтения регистров
-                PsPassBuf = (short)registers[0];
-                DsPassBuf = (short)registers[2];
-                PskoBuf = (short)registers[4];
-                DskoBuf = (short)registers[6];
+                PsPassBuf = (short)registers[2];
+                DsPassBuf = (short)registers[4];
+                PskoBuf = (short)registers[6];
+                DskoBuf = (short)registers[8];
 
             });
         }

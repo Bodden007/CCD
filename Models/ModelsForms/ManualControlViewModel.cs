@@ -1,4 +1,5 @@
-﻿using NModbus.Utility;
+﻿using CCD.SRC;
+using NModbus.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,11 +14,16 @@ namespace CCD.Models.ModelsForms
     internal class ManualControlViewModel : ModbusWindowViewModel
     {
         private Window _window;  // Добавляем поле для хранения окна
+        private readonly ModbusConfig _config;
+        private readonly RegisterAddressConfig _reg;
 
         // Конструктор теперь принимает окно
         public ManualControlViewModel(Window window)
         {
             _window = window;
+
+            _config = ModbusConfig.Load();
+            _reg = _config.RegisterAddress;
         }
 
         private RelayCommand _oscillateCements;
@@ -120,7 +126,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(42, 221); // Запись значения 221 в регистр 54 valveControl
+                await WriteRegisterAsync(_reg.ValveControl, 221); // Запись значения 221 в регистр 44 valveControl
             }
             catch (Exception ex)
             {
@@ -139,7 +145,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(42, 222); // Запись значения 222 в регистр 54 valveControl
+                await WriteRegisterAsync(_reg.ValveControl, 222); // Запись значения 222 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -158,7 +164,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(42, 223); // Запись значения 223 в регистр 54 valveControl
+                await WriteRegisterAsync(_reg.ValveControl, 223); // Запись значения 223 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -176,7 +182,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(42, 224); // Запись значения 224 в регистр 54 valveControl
+                await WriteRegisterAsync(_reg.ValveControl, 224); // Запись значения 224 в регистр 54 valveControl
             }
             catch (Exception ex)
             {
@@ -195,7 +201,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(42, 225); // Запись значения 225 в регистр 54 valveControl
+                await WriteRegisterAsync(_reg.ValveControl, 225); // Запись значения 225 в регистр 54 valveControl
                 _window?.Close();                   // Закрываем окно
             }
             catch (Exception ex)
@@ -221,8 +227,8 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(CMTReg, out int cmtValue) && cmtValue >= 0 && cmtValue <= 100)
                 {
-                    await WriteRegisterAsync(42, 0); // Закрыть все клапаны
-                    await WriteRegisterAsync(43, (ushort)cmtValue); // Установить новое значение
+                    await WriteRegisterAsync(_reg.ValveControl, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(_reg.CmtSend, (ushort)cmtValue); // Установить новое значение
                     /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
                 }
             }
@@ -248,8 +254,8 @@ namespace CCD.Models.ModelsForms
             {
                 if (int.TryParse(WTRReg, out int wtrValue) && wtrValue >= 0 && wtrValue <= 100)
                 {
-                    await WriteRegisterAsync(42, 0); // Закрыть все клапаны
-                    await WriteRegisterAsync(44, (ushort)wtrValue); // Установить новое значение
+                    await WriteRegisterAsync(_reg.ValveControl, 0); // Закрыть все клапаны
+                    await WriteRegisterAsync(_reg.WtrSend, (ushort)wtrValue); // Установить новое значение
                     /*CMTBuf = cmtValue;*/ // Обновить отображаемое значение
                 }
             }
@@ -262,7 +268,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(40, 4, 400, registers =>
+            await PollRegistersContinuously((ushort)_reg.Cmt, 4, 400, registers =>
             {
                 CMT = (short)registers[0];
                 WTR = (short)registers[1];

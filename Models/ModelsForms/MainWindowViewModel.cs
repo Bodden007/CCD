@@ -1,4 +1,5 @@
-﻿using NModbus.Utility;
+﻿using CCD.SRC;
+using NModbus.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,15 @@ namespace CCD.Models.ModelsForms
 {
     internal class MainWindowViewModel : ModbusWindowViewModel
     {
+        private readonly ModbusConfig _config;
+        private readonly RegisterAddressConfig _regAddr;
+        
+        public MainWindowViewModel()
+        {
+            _config = ModbusConfig.Load();
+            _regAddr = _config.RegisterAddress;
+        }
+
         private int _psPass;
         private string _pSPassStr = "N/A";
         private int _dsPass;
@@ -424,42 +434,42 @@ namespace CCD.Models.ModelsForms
             await PollRegistersContinuously(0, 50, 500, registers =>
             {
 
-                PsPass = (short)registers[0];
-                DsPass = (short)registers[2];
-                PSKO = (short)registers[4];
-                DSKO = (short)registers[6];
+                PsPass = (short)registers[_regAddr.PsPass];
+                DsPass = (short)registers[_regAddr.DsPass];
+                PSKO = (short)registers[_regAddr.PsKo];
+                DSKO = (short)registers[_regAddr.DsKo];
 
-                PsRate = ModbusUtility.GetSingle(registers[9], registers[8]);
+                PsRate = ModbusUtility.GetSingle(registers[_regAddr.PsRate[1]], registers[_regAddr.PsRate[0]]);
 
-                DsRate = ModbusUtility.GetSingle(registers[11], registers[10]);
+                DsRate = ModbusUtility.GetSingle(registers[_regAddr.DsRate[1]], registers[_regAddr.DsRate[0]]);
 
-                RateCombined = ModbusUtility.GetSingle(registers[13], registers[12]);
+                RateCombined = ModbusUtility.GetSingle(registers[_regAddr.RateCombined[1]], registers[_regAddr.RateCombined[0]]);
 
-                PsRateStage = ModbusUtility.GetSingle(registers[15], registers[14]);
+                PsRateStage = ModbusUtility.GetSingle(registers[_regAddr.PsRateStage[1]], registers[_regAddr.PsRateStage[0]]);
 
-                DsRateStage = ModbusUtility.GetSingle(registers[17], registers[16]);
+                DsRateStage = ModbusUtility.GetSingle(registers[_regAddr.DsRateStage[1]], registers[_regAddr.DsRateStage[0]]);
 
-                RateStageTotal = ModbusUtility.GetSingle(registers[19], registers[18]);
+                RateStageTotal = ModbusUtility.GetSingle(registers[_regAddr.RateStageTotal[1]], registers[_regAddr.RateStageTotal[0]]);
 
-                MixWaterRate = ModbusUtility.GetSingle(registers[23], registers[22]);
+                MixWaterRate = ModbusUtility.GetSingle(registers[_regAddr.MixWaterRate[1]], registers[_regAddr.MixWaterRate[0]]);
 
-                StageTotalWTR = ModbusUtility.GetSingle(registers[25], registers[24]);
+                StageTotalWTR = ModbusUtility.GetSingle(registers[_regAddr.StageTotalWTR[1]], registers[_regAddr.StageTotalWTR[0]]);
 
-                JobTotalWTR = ModbusUtility.GetSingle(registers[27], registers[26]);
+                JobTotalWTR = ModbusUtility.GetSingle(registers[_regAddr.JobTotalWTR[1]], registers[_regAddr.JobTotalWTR[0]]);
 
-                RecircDensity = ModbusUtility.GetSingle(registers[29], registers[28]);
+                RecircDensity = ModbusUtility.GetSingle(registers[_regAddr.RecircDensity[1]], registers[_regAddr.RecircDensity[0]]);
 
-                RecircDensityRate = ModbusUtility.GetSingle(registers[31], registers[30]);
+                RecircDensityRate = ModbusUtility.GetSingle(registers[_regAddr.RecircDensityRate[1]], registers[_regAddr.RecircDensityRate[0]]);
 
-                DownholeDensity = ModbusUtility.GetSingle(registers[33], registers[32]);                               
+                DownholeDensity = ModbusUtility.GetSingle(registers[_regAddr.DownholeDensity[1]], registers[_regAddr.DownholeDensity[0]]);                               
 
-                LevelSensor = ModbusUtility.GetSingle(registers[39], registers[38]);
+                LevelSensor = ModbusUtility.GetSingle(registers[_regAddr.LevelSensor[1]], registers[_regAddr.LevelSensor[0]]);
 
-                CMT = (short)registers[40];
-                WTR = (short)registers[41];
+                CMT = (short)registers[_regAddr.Cmt];
+                WTR = (short)registers[_regAddr.Wtr];
 
-                // Проверяем регистр 5 (значение 121) и регистр 7 (значение 122)
-                bool shouldTurnRed = ((short)registers[5] == 121) || ((short)registers[7] == 122);
+                // Проверяем регистр 7 (значение 121) и регистр 9 (значение 122)
+                bool shouldTurnRed = ((short)registers[_regAddr.PsKoStatus] == 121) || ((short)registers[_regAddr.DsKoStatus] == 122);
 
                 // Меняем цвет фона
                 WindowBackground = shouldTurnRed ? "Red" : "#F5F9FF";

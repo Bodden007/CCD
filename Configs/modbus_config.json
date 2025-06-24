@@ -1,0 +1,30 @@
+﻿{
+  "SlaveId": 1,
+  "PollingInterval": 1000,
+  "RegisterAddress": {
+    "PsPass": 2,
+    "DsPass": 4,
+    "PsKo": 6,
+    "DsKo": 8,
+    "PsKoStatus": 7,
+    "DsKoStatus": 9,
+    "PsRate": [ 10, 11 ],
+    "DsRate": [ 12, 13 ],
+    "RateCombined": [ 14, 15 ],
+    "PsRateStage": [ 16, 17 ],
+    "DsRateStage": [ 18, 19 ],
+    "RateStageTotal": [ 20, 21 ],
+    "MixWaterRate": [ 28, 29 ],
+    "StageTotalWTR": [ 30, 31 ], // Не менять порядок StageTotalWTR ->
+    "JobTotalWTR": [ 32, 31 ], //-> JobTotalWTR
+    "RecircDensity": [ 34, 35 ],
+    "RecircDensityRate": [ 36, 37 ],
+    "DownholeDensity": [ 38, 39 ],
+    "LevelSensor": [ 44, 45 ],
+    "Cmt": 46, //Порядок Cmt с wtr  не менять!!! ->
+    "Wtr": 47, //-> регистры идут, друг за другом
+    "ValveControl": 48,
+    "CmtSend": 49,
+    "WtrSend": 50
+  }
+}

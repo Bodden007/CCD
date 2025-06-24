@@ -1,4 +1,5 @@
-﻿using NModbus.Utility;
+﻿using CCD.SRC;
+using NModbus.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,6 +12,15 @@ namespace CCD.Models.ModelsForms
 {
     internal class MixWaterRateViewModel : ModbusWindowViewModel
     {
+        private readonly ModbusConfig _config;
+        private readonly RegisterAddressConfig _regAddr;
+
+        public MixWaterRateViewModel()
+        {
+            _config = ModbusConfig.Load();
+            _regAddr = _config.RegisterAddress;
+        }
+
         private RelayCommand _zeroJobTotalsCommand;
         private RelayCommand _zeroStageTotalsCommand;
         private RelayCommand _updateJobTotalsCommand;
@@ -98,7 +108,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(26, 0); 
+                await WriteRegisterAsync(_regAddr.JobTotalWTR[0], 0);
             }
             catch (Exception ex)
             {
@@ -117,7 +127,7 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync(24, 0); 
+                await WriteRegisterAsync(_regAddr.StageTotalWTR[0], 0);
             }
             catch (Exception ex)
             {
@@ -142,7 +152,7 @@ namespace CCD.Models.ModelsForms
 
             if (float.TryParse(JobTotalWTR_Reg, out float value))
             {
-                await WriteRegisterAsync(26, value);
+                await WriteRegisterAsync(_regAddr.JobTotalWTR[0], value);
             }
             else
             {
@@ -167,7 +177,7 @@ namespace CCD.Models.ModelsForms
 
             if (float.TryParse(StageTotalWTR_Reg, out float value))
             {
-                await WriteRegisterAsync(24, value);
+                await WriteRegisterAsync(_regAddr.StageTotalWTR[0], value);
             }
             else
             {
@@ -178,7 +188,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(24, 4, 400, registers =>
+            await PollRegistersContinuously((ushort)_regAddr.StageTotalWTR[0], 4, 400, registers =>
             {
                 StageTotalWTR = ModbusUtility.GetSingle(registers[1], registers[0]);
                 JobTotalWTR = ModbusUtility.GetSingle(registers[3], registers[2]);

@@ -88,7 +88,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(46, (ushort)11); // Команда отключения
+                await WriteRegisterAsync(48, (ushort)11); // Команда отключения
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(46, (ushort)12); //Команда Визуального контроля
+                await WriteRegisterAsync(48, (ushort)12); //Команда Визуального контроля
             }
             catch (Exception ex)
             {
@@ -123,7 +123,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(46, (ushort)13); //Команда полного контроля
+                await WriteRegisterAsync(48, (ushort)13); //Команда полного контроля
             }
             catch (Exception ex)
             {
@@ -134,7 +134,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(45, 1, 1000, registers =>
+            await PollRegistersContinuously(47, 1, 1000, registers =>
             {
                 SelectedMixMode = (short)registers[0];
             });
