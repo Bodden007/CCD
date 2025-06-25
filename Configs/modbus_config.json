@@ -25,6 +25,8 @@
     "Wtr": 47, //-> регистры идут, друг за другом
     "ValveControl": 48,
     "CmtSend": 49,
-    "WtrSend": 50
+    "WtrSend": 50,
+    "ModeLevel": 51,
+    "SetLevel": 52
   }
 }

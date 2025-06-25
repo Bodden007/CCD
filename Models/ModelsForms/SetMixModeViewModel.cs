@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CCD.SRC;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,6 +12,15 @@ namespace CCD.Models.ModelsForms
 {
     internal class SetMixModeViewModel : ModbusWindowViewModel
     {
+        private readonly ModbusConfig _config;
+        private readonly RegisterAddressConfig _regAddr;
+
+        public SetMixModeViewModel()
+        {
+            _config = ModbusConfig.Load();
+            _regAddr = _config.RegisterAddress;
+        }
+
         private RelayCommand _densityControlMode;
         private RelayCommand _densityHeightMode;
         private RelayCommand _densitySensorTotals;
@@ -88,7 +98,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(48, (ushort)11); // Команда отключения
+                await WriteRegisterAsync(_regAddr.SetLevel, (ushort)11); // Команда отключения
             }
             catch (Exception ex)
             {
@@ -107,7 +117,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(48, (ushort)12); //Команда Визуального контроля
+                await WriteRegisterAsync(_regAddr.SetLevel, (ushort)12); //Команда Визуального контроля
             }
             catch (Exception ex)
             {
@@ -123,7 +133,7 @@ namespace CCD.Models.ModelsForms
 
             try
             {
-                await WriteRegisterAsync(48, (ushort)13); //Команда полного контроля
+                await WriteRegisterAsync(_regAddr.SetLevel, (ushort)13); //Команда полного контроля
             }
             catch (Exception ex)
             {
@@ -134,7 +144,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(47, 1, 1000, registers =>
+            await PollRegistersContinuously((ushort)_regAddr.ModeLevel, 1, 1000, registers =>
             {
                 SelectedMixMode = (short)registers[0];
             });

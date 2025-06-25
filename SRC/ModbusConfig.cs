@@ -46,5 +46,7 @@ namespace CCD.SRC
         public int ValveControl { get; set; }
         public int CmtSend { get; set; }
         public int WtrSend { get; set; }
+        public int ModeLevel { get; set; }
+        public int SetLevel { get; set; }
     }
 }
