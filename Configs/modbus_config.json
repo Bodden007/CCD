@@ -27,6 +27,18 @@
     "CmtSend": 49,
     "WtrSend": 50,
     "ModeLevel": 51,
-    "SetLevel": 52
+    "SetLevel": 52,
+    "MinFregFm": [ 82, 83 ],
+    "MaxFregFm": [ 84, 85 ],
+    "MinFlowFm": [ 86, 87 ],
+    "MaxFlowFm": [ 88, 89 ],
+    "MinFregPs": [ 90, 91 ],
+    "MaxFregPs": [ 92, 93 ],
+    "MinFlowPs": [ 94, 95 ],
+    "MaxFlowPs": [ 96, 97 ],
+    "MinFregDs": [ 98, 99 ],
+    "MaxFregDs": [ 100, 101 ],
+    "MinFlowDs": [ 102, 103 ],
+    "MaxFlowDs": [104,105]
   }
 }

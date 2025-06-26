@@ -407,9 +407,9 @@
 
                 <TextBlock Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            Text="{Binding JobTotalWTRStr}"></TextBlock>
-                
+
                 <TextBlock Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
-                           >0.0 bbl</TextBlock>
+                           Text="{Binding RateStageTotalStr}"></TextBlock>
                 
                 <TextBlock Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_1}"
                            >0.0 bbl</TextBlock>

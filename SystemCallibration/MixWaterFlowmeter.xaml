@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CCD.SystemCallibration"
         mc:Ignorable="d"
-        Title="MixWaterFlowmeter" Height="450" Width="800">
+        Title="MixWaterFlowmeter" Height="450" Width="800"
+        Focusable="True">
     <Window.Resources>
         <SolidColorBrush x:Key="PrimaryBlueColor" Color="#CDC771"/>
         <SolidColorBrush x:Key="SecondBlueColor" Color="#87834B"/>
@@ -98,6 +99,7 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1.5*"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="9" Style="{StaticResource StyleTextBlock_2}" 
                    Text="Mix Water Flowmeter Cal">
         </TextBlock>
@@ -114,7 +116,7 @@
         <Border Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
             <Grid x:Name="GridFlwFreqmin">
                 <TextBlock Style="{StaticResource FTextBlock}" Text="F1"/>
-                <TextBox Style="{StaticResource StyleTextBox }" Text="{Binding MinFregFmStr}"/>
+                <TextBox Style="{StaticResource StyleTextBox }" Text="{Binding MinFregFmStr, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </Border>
 
@@ -124,7 +126,7 @@
         <Border Grid.Column="5" Grid.Row="2"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
             <Grid x:Name="GridFlwFlowmin">
                 <TextBlock Style="{StaticResource FTextBlock}" Text="F2"/>
-                <TextBox Style="{StaticResource StyleTextBox }" />
+                <TextBox Style="{StaticResource StyleTextBox }" Text="{Binding MinFlowFmStr, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </Border>
 
@@ -140,7 +142,7 @@
         <Border Grid.Column="1" Grid.Row="4"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
             <Grid x:Name="GridFlwFreqmax">
                 <TextBlock Style="{StaticResource FTextBlock}" Text="F3"/>
-                <TextBox Style="{StaticResource StyleTextBox }" />
+                <TextBox Style="{StaticResource StyleTextBox }" Text="{Binding MaxFregFmStr, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </Border>
 
@@ -150,7 +152,7 @@
         <Border Grid.Column="5" Grid.Row="4"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
             <Grid x:Name="GridFlwFlowmax">
                 <TextBlock Style="{StaticResource FTextBlock}" Text="F4"/>
-                <TextBox Style="{StaticResource StyleTextBox }"/>
+                <TextBox Style="{StaticResource StyleTextBox}" Text="{Binding MaxFlowFmStr, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </Border>
 
@@ -167,7 +169,7 @@
         </Button>
 
         <!--UOM-->
-        <Button Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" IsEnabled="False">
+        <Button Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" IsEnabled="False"  >
             <Grid>
                 <TextBlock Style="{StaticResource StyleTextBlock_2}" Text="UOM"/>
                 <TextBlock Style="{StaticResource FTextBlock}" Text="F8"/>
@@ -176,7 +178,7 @@
 
         <!--SAVE-->
         <Button x:Name="Save" Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}"
-                Command="{Binding SaveCommand}">
+                Click="Save_Click">
             <Grid>
                 <TextBlock Style="{StaticResource StyleTextBlock_2}" Text="SAVE"/>
                 <TextBlock Style="{StaticResource FTextBlock}" Text="F9"/>
@@ -184,4 +186,5 @@
         </Button>
 
     </Grid>
+    
 </Window>

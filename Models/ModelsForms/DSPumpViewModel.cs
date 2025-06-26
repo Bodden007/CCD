@@ -11,49 +11,48 @@ using System.Windows.Input;
 
 namespace CCD.Models.ModelsForms
 {
-    internal class MixWaterFlowmeterViewModel: ModbusWindowViewModel
+    internal class DSPumpViewModel : ModbusWindowViewModel
     {
         private readonly ModbusConfig _config;
         private readonly RegisterAddressConfig _regAddr;
         private readonly ModbusConnectionManager _modbusManager;
-
         private RelayCommand _saveCommand;
-        public MixWaterFlowmeterViewModel()
+        public DSPumpViewModel()
         {
             _config = ModbusConfig.Load();
             _regAddr = _config.RegisterAddress;
             _modbusManager = ModbusConnectionManager.Instance;
         }
 
-        private string _minFregFmStr = "0";
-        private float _minFregFm;
+        private string _minFregDsStr = "0";
+        private float _minFregDs;
 
-        private string _maxFregFmStr = "0";
-        private float _maxFregFm;
+        private string _maxFregDsStr = "0";
+        private float _maxFregDs;
 
-        private string _minFlowFmStr = "0";
-        private float _minFlowFm;
+        private string _minFlowDsStr = "0";
+        private float _minFlowDs;
 
-        private string _maxFlowFmStr = "0";
-        private float _maxFlowFm;
+        private string _maxFlowDsStr = "0";
+        private float _maxFlowDs;
 
-        private string _mixWaterRateStr = "N/A";
-        private float _mixWaterRate;
+        private string _dsRateStr = "N/A";
+        private float _dsRate;
 
         //NOTE Минимальное значение  чатоты
-        public string MinFregFmStr
+        public string MinFregDsStr
         {
-            get => _minFregFmStr;
+            get => _minFregDsStr;
             set
             {
-                if (_minFregFmStr == value) return;
+                if (_minFregDsStr == value) return;
 
                 if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float result))
                 {
                     if (result >= 0.0f && result <= 2000.0f)
                     {
-                        _minFregFm = result;
-                        _minFregFmStr = value;
+                        _minFregDs = result;
+                        _minFregDsStr = value;
                         OnPropertyChanged();
                     }
                     else
@@ -61,44 +60,45 @@ namespace CCD.Models.ModelsForms
                         //FIXME Delete
                         Debug.WriteLine("Ошибка: MinFregFm выходит за пределы [0 - 2000]");
                         //TODO Можно восстановить последнее корректное значение:
-                        _minFregFmStr = _minFregFm.ToString(CultureInfo.InvariantCulture);
+                        _minFregDsStr = _minFregDs.ToString(CultureInfo.InvariantCulture);
                         OnPropertyChanged();
                     }
                 }
                 else
                 {
+                    //FIXME Delete
                     Debug.WriteLine("Ошибка: некорректный ввод в MinFregFmStr");
                 }
             }
         }
-        public float MinFregFm
+        public float MinFregDs
         {
-            get => _minFregFm;
+            get => _minFregDs;
             set
             {
-                if (_minFregFm == value) return;
+                if (_minFregDs == value) return;
 
-                _minFregFm = value;
-                MinFregFmStr = value.ToString(CultureInfo.InvariantCulture);
+                _minFregDs = value;
+                MinFregDsStr = value.ToString(CultureInfo.InvariantCulture);
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(MinFregFmStr)); // Важно!
+                OnPropertyChanged(nameof(MinFregDsStr)); // Важно!
             }
         }
 
         //NOTE Максимальное значение  чатоты
-        public string MaxFregFmStr
+        public string MaxFregDsStr
         {
-            get => _maxFregFmStr;
+            get => _maxFregDsStr;
             set
             {
-                if (_maxFregFmStr == value) return;
+                if (_maxFregDsStr == value) return;
 
                 if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float result))
                 {
                     if (result >= 0.0f && result <= 2000.0f)
                     {
-                        _maxFregFm = result;
-                        _maxFregFmStr = value;
+                        _maxFregDs = result;
+                        _maxFregDsStr = value;
                         OnPropertyChanged();
                     }
                     else
@@ -106,7 +106,7 @@ namespace CCD.Models.ModelsForms
                         //FIXME Delete
                         Debug.WriteLine("Ошибка: MinFregFm выходит за пределы [0 - 2000]");
                         //TODO Можно восстановить последнее корректное значение:
-                        _maxFregFmStr = _maxFregFm.ToString(CultureInfo.InvariantCulture);
+                        _maxFregDsStr = _maxFregDs.ToString(CultureInfo.InvariantCulture);
                         OnPropertyChanged();
                     }
                 }
@@ -117,34 +117,34 @@ namespace CCD.Models.ModelsForms
                 }
             }
         }
-        public float MaxFregFm
+        public float MaxFregDs
         {
-            get => _maxFregFm;
+            get => _maxFregDs;
             set
             {
-                if (_maxFregFm == value) return;
+                if (_maxFregDs == value) return;
 
-                _maxFregFm = value;
-                MaxFregFmStr = value.ToString(CultureInfo.InvariantCulture);
+                _maxFregDs = value;
+                MaxFregDsStr = value.ToString(CultureInfo.InvariantCulture);
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(MaxFregFmStr)); // Важно!
+                OnPropertyChanged(nameof(MaxFregDsStr)); // Важно!
             }
         }
 
         //NOTE Минимальное значение объема
-        public string MinFlowFmStr
+        public string MinFlowDsStr
         {
-            get => _minFlowFmStr;
+            get => _minFlowDsStr;
             set
             {
-                if (_minFlowFmStr == value) return;
+                if (_minFlowDsStr == value) return;
 
                 if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float result))
                 {
                     if (result >= 0.0f && result <= 2000.0f)
                     {
-                        _minFlowFm = result;
-                        _minFlowFmStr = value;
+                        _minFlowDs = result;
+                        _minFlowDsStr = value;
                         OnPropertyChanged();
                     }
                     else
@@ -152,7 +152,7 @@ namespace CCD.Models.ModelsForms
                         //FIXME Delete
                         Debug.WriteLine("Ошибка: MinFregFm выходит за пределы [0 - 2000]");
                         //TODO Можно восстановить последнее корректное значение:
-                        _minFlowFmStr = _minFlowFm.ToString(CultureInfo.InvariantCulture);
+                        _minFlowDsStr = _minFlowDs.ToString(CultureInfo.InvariantCulture);
                         OnPropertyChanged();
                     }
                 }
@@ -163,34 +163,34 @@ namespace CCD.Models.ModelsForms
                 }
             }
         }
-        public float MinFlowFm
+        public float MinFlowDs
         {
-            get => _minFlowFm;
+            get => _minFlowDs;
             set
             {
-                if (_minFlowFm == value) return;
+                if (_minFlowDs == value) return;
 
-                _minFlowFm = value;
-                MinFlowFmStr = value.ToString(CultureInfo.InvariantCulture);
+                _minFlowDs = value;
+                MinFlowDsStr = value.ToString(CultureInfo.InvariantCulture);
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(MinFlowFmStr)); // Важно!
+                OnPropertyChanged(nameof(MinFlowDsStr)); // Важно!
             }
         }
 
         //NOTE Максимальное значение объема
-        public string MaxFlowFmStr
+        public string MaxFlowDsStr
         {
-            get => _maxFlowFmStr;
+            get => _maxFlowDsStr;
             set
             {
-                if (_maxFlowFmStr == value) return;
+                if (_maxFlowDsStr == value) return;
 
                 if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float result))
                 {
                     if (result >= 0.0f && result <= 2000.0f)
                     {
-                        _maxFlowFm = result;
-                        _maxFlowFmStr = value;
+                        _maxFlowDs = result;
+                        _maxFlowDsStr = value;
                         OnPropertyChanged();
                     }
                     else
@@ -198,7 +198,7 @@ namespace CCD.Models.ModelsForms
                         //FIXME Delete
                         Debug.WriteLine("Ошибка: MinFregFm выходит за пределы [0 - 2000]");
                         //TODO Можно восстановить последнее корректное значение:
-                        _maxFlowFmStr = _maxFlowFm.ToString(CultureInfo.InvariantCulture);
+                        _maxFlowDsStr = _maxFlowDs.ToString(CultureInfo.InvariantCulture);
                         OnPropertyChanged();
                     }
                 }
@@ -209,32 +209,33 @@ namespace CCD.Models.ModelsForms
                 }
             }
         }
-        public float MaxFlowFm
+        public float MaxFlowDs
         {
-            get => _maxFlowFm;
+            get => _maxFlowDs;
             set
             {
-                if (_maxFlowFm == value) return;
+                if (_maxFlowDs == value) return;
 
-                _maxFlowFm = value;
-                MaxFlowFmStr = value.ToString(CultureInfo.InvariantCulture);
+                _maxFlowDs = value;
+                MaxFlowDsStr = value.ToString(CultureInfo.InvariantCulture);
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(MaxFlowFmStr)); // Важно!
+                OnPropertyChanged(nameof(MaxFlowDsStr)); // Важно!
             }
         }
 
-        public string MixWaterRateStr
+        //NOTE расход насоса пасажирская сторона
+        public string DsRateStr
         {
-            get => _mixWaterRateStr;
-            set { _mixWaterRateStr = value; OnPropertyChanged(); }
+            get => _dsRateStr;
+            set { _dsRateStr = value; OnPropertyChanged(); }
         }
-        public float MixWaterRate
+        public float DsRate
         {
-            get => _mixWaterRate;
+            get => _dsRate;
             set
             {
-                _mixWaterRate = value;
-                MixWaterRateStr = $"{value:N2} gpm";
+                _dsRate = value;
+                DsRateStr = $"{value} bpm";
                 OnPropertyChanged();
             }
         }
@@ -246,10 +247,10 @@ namespace CCD.Models.ModelsForms
         {
             try
             {
-                await WriteRegisterAsync((ushort)_regAddr.MinFregFm[0], _minFregFm);
-                await WriteRegisterAsync((ushort)_regAddr.MaxFregFm[0], _maxFregFm);
-                await WriteRegisterAsync((ushort)_regAddr.MinFlowFm[0], _minFlowFm);
-                await WriteRegisterAsync((ushort)_regAddr.MaxFlowFm[0], _maxFlowFm);
+                await WriteRegisterAsync((ushort)_regAddr.MinFregDs[0], _minFregDs);
+                await WriteRegisterAsync((ushort)_regAddr.MaxFregDs[0], _maxFregDs);
+                await WriteRegisterAsync((ushort)_regAddr.MinFlowDs[0], _minFlowDs);
+                await WriteRegisterAsync((ushort)_regAddr.MaxFlowDs[0], _maxFlowDs);
             }
             catch (Exception ex)
             {
@@ -269,14 +270,14 @@ namespace CCD.Models.ModelsForms
         private async Task GetInitialConfiguration()
         {
             try
-            {               
-                var registers = await _modbusManager.ReadInputRegistersAsync(15, (ushort)_regAddr.MinFregFm[0], 8);
+            {
+                var registers = await _modbusManager.ReadInputRegistersAsync(15, (ushort)_regAddr.MinFregDs[0], 8);
 
-                MinFregFm = ModbusUtility.GetSingle(registers[1], registers[0]);
-                MaxFregFm = ModbusUtility.GetSingle(registers[3], registers[2]);
-                MinFlowFm = ModbusUtility.GetSingle(registers[5], registers[4]);
-                MaxFlowFm = ModbusUtility.GetSingle(registers[7], registers[6]);
-             
+                MinFregDs = ModbusUtility.GetSingle(registers[1], registers[0]);
+                MaxFregDs = ModbusUtility.GetSingle(registers[3], registers[2]);
+                MinFlowDs = ModbusUtility.GetSingle(registers[5], registers[4]);
+                MaxFlowDs = ModbusUtility.GetSingle(registers[7], registers[6]);
+
             }
             catch (Exception ex)
             {
@@ -288,9 +289,9 @@ namespace CCD.Models.ModelsForms
         private async Task PollMixWaterRateContinuously()
         {
 
-            await PollRegistersContinuously((ushort)_regAddr.MixWaterRate[0], 2, 500, registers =>
+            await PollRegistersContinuously((ushort)_regAddr.DsRate[0], 2, 500, registers =>
             {
-                MixWaterRate = ModbusUtility.GetSingle(registers[1], registers[0]);                
+                DsRate = ModbusUtility.GetSingle(registers[1], registers[0]);
             });
         }
         private async Task WriteRegisterAsync(int register, float value) // Теперь принимает ushort
@@ -317,3 +318,4 @@ namespace CCD.Models.ModelsForms
         }
     }
 }
+

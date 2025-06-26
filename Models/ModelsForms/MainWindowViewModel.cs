@@ -225,7 +225,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _psRateStage = value;
-                PsRateStageStr = $"{value:N2} bbl";
+                PsRateStageStr = $"{value:N1} bbl";
                 OnPropertyChanged();
             }
         }
@@ -242,7 +242,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _dsRateStage = value;
-                DsRateStageStr = $"{value:N2} bbl";
+                DsRateStageStr = $"{value:N1} bbl";
                 OnPropertyChanged();
             }
         }
@@ -259,7 +259,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _rateStageTotal = value;
-                RateStageTotalStr = $"{value:N2} bbl";
+                RateStageTotalStr = $"{value:N1} bbl";
                 OnPropertyChanged();
             }
         }
@@ -297,7 +297,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _recircDensityRate = value;
-                RecircDensityRateStr = $"{value:N2} gpm";
+                RecircDensityRateStr = $"{value:N1} gpm";
                 OnPropertyChanged();
             }
         }
@@ -330,7 +330,7 @@ namespace CCD.Models.ModelsForms
             get => _mixWaterRate;
             set { 
                 _mixWaterRate = value;
-                MixWaterRateStr = $"{value:N2} gpm";
+                MixWaterRateStr = $"{value:N1} gpm";
                 OnPropertyChanged(); }
         }
 
@@ -346,7 +346,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _stageTotalWTR = value;
-                StageTotalWTRStr = $"{value:N2} gal";
+                StageTotalWTRStr = $"{value:N1} gal";
                 OnPropertyChanged();
             }
         }
@@ -363,7 +363,7 @@ namespace CCD.Models.ModelsForms
             set
             {
                 _jobTotalWTR = value;
-                JobTotalWTRStr = $"{value:N2} gal";
+                JobTotalWTRStr = $"{value:N1} gal";
                 OnPropertyChanged();
             }
         }
@@ -388,7 +388,7 @@ namespace CCD.Models.ModelsForms
                 _levelSensor = value;
                 LevelSensoreStr = value == 22222 ? "ERROR" :
                  value == 22221 ? "Off" :
-                 $"{value:N2} ft";
+                 $"{value:N1} ft";
                 OnPropertyChanged();
             }
         }
@@ -431,7 +431,7 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(0, 50, 500, registers =>
+            await PollRegistersContinuously(0, 50, 400, registers =>
             {
 
                 PsPass = (short)registers[_regAddr.PsPass];

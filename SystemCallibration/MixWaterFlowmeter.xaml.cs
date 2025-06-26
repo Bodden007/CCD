@@ -89,7 +89,7 @@ namespace CCD.SystemCallibration
                     break;
 
                 case Key.F9:
-                    _viewModel.SaveCommand.Execute(null);
+                    _viewModel.SaveCommand?.Execute(null);
                     e.Handled = true;
                     break;
             }
