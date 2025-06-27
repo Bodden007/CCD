@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace CCD.src
 {
 
+    //FIXME Удалить
     internal class Control
     {
 

@@ -3,7 +3,9 @@
   "PollingInterval": 1000,
   "RegisterAddress": {
     "PsPass": 2,
+    "PsOffset": 3,
     "DsPass": 4,
+    "DsOffset": 5,
     "PsKo": 6,
     "DsKo": 8,
     "PsKoStatus": 7,

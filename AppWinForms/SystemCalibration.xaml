@@ -10,10 +10,26 @@
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#F5F9FF"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0.5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+   Background="{TemplateBinding Background}"
+   BorderBrush="{TemplateBinding BorderBrush}"
+   BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter 
+       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
@@ -316,7 +332,7 @@
                 <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource StyleTextBlock_2}" 
                         Text="Exit&#x0a;Calibration"></TextBlock>
 
-                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="F6"/>
+                <TextBlock Grid.Column="3" Style="{StaticResource FTextBlock}" Text="esc"/>
             </Grid> 
         </Button>
     </Grid>

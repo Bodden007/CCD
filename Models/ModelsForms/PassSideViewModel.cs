@@ -1,6 +1,9 @@
-﻿using System;
+﻿using CCD.SRC;
+using NModbus.Utility;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +15,16 @@ namespace CCD.Models.ModelsForms
     internal class PassSideViewModel : ModbusWindowViewModel
     {
 
-        private RelayCommand _writeCommand;
+        private readonly ModbusConfig _config;
+        private readonly RegisterAddressConfig _regAddr;
+        private readonly ModbusConnectionManager _modbusManager;
+
+        public PassSideViewModel()
+        {
+            _config = ModbusConfig.Load();
+            _regAddr = _config.RegisterAddress;
+            _modbusManager = ModbusConnectionManager.Instance;
+        }
 
         // Команды
         private RelayCommand _setPSKickoutCommand;
@@ -21,15 +33,15 @@ namespace CCD.Models.ModelsForms
         private RelayCommand _setDSZeroCommand;
         private RelayCommand _clearSetsCommand;
 
-        private int _psPassBuf;
-        private int _dsPassBuf;
-        private int _pskoBuf;
-        private int _dskoBuf;
-        private string _pSPass = "N/A";
-        private string _dSPass = "N/A";
-        private string _pskostr = "N/A";
-        private string _dskostr = "N/A";
-
+        private string _pSPassStr = "N/A";
+        private int _psPass;
+        private string _dSPassStr = "N/A";
+        private int _dsPass;
+        private string _pskoStr = "N/A";
+        private int _psko;
+        private string _dskoStr = "N/A";
+        private int _dsko;
+        
         private int _pskoReg;
         private int _dskoReg;
         private string _pskoRegStr;
@@ -91,71 +103,126 @@ namespace CCD.Models.ModelsForms
                 OnPropertyChanged();
             }
         }
-        public string PsPass
+        public string PsPassStr
         {
-            get => _pSPass;
-            set { _pSPass = value; OnPropertyChanged(); }
+            get => _pSPassStr;
+            set { _pSPassStr = value; OnPropertyChanged(); }
         }
-        public int PsPassBuf
+        public int PsPass
         {
-            get => _psPassBuf;
+            get => _psPass;
             set
             {
-                _psPassBuf = value;
-                PsPass = value == 22222 ? "ERROR" : $"{value} PSI";
+                _psPass = value;
+                PsPassStr = value == 22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
         }
 
-        public string DsPass
+        public string DsPassStr
         {
-            get => _dSPass;
-            set { _dSPass = value; OnPropertyChanged(); }
+            get => _dSPassStr;
+            set { _dSPassStr = value; OnPropertyChanged(); }
         }
 
-        public int DsPassBuf
+        public int DsPass
         {
-            get => _dsPassBuf;
+            get => _dsPass;
             set
             {
-                _dsPassBuf = value;
-                DsPass = value == 22222 ? "ERROR" : $"{value} PSI";
+                _dsPass = value;
+                DsPassStr = value == 22222 ? "ERROR" : $"{value} PSI";
                 OnPropertyChanged();
             }
         }
-        public string PSKO
+        public string PSKOStr
         {
-            get => _pskostr;
-            set { _pskostr = value; OnPropertyChanged(); }
-        }
+            get => _pskoStr;
+            set {
+                if (_pskoStr == value) return;
 
-        public int PskoBuf
-        {
-            get => _pskoBuf;
-            set
-            {
-                if (_pskoBuf != value)
+                if (int.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out int result))
                 {
-                    _pskoBuf = value;
-                    PSKO = $"OPKO = {value} PSI";
-                    OnPropertyChanged();
+                    if (result >= 0.0f && result <= 15000.0f)
+                    {
+                        _psko = result;
+                        _pskoStr = value;
+                        OnPropertyChanged();
+                    }
+                    else
+                    {
+                        //FIXME Delete
+                        Debug.WriteLine("Ошибка: MinFregFm выходит за пределы [0 - 15000]");
+                        //TODO Можно восстановить последнее корректное значение:
+                        _pskoStr = _psko.ToString( CultureInfo.InvariantCulture);
+                        OnPropertyChanged();
+                    }
+                }
+                else
+                {
+                    //FIXME Delete
+                    Debug.WriteLine("Ошибка: некорректный ввод в MinFregFmStr");
                 }
             }
         }
-        public string DSKO
+        public int PSKO
         {
-            get => _dskostr;
-            set { _dskostr = value; OnPropertyChanged(); }
-        }
-
-        public int DskoBuf
-        {
-            get => _dskoBuf;
+            get => _psko;
             set
             {
-                _dskoBuf = value;
-                DSKO = $"OPKO = {value} PSI";
+                if (_psko == value) return;
+
+                _psko = value;
+                PSKOStr = value.ToString("F2", CultureInfo.InvariantCulture);
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(PSKOStr)); // Важно!
+            }
+        }
+
+        //NOTE DSKO
+        public string DSKOStr
+        {
+            get => _dskoStr;
+            set
+            {
+                if (_dskoStr == value) return;
+
+                if (int.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out int result))
+                {
+                    if (result >= 0.0f && result <= 15000.0f)
+                    {
+                        _dsko = result;
+                        _dskoStr = value;
+                        OnPropertyChanged();
+                    }
+                    else
+                    {
+                        //FIXME Delete
+                        Debug.WriteLine("Ошибка: MinFregFm выходит за пределы [0 - 15000]");
+                        //TODO Можно восстановить последнее корректное значение:
+                        _dskoStr = _dsko.ToString("F2", CultureInfo.InvariantCulture);
+                        OnPropertyChanged();
+                    }
+                }
+                else
+                {
+                    //FIXME Delete
+                    Debug.WriteLine("Ошибка: некорректный ввод в MinFregFmStr");
+                }
+            }
+        }
+
+        public int DSKO
+        {
+            get => _dsko;
+            set
+            {
+                if (_dsko == value) return;
+
+                _dsko = value;
+                DSKOStr = value.ToString("F2", CultureInfo.InvariantCulture);
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(DSKOStr)); // Важно!
             }
         }
 
@@ -163,54 +230,26 @@ namespace CCD.Models.ModelsForms
         {
             get { return _setPSKickoutCommand ?? (_setPSKickoutCommand = new RelayCommand(async () => await SetPSKickout())); }
         }
-
-        public ICommand SetDSKickoutCommand
-        {
-            get { return _setDSKickoutCommand ?? (_setDSKickoutCommand = new RelayCommand(async () => await SetDSKickout())); }
-        }
-
-        //TODO команды
-        public ICommand SetPSZeroCommand
-        {
-            get { return _setPSZeroCommand ?? (_setPSZeroCommand = new RelayCommand(async () => await SetPSZero())); }
-        }
-
-        public ICommand SetDSZeroCommand
-        {
-            get { return _setDSZeroCommand ?? (_setDSZeroCommand = new RelayCommand(async () => await SetDSZero())); }
-        }
-
-        public ICommand ClearSetsCommand
-        {
-            get { return _clearSetsCommand ?? (_clearSetsCommand = new RelayCommand(async () => await ClearSets())); }
-        }
-
         private async Task SetPSKickout()
         {
             try
             {
-                if (int.TryParse(PskoRegStr.Replace(" PSI", ""), out int pskoValue))
-                {
-                    await WriteRegisterAsync(6, (ushort)pskoValue); // Запись только в регистр 4
-                    PskoBuf = pskoValue;
-                }
+                await WriteRegisterAsync((ushort)_regAddr.PsKo, (ushort)_psko);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Ошибка в SetPSKickout: {ex.Message}");
             }
         }
-
+        public ICommand SetDSKickoutCommand
+        {
+            get { return _setDSKickoutCommand ?? (_setDSKickoutCommand = new RelayCommand(async () => await SetDSKickout())); }
+        }
         private async Task SetDSKickout()
         {
             try
             {
-                if (int.TryParse(DskoRegStr.Replace(" PSI", ""), out int dskoValue))
-                {
-                    // Явное преобразование int -> ushort
-                    await WriteRegisterAsync(8, (ushort)dskoValue);
-                    DskoBuf = dskoValue;
-                }
+                await WriteRegisterAsync((ushort)_regAddr.DsKo, (ushort)_dsko);
             }
             catch (Exception ex)
             {
@@ -218,12 +257,16 @@ namespace CCD.Models.ModelsForms
             }
         }
 
-        //TODO команды
+        //TODO команды установки 0
+        public ICommand SetPSZeroCommand
+        {
+            get { return _setPSZeroCommand ?? (_setPSZeroCommand = new RelayCommand(async () => await SetPSZero())); }
+        }
         private async Task SetPSZero()
         {
             try
             {
-                await WriteRegisterAsync(3, 321); // Запись значения 321 в регистр 1
+                await WriteRegisterAsync(_regAddr.PsOffset, 321); // Запись значения 321 
             }
             catch (Exception ex)
             {
@@ -231,12 +274,15 @@ namespace CCD.Models.ModelsForms
             }
         }
 
-        //TODO команды
+        public ICommand SetDSZeroCommand
+        {
+            get { return _setDSZeroCommand ?? (_setDSZeroCommand = new RelayCommand(async () => await SetDSZero())); }
+        }
         private async Task SetDSZero()
         {
             try
             {
-                await WriteRegisterAsync(5, 322); // Запись значения 321 в регистр 1
+                await WriteRegisterAsync(_regAddr.DsOffset, 322); // Запись значения 321 в регистр 1
             }
             catch (Exception ex)
             {
@@ -244,12 +290,15 @@ namespace CCD.Models.ModelsForms
             }
         }
 
-        //TODO команды
+        public ICommand ClearSetsCommand
+        {
+            get { return _clearSetsCommand ?? (_clearSetsCommand = new RelayCommand(async () => await ClearSets())); }
+        }
         private async Task ClearSets()
         {
             try
             {
-                await WriteRegisterAsync(3, 333); // Запись значения 321 в регистр 1
+                await WriteRegisterAsync(_regAddr.PsOffset, 333); 
             }
             catch (Exception ex)
             {
@@ -261,41 +310,40 @@ namespace CCD.Models.ModelsForms
         {
             if (_isPolling) return;
 
-            await PollRegistersContinuously(0, 8, 400, registers =>
-            {
-                //NOTE Логика чтения регистров
-                PsPassBuf = (short)registers[2];
-                DsPassBuf = (short)registers[4];
-                PskoBuf = (short)registers[6];
-                DskoBuf = (short)registers[8];
+            // Сначала получаем начальные конфигурационные значения
+            await GetInitialConfiguration();
 
-            });
+            // Затем запускаем непрерывный опрос коэффициента смешивания воды
+            await PollPassSideContinuously();
+
         }
 
-        //public async Task WriteValuesAsync()
-        //{
-        //    try
-        //    {
-        //        // Преобразуем int в ushort (обрезаем до 16 бит)
-        //        ushort pskoValue = (ushort)(PskoBuf & 0xFFFF);
-        //        ushort dskoValue = (ushort)(DskoBuf & 0xFFFF);
+        private async Task GetInitialConfiguration()
+        {
+            try
+            {
+                var registers = await _modbusManager.ReadInputRegistersAsync(15, 0, 10);
 
-        //        // Записываем в регистры 4 и 6 (по одному регистру на значение)
-        //        await _connection.WriteMultipleRegistersAsync(
-        //            slaveId: 15,
-        //            startAddress: 4,
-        //            new ushort[] { pskoValue, 0, dskoValue, 0 } // 0 для четных регистров
-        //        );
-        //    }
-        //    catch (TaskCanceledException)
-        //    {
-        //        // Игнорируем отмену задачи
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine($"Ошибка записи: {ex.Message}");
-        //    }
-        //}
+                PSKO = (short)registers[_regAddr.PsKo];
+                DSKO = (short)registers[_regAddr.DsKo];
+
+            }
+            catch (Exception ex)
+            {
+                //FIXME
+                Debug.WriteLine($"Ошибка при получении начальной конфигурации: {ex.Message}");
+                //TODO Можно установить значения по умолчанию или обработать ошибку
+            }
+        }
+        private async Task PollPassSideContinuously()
+        {
+
+            await PollRegistersContinuously(0, 4, 500, registers =>
+            {
+                PsPass = (short)registers[_regAddr.PsPass];
+                DsPass = (short)registers[_regAddr.DsPass];
+            });
+        }
 
         private async Task WriteRegisterAsync(int register, ushort value) // Теперь принимает ushort
         {
@@ -309,17 +357,10 @@ namespace CCD.Models.ModelsForms
             }
             catch (Exception ex)
             {
+                //FIXME
                 Debug.WriteLine($"Ошибка записи в регистр {register}: {ex.Message}");
                 throw;
             }
         }
-
-        //private float CombineRegistersToFloat(ushort highRegister, ushort lowRegister)
-        //{
-        //    byte[] bytes = new byte[4];
-        //    BitConverter.GetBytes(highRegister).CopyTo(bytes, 0);
-        //    BitConverter.GetBytes(lowRegister).CopyTo(bytes, 2);
-        //    return BitConverter.ToSingle(bytes, 0);
-        //}
     }
 }

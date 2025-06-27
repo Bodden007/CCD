@@ -25,6 +25,51 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
+        <Style x:Key="FTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F5F9FF"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+           Background="{TemplateBinding Background}"
+           BorderBrush="{TemplateBinding BorderBrush}"
+           BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter 
+               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid Background="#CDC771">
@@ -43,17 +88,10 @@
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <!--PS Set-->
-        <TextBlock Grid.Column="0" Grid.Row="0"  Style="{StaticResource StyleTextBlock_1}"
-           Text="{Binding PSKO}"></TextBlock>
         
-        <!--SET KICKOUT-->
+        <!--TODO Доработать-->
         <TextBlock Grid.Column="1" Grid.Row="0"  Style="{StaticResource StyleTextBlock_2}"
-                   Text="SET KICKOUT"></TextBlock>
-
-        <!--DS Set-->
-        <TextBlock Grid.Column="2" Grid.Row="0"  Style="{StaticResource StyleTextBlock_1}"
-            Text="{Binding DSKO}"></TextBlock>
+                   Text="SET KICKOUT"></TextBlock>        
 
         <Grid Grid.Row="1" Grid.Column="0" Background="White">
             <Grid.ColumnDefinitions>
@@ -63,25 +101,19 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-                       
-            
             <!-- PS Kickout Input -->
+            <Grid x:Name="GridPskoText" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" >
+                <TextBox x:Name="PsKickoutInput"  
+                        Style="{StaticResource StyleTextBox}"
+                        Text="{Binding PSKOStr, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBox x:Name="PsKickoutInput" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  FontSize="32" 
-                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
-                     FontFamily="Times New Roman" BorderThickness="0"
-                   Text="{Binding PskoRegStr}"
-                    PreviewTextInput="NumberValidationTextBox"
-                     ></TextBox>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F1"/>
+            </Grid>
 
-               <TextBlock Grid.Column="3" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right" 
-                       VerticalAlignment="Top"
-                       Text="F1"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="1" Background="GreenYellow">
-            <TextBlock Style="{StaticResource StyleTextBlock_2}"
-                       Text="Yoke ON"></TextBlock>
+            <TextBlock Style="{StaticResource StyleTextBlock_2}"  Text="Yoke ON"/>
         </Grid>
 
         <Grid Grid.Row="1"  Grid.Column="2" Background="White">
@@ -93,22 +125,17 @@
             </Grid.ColumnDefinitions>
 
             <!-- DS Kickout Input -->
+            <Grid x:Name="GridDskoText" Grid.Column="0" Grid.ColumnSpan="4">
+                <TextBox Style="{StaticResource StyleTextBox}" Text="{Binding DSKOStr, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBox x:Name="DsKickoutInput"  Grid.Column="0" Grid.ColumnSpan="3" FontSize="32" HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" FontFamily="Times New Roman" BorderThickness="0"
-                     Text="{Binding DskoRegStr}"
-             ></TextBox>
-
-            <TextBlock Grid.Column="3" HorizontalAlignment="Right" Style="{StaticResource StyleTextBlock_1}"
-               VerticalAlignment="Top"
-               Text="F5"/>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F5"/>
+            </Grid>
         </Grid>
 
         <!--SetPSKickout-->
-        <Button Grid.Column="0" Grid.Row="2"  
-                VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
-                Background="Red" 
-                Command="{Binding SetPSKickoutCommand}">
+        <Button x:Name="SetPSKickout" Grid.Column="0" Grid.Row="2"  
+                Style="{StaticResource ButtonStyle}"
+                Background="Red" Command="{Binding SetPSKickoutCommand}">
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"></RowDefinition>
@@ -116,13 +143,12 @@
                     <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource StyleTextBlock_1}" HorizontalAlignment="Right"
+                <TextBlock Grid.Row="0" Style="{StaticResource FTextBlock}"
                            Text="F2"/>
 
                 <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlock_2}"
                              Text="Set PS Kickout"/>
             </Grid>
-
 
         </Button>
 
@@ -166,7 +192,7 @@
         <!--PS press-->
         <Grid Grid.Column="0" Grid.Row="5" Background="#0388C1">
             <TextBlock Style="{StaticResource StyleTextBlock_2}"
-                       Text="{Binding PsPass}"></TextBlock>
+                       Text="{Binding PsPassStr}"></TextBlock>
         </Grid>
 
         <Grid Grid.Column="2" Grid.Row="5" Background="#0388C1">

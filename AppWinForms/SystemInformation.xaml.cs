@@ -22,8 +22,21 @@ namespace CCD.AppWinForms
         public SystemInformation()
         {
             InitializeComponent();
+
             WindowStyle = WindowStyle.None;
             WindowState = WindowState.Maximized;
+
+            KeyDown += SystemInformation_KeyDown;
+        }
+
+        private void SystemInformation_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    Close();
+                    break;
+            }
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)

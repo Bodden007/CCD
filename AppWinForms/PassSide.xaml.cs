@@ -36,7 +36,45 @@ namespace CCD.AppWinForms
             Loaded += PassSideWindow_Loaded;
             Closed += PassSideWindow_Closed;
         }
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    Close();
+                    break;
 
+                case Key.F1:
+                    var pskoTextBox = GridPskoText.Children.OfType<TextBox>().FirstOrDefault();
+                    if (pskoTextBox != null)
+                    {
+                        pskoTextBox.Focus();
+                        pskoTextBox.SelectAll();
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.F2:
+                    _viewModel.SetPSKickoutCommand.Execute(null);
+                    e.Handled = true;
+                    break;
+
+                case Key.F5:
+                    var dskoTextBox = GridDskoText.Children.OfType<TextBox>().FirstOrDefault();
+                    if (dskoTextBox != null)
+                    {
+                        dskoTextBox.Focus();
+                        dskoTextBox.SelectAll();
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.F6:
+                    _viewModel.SetDSKickoutCommand.Execute(null);
+                    e.Handled = true;
+                    break;
+            }
+        }
         private async void PassSideWindow_Loaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.StartPollingAsync();
@@ -45,30 +83,6 @@ namespace CCD.AppWinForms
         private void PassSideWindow_Closed(object sender, EventArgs e)
         {
             _viewModel?.StopPolling();
-        }      
-
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-            {
-                Close();
-
-                // Если нужно открыть модально (как диалог):
-                // newWindow.ShowDialog();
-            }
-        }
-
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            // Разрешаем только цифры
-            foreach (char c in e.Text)
-            {
-                if (!char.IsDigit(c))
-                {
-                    e.Handled = true;
-                    break;
-                }
-            }
         }
     }
 }

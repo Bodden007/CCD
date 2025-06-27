@@ -24,6 +24,8 @@ namespace CCD.SRC
     {
         public int PsPass { get; set; }
         public int DsPass { get; set; }
+        public int PsOffset { get; set; }
+        public int DsOffset { get; set; }
         public int PsKo { get; set; }
         public int DsKo { get; set; }
         public int PsKoStatus { get; set; }

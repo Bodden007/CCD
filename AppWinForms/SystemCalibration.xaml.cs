@@ -32,16 +32,31 @@ namespace CCD.AppWinForms
 
         private void SystemCalibration_KeyDown(object sender, KeyEventArgs e)
         {
-            switch(e.Key)
+            switch (e.Key)
             {
                 case Key.Escape:
                     Close();
                     break;
 
-                case Key.F6:
-                    Close();
+                case Key.F1:
+                    new CCD.SystemCallibration.PsPressure().Show();
                     break;
 
+                case Key.F2:
+                    new CCD.SystemCallibration.DsPressure().Show();
+                    break;
+
+                case Key.F3:
+                    new CCD.SystemCallibration.MixWaterFlowmeter().Show();
+                    break;
+
+                case Key.F4:
+                    new CCD.SystemCallibration.PSPump().Show();
+                    break;
+
+                case Key.F5:
+                    new CCD.SystemCallibration.DSPump().Show();
+                    break;
             }
         }
 

@@ -17,6 +17,8 @@
         </Style>
     </Window.Resources>
     
+    <!--TODO Все переделать!!!!-->
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
