@@ -48,6 +48,14 @@ namespace CCD.SRC
         public int WtrSend { get; set; }
         public int ModeLevel { get; set; }
         public int SetLevel { get; set; }
+        public List<int> MinCurrentPs {  get; set; }
+        public List<int> MaxCurrentPs { get; set; }
+        public List<int> MinPressurePs { get; set; }
+        public List<int> MaxPressurePs { get; set; }
+        public List<int> MinCurrentDs { get; set; }
+        public List<int> MaxCurrentDs { get; set; }
+        public List<int> MinPressureDs { get; set; }
+        public List<int> MaxPressureDs { get; set; }
         public List<int> MinFregFm { get; set; }
         public List<int> MaxFregFm { get; set; }
         public List<int> MinFlowFm { get; set; }

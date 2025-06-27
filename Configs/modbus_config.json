@@ -28,6 +28,14 @@
     "WtrSend": 50,
     "ModeLevel": 51,
     "SetLevel": 52,
+    "MinCurrentPs": [ 66, 67 ],
+    "MaxCurrentPs": [ 68, 69 ],
+    "MinPressurePs": [ 70, 71 ],
+    "MaxPressurePs": [ 72, 73 ],
+    "MinCurrentDs": [ 74, 75 ],
+    "MaxCurrentDs": [ 76, 77 ],
+    "MinPressureDs": [ 78, 79 ],
+    "MaxPressureDs": [ 80, 81 ],
     "MinFregFm": [ 82, 83 ],
     "MaxFregFm": [ 84, 85 ],
     "MinFlowFm": [ 86, 87 ],
@@ -39,6 +47,6 @@
     "MinFregDs": [ 98, 99 ],
     "MaxFregDs": [ 100, 101 ],
     "MinFlowDs": [ 102, 103 ],
-    "MaxFlowDs": [104,105]
+    "MaxFlowDs": [ 104, 105 ]
   }
 }

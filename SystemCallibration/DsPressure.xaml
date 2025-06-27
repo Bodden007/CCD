@@ -7,119 +7,184 @@
         mc:Ignorable="d"
         Title="DsPressure" Height="450" Width="800">
     <Window.Resources>
+        
         <SolidColorBrush x:Key="PrimaryBlueColor" Color="#CDC771"/>
         <SolidColorBrush x:Key="SecondBlueColor" Color="#87834B"/>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F5F9FF"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+           Background="{TemplateBinding Background}"
+           BorderBrush="{TemplateBinding BorderBrush}"
+           BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter 
+               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBlock_2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="StyleTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="FTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        
     </Window.Resources>
+
     <Grid Background="{DynamicResource PrimaryBlueColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" 
-                   Text="Driver Side Pressure Cal">
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="9" Style="{StaticResource StyleTextBlock_2}" 
+       Text="Driver Side Pressure Cal">
         </TextBlock>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="4*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="4*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-            </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="40" 
-                   Text="milliamps"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
+        Text="milliamps"></TextBlock>
 
-            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="40" 
-                   Text="X 1"></TextBlock>
-            <Border Grid.Column="1" Grid.Row="1" Background="White" VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch">
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="0.00"></TextBox>
-            </Border>
+        <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
+        Text="psi"></TextBlock>
 
-            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="40" 
-                   Text="milliamps"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+            Text="X 1"></TextBlock>
 
-            <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="40" 
-                   Text="X 2"></TextBlock>
+        <Border Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="GridDsMillmin">
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F1"/>
+                <TextBox Style="{StaticResource StyleTextBox }" Text="{Binding MinCurrentDsStr, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </Border>
 
-            <Border Grid.Column="1" Grid.Row="3" Background="White" VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch">
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="20.00"></TextBox>
-            </Border>
+        <TextBlock Grid.Column="4" Grid.Row="2" Style="{StaticResource StyleTextBlock_1}"
+    Text="Y 1"></TextBlock>
 
-            <TextBlock Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" 
-                   Text="0 psi"></TextBlock>
+        <Border Grid.Column="5" Grid.Row="2"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="GridDsPressuremin">
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F2"/>
+                <TextBox Style="{StaticResource StyleTextBox }" Text="{Binding MinPressureDsStr, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </Border>
 
-            <TextBlock Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="40" 
-                   Text="psi"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
+    Text="milliamps"></TextBlock>
 
-            <TextBlock Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="40" 
-                   Text="Y 1"></TextBlock>
+        <TextBlock Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
+    Text="psi"></TextBlock>
 
-            <Border Grid.Column="3" Grid.Row="1" Background="White" VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch">
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="0.00"></TextBox>
-            </Border>
+        <TextBlock Grid.Column="0" Grid.Row="4" Style="{StaticResource StyleTextBlock_1}"
+    Text="X 1"></TextBlock>
 
-            <TextBlock Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" 
-                       VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="40" 
-                   Text="psi"></TextBlock>
+        <Border Grid.Column="1" Grid.Row="4"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="GridDsMillmax">
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F3"/>
+                <TextBox Style="{StaticResource StyleTextBox }" Text="{Binding MaxCurrentDsStr, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </Border>
 
-            <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="40" 
-                   Text="X 2"></TextBlock>
+        <TextBlock Grid.Column="4" Grid.Row="4" Style="{StaticResource StyleTextBlock_1}"
+    Text="Y 1"></TextBlock>
 
-            <Border Grid.Column="3" Grid.Row="3" Background="White" VerticalAlignment="Stretch"
-                    HorizontalAlignment="Stretch">
-                <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="15000.00"></TextBox>
-            </Border>
+        <Border Grid.Column="5" Grid.Row="4"  Grid.ColumnSpan="3" Style="{StaticResource BorderStyle}">
+            <Grid x:Name="GridDsPressuremax">
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F4"/>
+                <TextBox Style="{StaticResource StyleTextBox}" Text="{Binding MaxPressureDsStr, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+        </Border>
 
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <!--SAVE-->
-            <Button Grid.Column="0" Margin="5" Background="{DynamicResource SecondBlueColor}"
-                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="SAVE"></TextBlock>
-            </Button>
-            <!--UOM-->
-            <Button Grid.Column="1" Margin="5" Background="{DynamicResource SecondBlueColor}"
-                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="UOM"></TextBlock>
-            </Button>
-            <!--EXIT-->
-            <Button x:Name="Exit" Grid.Column="2" Margin="5" Background="{DynamicResource SecondBlueColor}"
-                    HorizontalContentAlignment="Stretch" 
-                    VerticalContentAlignment="Stretch" Click="Exit_Click">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       FontFamily="Times New Roman" FontSize="60" Text="EXIT"></TextBlock>
-            </Button>
-        </Grid>
+        <TextBlock Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource StyleTextBlock_1}"
+    Text="{Binding DsPassStr}"></TextBlock>
+
+        <!--EXIT-->
+        <Button x:Name="EXIT" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" 
+      Click="Exit_Click">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_2}" Text="EXIT"/>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="esc"/>
+            </Grid>
+        </Button>
+
+        <!--UOM-->
+        <Button Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" IsEnabled="False"  >
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_2}" Text="UOM"/>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F8"/>
+            </Grid>
+        </Button>
+
+        <!--SAVE-->
+        <Button x:Name="Save" Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}"
+                Click ="Save_Click">
+            <Grid>
+                <TextBlock Style="{StaticResource StyleTextBlock_2}" Text="SAVE"/>
+                <TextBlock Style="{StaticResource FTextBlock}" Text="F9"/>
+            </Grid>
+        </Button>
+
     </Grid>
+
 </Window>
